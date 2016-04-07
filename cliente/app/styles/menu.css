@@ -1,0 +1,108 @@
+.navbar {
+  background-color: rgba(224, 224, 216, 0.8);
+  font-size: 14px;
+  transition: .25s all linear;
+}
+
+#menu-link-1{
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+
+}
+
+#menu-link-1:hover {
+  color: #b88f01;
+}
+
+#menu-link-6{
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+
+}
+
+#menu-link-6:hover {
+  color: #1ea79b;
+
+}
+
+#menu-link-2{
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+
+}
+
+#menu-link-2:hover {
+  color: #5d8c18;
+}
+
+#menu-link-3{
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+
+}
+
+#menu-link-3:hover {
+  color: #7b2c85;
+
+}
+
+#menu-link-4{
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+
+}
+
+#menu-link-4:hover {
+  color: #227999;
+
+}
+
+#menu-link-5{
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+
+}
+
+#menu-link-5:hover {
+  color: #c70908;
+}
+
+
+.navbar.inv {
+  background-color: rgba( 0, 0, 0, .5 );
+  border-bottom: 1px solid #bfbfbf;
+}
+
+.navbar .nav a {
+  color: #585151;
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 600;
+  transition: all .5 linear;
+}
+
+
+.navbar-responsive-collapse {
+  margin: 0 auto;
+  width: 80%;
+}
+
+.nav li {
+  text-align: center;
+  white-space: nowrap;
+}
+
+.nav > li > a:hover,
+.nav > li > a:focus {
+  background-color: inherit;
+  outline: none;
+}
+
+.navbar-brand {
+  padding: 8px;
+}

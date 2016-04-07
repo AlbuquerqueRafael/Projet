@@ -1,0 +1,50 @@
+
+<!-- Animação do carro -->
+
+<div class="container">
+  <div class="car car1">
+    <div class="car-body">
+      <img src="http://hasinhayder.github.io/CSS3-Keyframe-Transition/img/car.png" alt="" />
+    </div>
+    <div class="tair1 tair">
+      <img src="http://hasinhayder.github.io/CSS3-Keyframe-Transition/img/tyre.png" alt="" />
+    </div>
+    <div class="tair2 tair">
+      <img src="http://hasinhayder.github.io/CSS3-Keyframe-Transition/img/tyre.png" alt="" />
+    </div>
+  </div>
+</div>
+
+
+<!-- Titulo -->
+<div class="center" style="top:112px;">
+  <h1 class="borda-2px" id = "title">
+    Carona-me!
+  </h1>
+</div>
+
+<!-- Login form -->
+
+<div class="almostJumbotron" style="top:120px;">
+  <form name="form">
+    <div data-ng-show="error" class="alert alert-danger">
+      {{errorMessage}}
+    </div>
+    <div class="form-group">
+        <label for="email"> <h5 style ="color: white;"><b>
+          Email <span class="glyphicon glyphicon-user" aria-hidden="true"></span> </b></h5></label>
+        <input type="email" class="form-control" name="email" placeholder="Digite o e-mail" autofocus required data-ng-model="usuario.email">
+
+    </div>
+    <div class="form-group">
+        <label for="password"> <h5 style ="color: white;"><b>
+          Senha <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> </b></h5></label>
+        <input type="password" class="form-control" name="senha" placeholder="Digite a senha" autofocus required data-ng-model="usuario.senha">
+    </div>
+
+      <br>
+    <button type="submit" class="btn btn-default"  style="color: #2aabd2;"  data-ng-disabled="form.email.$error.required || form.senha.$error.required" data-ng-click="logar(usuario)" >Login </button>
+    <button type="button" class="btn btn-default" style="color: #2aabd2;" value="Cadastrar" ng-click="trocar()">Cadastrar</button>
+  </form>
+
+</div>

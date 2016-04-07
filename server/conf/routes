@@ -1,0 +1,23 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                          controllers.Application.main(any = "none")
+
+
+GET     /views/index               controllers.Application.index()
+POST    /app/logar                     controllers.Application.postLogin()
+
+
+POST    /app/cadastrarMotorista    controllers.Application.postCadastroMotorista()
+POST    /app/cadastrarPassageiro    controllers.Application.postCadastroPassageiro()
+
+
+GET     /app/getUsers              controllers.Application.getAllCadastro()
+
+POST    /app/horario                controllers.Application.getHorarios()
+POST    /app/salvarHorario          controllers.Application.postHorarios()
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+GET     /*any                       controllers.Application.main(any)

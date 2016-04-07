@@ -1,0 +1,30 @@
+<div>
+    <div class="center">
+    <h1 class="borda-2px" style="color: #fffbf9 ;text-align: center; font-family: Goudy Stout; "> Carona-me! </h1>
+</div>
+
+<div class="almostJumbotron">
+        <form name="form">
+            <div data-ng-show="error" class="alert alert-danger">
+				 {{errorMessage}}
+            </div>
+            <div class="form-group">
+
+                <input type="text" class="form-control" name = "email" placeholder="Digite o e-mail"  autofocus required data-ng-model="usuario.email">
+
+            </div>
+
+            <div class="form-group">
+                <input type="password" class="form-control" name = "senha" placeholder="Digite a senha" autofocus data-ng-model="usuario.senha" required>
+            </div>
+
+            <br>
+
+            <button type="submit" class="btn btn-default"  style="color: #2aabd2;"  data-ng-disabled="form.email.$error.required || form.senha.$error.required" data-ng-click="logar(usuario)" >Login </button>
+            <button type="submit" class="btn btn-default"  style="color: #2aabd2;"  data-ng-click="trocar('views/cadastro')">Cadastro </button>
+
+
+        </form>
+
+
+</div>

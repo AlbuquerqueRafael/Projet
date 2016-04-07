@@ -1,0 +1,69 @@
+<br><br><br><br><br>
+<uib-pagination
+  ng-model="currentPage"
+  total-items="todos.length"
+  max-size="maxSize"
+  boundary-links="true">
+</uib-pagination>
+
+<div class="row">
+  <div class="col-md-2 col-md-offset-1">
+    <div class="panel panel-info" style="background-color: transparent" >
+      <form action="/horario" method="post">
+        <div class="form-group">
+          <div class="form-group">
+            <label for="diasSemana"> <h5 style ="color: #2aabd2;"><b>
+              Data</b></h5></label>
+            <select ng-model="opcaoHora" ng-options="hor.data | date:'dd/MM/yyyy' for hor in horarios">
+            </select>
+            <br/>
+          </div>
+
+
+          <div class="form-group">
+            <label for="horario"> <h5 style ="color: #2aabd2;"><b>
+              Horario </b></h5></label>
+            <select ng-model="opcaoHora" ng-options="hor.hora | date:'HH:mm' for hor in horarios">
+            </select>
+          </div>
+
+
+        </div>
+
+
+      </form>
+      <button id="singlebutton" name="salvar" class="btn btn-primary center-block" ng-click="salvarCarona()">
+        Salvar
+      </button>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="panel panel-primary"  style="width: 250px">
+      <div class="panel-heading">
+        <b>Carona-me</b>
+      </div>
+      <div class="panel-body">
+        <a href="../html-link.htm">
+          <div align="middle">
+            <img src="http://lorempixel.com/140/140/" class= "img-circle" class="img-responsive"
+                 height="70" width="70" >
+          </div>
+        </a>
+        <p></p>
+        <p style="font-size: 12px"><b>Nome</b>: Fulano B. &nbsp &nbsp<br> <b>Tel:</b>(083) 99999-3333 <br>
+          <b>E-mail</b>: fulano.siclano.at.ccc.ufcg.edu.br <br>
+          <b>Rua</b>: Aprinio Velosso Barosso <br>
+          <b>Bairro</b>: Malvinas
+        </p>
+
+        <div style="text-align: center;">
+          <input type="button" class="btn btn-default"  value="Carona-me" style="color: #2aabd2;" >
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+</div>
