@@ -15,7 +15,8 @@ import java.util.List;
 @Entity
 @DiscriminatorValue(value = "F")
 public class Motorista extends Usuario{
-
+    private static final long serialVersionUID = 1L;
+    @Constraints.Required
     private String vagas;
 
     public Motorista(String nome, String matricula, String telefone, String bairro, String email, String rua,

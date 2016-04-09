@@ -43,7 +43,7 @@ angular.module('clienteApp')
 
     $scope.cadastrar = function(usuario){
       if($scope.opcao.value === "Motorista"){
-        usuario.vagas = vagas;
+        usuario.vagas = $scope.vagas;
       }
       mainService.cadastrar(usuario, $scope.opcao.value).success(function(info){
         $location.path("/");
