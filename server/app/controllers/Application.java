@@ -92,10 +92,14 @@ public class Application extends Controller {
 
     public Result getHorarios(){
         JsonNode json = request().body().asJson();
+        System.out.println(json.toString());
         Usuario user = Json.fromJson(json, Usuario.class);
 
         if(Usuario.find.byId(user.getId()) != null){
             Usuario usuario = Usuario.find.byId(user.getId());
+            for(Carona c : usuario.getCaronas()){
+                System.out.println(c.getHorario());
+            }
             return ok(Json.toJson(usuario.getCaronas()));
         }
 
@@ -104,19 +108,15 @@ public class Application extends Controller {
 
     public Result postCaronas(){
         JsonNode json = request().body().asJson();
-        System.out.println(json.toString());
         Usuario usuario = Json.fromJson(json, Usuario.class);
-
-        Horario horario = Json.fromJson(json.findPath("caronas").findPath("horario"), Horario.class);
-        Carona carona = new Carona(horario);
-
+        System.out.println(json.toString());
 
         if(Usuario.find.byId(usuario.getId()) != null){
             Usuario user = Usuario.find.byId(usuario.getId());
-            List<Carona> caronas = user.getCaronas();
-            caronas.add(carona);
-            user.setCaronas(caronas);
-            user.save();
+            List<Carona> caronas = usuario.getCaronas();
+            System.out.println(caronas);
+            user.getCaronas().addAll(caronas);
+            user.update();
 
             return ok((Json.toJson(user)));
 

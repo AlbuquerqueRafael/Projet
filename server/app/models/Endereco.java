@@ -1,5 +1,6 @@
 package models;
 
+import com.avaje.ebean.Model;
 import play.data.validation.Constraints;
 
 import javax.persistence.Entity;
@@ -10,7 +11,7 @@ import javax.persistence.Id;
  */
 
 @Entity
-public class Endereco {
+public class Endereco extends Model {
 
     @Id
     @Constraints.Min(100)

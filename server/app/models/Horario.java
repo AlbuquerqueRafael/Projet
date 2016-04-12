@@ -14,14 +14,15 @@ import java.time.LocalDate;
  * Created by rafael on 27/03/16.
  */
 @Entity
-public class Horario {
+public class Horario extends Model{
 
     @Id
-    @Constraints.Min(100)
     private Long id;
 
 
-
+    public static Model.Finder<Long, Horario> find = new Model.Finder<Long, Horario>(
+            Long.class, Horario.class
+    );
     @Constraints.Required
     private String data;
 

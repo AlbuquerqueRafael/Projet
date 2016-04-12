@@ -5,6 +5,7 @@ import com.avaje.ebean.Model;
 import javax.persistence.*;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import play.data.validation.*;
 
@@ -32,7 +33,8 @@ public class Usuario extends Model {
 
     private Endereco endereco;
 
-    private List<Carona> caronas;
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    public List<Carona> caronas;
 
 
   /*  @ManyToOne(cascade= CascadeType.ALL)

@@ -14,24 +14,24 @@ import java.util.List;
  */
 
 @Entity
-public class Carona {
+public class Carona extends Model {
+
     @Id
-    private Long id;
-
-    @JsonProperty
-    private Horario horario;
-//    private int vagas;
-
-    @ManyToOne(cascade= CascadeType.ALL)
-    public Usuario usuario;
-
-   /* @OneToMany(mappedBy = "carona", cascade= CascadeType.ALL)
-    @JsonIgnore*/
-   // private List<Usuario> listaPassageiros;
-
+    public Long id;
     public static Model.Finder<Long, Carona> find = new Model.Finder<Long, Carona>(
             Long.class, Carona.class
     );
+
+    public Horario horario;
+//    private int vagas;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    public Usuario usuario;
+    /*@OneToMany(mappedBy = "carona", cascade= CascadeType.ALL)
+    @JsonIgnore*/
+   // private List<Usuario> listaPassageiros;
+
+
 
     public Carona (Horario horario){
        // this.vagas = vagas;
@@ -40,9 +40,6 @@ public class Carona {
         this.horario = horario;
     }
 
-    public Carona(){
-
-    }
 /*
     public int getVagas() {
         return vagas;
