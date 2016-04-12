@@ -15,23 +15,25 @@ import java.time.LocalDate;
  */
 @Entity
 public class Horario {
+
     @Id
     @Constraints.Min(100)
     private Long id;
 
+
+
+    @Constraints.Required
     private String data;
+
+
+    @Constraints.Required
     private String hora;
+
+
+    @Constraints.Required
     private String tipo;
 
-    @ManyToOne(cascade= CascadeType.ALL)
-    @JsonIgnore
-    public Usuario usuario;
-
-    public static Model.Finder<Long, Horario> find = new Model.Finder<Long, Horario>(
-            Long.class, Horario.class
-    );
-
-    public Horario(String tipo, String dia_hora, String hora) {
+    public Horario(String dia_hora, String hora, String tipo) {
         this.data = dia_hora;
         this.hora = hora;
         this.tipo = tipo;

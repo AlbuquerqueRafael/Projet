@@ -1,6 +1,8 @@
 package models;
 
+import com.avaje.ebean.Model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import play.data.validation.Constraints;
 
 import javax.persistence.*;
@@ -11,58 +13,99 @@ import java.util.List;
  * Created by rafael on 27/03/16.
  */
 
+@Entity
 public class Carona {
     @Id
-    @Constraints.Min(100)
     private Long id;
 
+    @JsonProperty
+    private Horario horario;
+//    private int vagas;
 
-    private int vagas_disponiveis;
+    @ManyToOne(cascade= CascadeType.ALL)
+    public Usuario usuario;
 
-    @OneToMany(cascade= CascadeType.ALL)
-    @JsonIgnore
-    private List<Usuario> listaPassageiros;
+   /* @OneToMany(mappedBy = "carona", cascade= CascadeType.ALL)
+    @JsonIgnore*/
+   // private List<Usuario> listaPassageiros;
 
-    private Motorista motorista;
+    public static Model.Finder<Long, Carona> find = new Model.Finder<Long, Carona>(
+            Long.class, Carona.class
+    );
 
-    public Carona (Motorista motorista){
-      //  this.horario = horario;
-        this.motorista = motorista;
-
-        // cria lista de passageiros zeradas
-        listaPassageiros = new ArrayList<Usuario>();
-
-        //inicialmente as vagas disponiveis recebem o num de vagas do carro do motorista
-        vagas_disponiveis = Integer.parseInt(motorista.getVagas());
+    public Carona (Horario horario){
+       // this.vagas = vagas;
+    //    this.horario = horario;
+    //    listaPassageiros = new ArrayList<Usuario>();
+        this.horario = horario;
     }
 
- //   public Horario getHorario(){
-   //     return horario;
-    //}
+    public Carona(){
 
-    public int getVagas_disponiveis() {
-        return vagas_disponiveis;
+    }
+/*
+    public int getVagas() {
+        return vagas;
     }
 
     public List<Usuario> getListaPassageiros() {
         return listaPassageiros;
     }
+*/
+ /*   public Horario getHorario(){
+        return horario;
+    }
+/*
+  //  public String getTipoCarona(){
+     //   return tipoCarona;
+   // }
 
-    public Motorista getMotorista() {
-        return motorista;
+
+/*    public void setVagas(int vagas) {
+        this.vagas = vagas;
     }
 
-    public boolean cadastraNovoPassageiro (Usuario usr){
-        if (vagas_disponiveis > 0){
-            listaPassageiros.add(usr);
-            vagas_disponiveis--;
-            return true;
-        }
-        return false;
+    public void setListaPassageiros(List<Usuario> listaPassageiros) {
+        this.listaPassageiros = listaPassageiros;
+    }
+/*
+    public void setHorario(Horario horario){
+
+        this.horario = horario;
+    }*/
+
+ /*   public String getData() {
+
+        return data;
     }
 
-    public void removePassageiro (Usuario usr){
-        if (listaPassageiros.remove(usr))
-            vagas_disponiveis++;
+    public void setData(String data) {
+        this.data = data;
     }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getHora(){
+        return hora;
+    }
+
+    public void setHora(String hora){
+        this.hora = hora;
+    }*/
+
+
+    public Horario getHorario(){
+        return horario;
+    }
+
+    public void setHorario(Horario horario){
+        this.horario = horario;
+    }
+
 }

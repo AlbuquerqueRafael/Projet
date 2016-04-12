@@ -18,6 +18,20 @@
   </div>
 
   <div class="col-md-2 col-md-offset-1">
+    <div class="form-group">
+      <button name="salvar" class="btn btn-primary center-block" ng-click="trocarRota('OferecerCarona')">
+        Oferecer Carona
+      </button>
+      <br>
+      <br>
+      <br>
+      <br>
+      <button name="salvar" class="btn btn-primary center-block" ng-click="salvarCarona('BuscarCarona')">
+        Buscar Carona
+      </button>
+    </div>
+  </div>
+    <!--  <div class="col-md-2 col-md-offset-1">
     <div class="panel panel-info" style="background-color: transparent" >
       <form action="/horario" method="post">
         <div class="form-group">
@@ -60,7 +74,7 @@
       </button>
     </div>
   </div>
-
+-->
   <div class="col-md-6 col-md-offset-0">
       <div class="panel-heading">
         <span class="glyphicon glyphicon-list"></span> Caronas
@@ -74,6 +88,7 @@
             <th>Dia Semana</th>
             <th>Hora</th>
             <th>Tipo</th>
+            <th>Status</th>
           </tr>
           </thead>
           <tbody>
@@ -82,6 +97,7 @@
             <td>{{caro.data | date:'EEEE'}}</td>
             <td>{{caro.hora | date:'HH:mm' }}</td>
             <td>{{caro.tipo}}</td>
+            <td> Passageiro</td>
 
           </tr>
 
@@ -91,7 +107,7 @@
       </div>
 
   </div>
-  <div class="col-md-2">
+ <!-- <div class="col-md-2">
     <div class="panel panel-info" style="background-color: transparent" >
       <div class="form-group">
         <label for="rotas"> <h5 style ="color: #2aabd2;"><b>
@@ -117,6 +133,7 @@
       </div>
     </div>
   </div>
+-->
 </div>
 
 </body>

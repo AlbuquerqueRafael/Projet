@@ -3,10 +3,7 @@ package controllers;
 
 
 import com.fasterxml.jackson.databind.JsonNode;
-import models.Horario;
-import models.Motorista;
-import models.Passageiro;
-import models.Usuario;
+import models.*;
 import play.db.ebean.Transactional;
 import play.libs.Json;
 import play.mvc.*;
@@ -63,8 +60,16 @@ public class Application extends Controller {
         return badRequest("Usuario ou senha inválidos!");
     }
 
-    @Transactional
+  /*  @Transactional
     public Result verificaCadastro(Usuario usuario) {
+        return ok();
+    }
+*/
+
+    @Transactional
+    public Result postCadastro() {
+        JsonNode json = request().body().asJson();
+        Usuario usuario = Json.fromJson(json, Usuario.class);
 
         if(!Util.isValidEmailAddress(usuario.getEmail())){
             return badRequest("E-mail inválido");
@@ -74,31 +79,6 @@ public class Application extends Controller {
             return badRequest("O telefone deve possuir 9 digítos.");
         }
 
-        return ok();
-    }
-
-    @Transactional
-    public Result postCadastroPassageiro() {
-        JsonNode json = request().body().asJson();
-        Usuario usuario = Json.fromJson(json, Passageiro.class);
-
-        verificaCadastro(usuario);
-        usuario.save();
-        return ok(Json.toJson(usuario));
-    }
-
-    @Transactional
-    public Result postCadastroMotorista() {
-        JsonNode json = request().body().asJson();
-        Usuario usuario = Json.fromJson(json, Motorista.class);
-
-     /*   if(Integer.parseInt(usuario.getVagas()) <= 0){
-            return badRequest("O carro deve ter mais de 0 vagas.");
-        }*/
-
-
-
-        verificaCadastro(usuario);
         usuario.save();
         return ok(Json.toJson(usuario));
     }
@@ -116,23 +96,30 @@ public class Application extends Controller {
 
         if(Usuario.find.byId(user.getId()) != null){
             Usuario usuario = Usuario.find.byId(user.getId());
-            return ok(Json.toJson(usuario.getHorarios()));
+            return ok(Json.toJson(usuario.getCaronas()));
         }
 
         return badRequest("Usuario não Encontrado!");
     }
 
-    public Result postHorarios(){
+    public Result postCaronas(){
         JsonNode json = request().body().asJson();
-        Usuario user = Json.fromJson(json, Usuario.class);
+        System.out.println(json.toString());
+        Usuario usuario = Json.fromJson(json, Usuario.class);
+
+        Horario horario = Json.fromJson(json.findPath("caronas").findPath("horario"), Horario.class);
+        Carona carona = new Carona(horario);
 
 
-        if(Usuario.find.byId(user.getId()) != null){
-            Usuario usuario = Usuario.find.byId(user.getId());
-            List<Horario> horarios = user.getHorarios();
-            usuario.setHorarios(horarios);
-            usuario.update();
-            return ok("It works!");
+        if(Usuario.find.byId(usuario.getId()) != null){
+            Usuario user = Usuario.find.byId(usuario.getId());
+            List<Carona> caronas = user.getCaronas();
+            caronas.add(carona);
+            user.setCaronas(caronas);
+            user.save();
+
+            return ok((Json.toJson(user)));
+
         }
 
         return badRequest("Usuario não Encontrado!");

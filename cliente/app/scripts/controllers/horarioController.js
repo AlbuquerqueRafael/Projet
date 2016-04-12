@@ -1,7 +1,7 @@
 /**
  * Created by rafael on 27/03/16.
  */
-angular.module("clienteApp").controller("horarioCtrl", function($scope, horarioService, mainService, $filter) {
+angular.module("clienteApp").controller("horarioCtrl", function($scope, horarioService, mainService, $filter, $location) {
 
   $scope.bairros = [{value:"Malvinas", add: false},
                     {value:"Centro", add: false},
@@ -28,8 +28,12 @@ angular.module("clienteApp").controller("horarioCtrl", function($scope, horarioS
     $scope.ismeridian = ! $scope.ismeridian;
   };
 
-  $scope.inicio = horarioService.getHorarios($scope.usuario).success(function(horarios){
-      $scope.horarios = horarios;
+  $scope.inicio = horarioService.getHorarios($scope.usuario).success(function(caronas){
+    console.log(caronas);
+    $scope.horarios = caronas;
+  }).error(function(error){
+    console.log(error);
+
   });
 
 
@@ -55,6 +59,14 @@ angular.module("clienteApp").controller("horarioCtrl", function($scope, horarioS
 
   }
 
+    $scope.trocarRota = function(rota){
+      console.log(rota);
+      if(rota === "OferecerCarona"){
+         $location.path('/carona')
+      }else{
+        $location.path('/buscar')
+      }
+    }
 
     $scope.salvarCarona = function(){
         var separaData = $scope.data.split("/");
@@ -62,13 +74,19 @@ angular.module("clienteApp").controller("horarioCtrl", function($scope, horarioS
 
         if($scope.hora !== null) {
           var carona = {};
-          carona.data = data;
-          carona.hora = $scope.hora;
-          carona.tipo = $scope.opcaoCarona;
-          $scope.usuario.horario = carona;
+          carona.horario = {};
+          carona.horario.data = data;
+          carona.horario.hora = $scope.hora;
+          carona.horario.tipo = $scope.opcaoCarona;
+          $scope.usuario.caronas = []
+          $scope.usuario.caronas.push(carona);
           $scope.error = false;
+          console.log($scope.usuario);
           horarioService.salvarHorario($scope.usuario).success(function (info) {
-            $scope.horarios.push(carona);
+            console.log("dd");
+          }).error(function(error){
+            console.log(error);
+
           });
         }else{
           $scope.error = true;

@@ -44,6 +44,10 @@ angular
         controller: 'MainCtrl',
 
       })
+      .when('/carona', {
+        templateUrl: 'views/carona.html',
+        controller: 'horarioCtrl'
+      })
       .when('/busca', {
         templateUrl: 'views/busca.html',
         controller: 'buscaCtrl'

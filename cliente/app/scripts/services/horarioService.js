@@ -9,7 +9,7 @@ angular.module("clienteApp").factory("horarioService", function($http){
     }
 
     horarioService.salvarHorario = function(usuario){
-          return $http.post("/app/salvarHorario", usuario);
+          return $http.post("/app/salvarCarona", usuario);
     }
 
 

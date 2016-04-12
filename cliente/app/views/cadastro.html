@@ -23,23 +23,23 @@
     </div>
 
     <div class="form-group">
-      <input type="text" name = "rua" class="form-control" placeholder="Rua" required ng-model="usuario.rua">
+      <input type="text" name = "rua" class="form-control" placeholder="Rua" required ng-model="usuario.endereco.rua">
     </div>
 
     <div class="form-group">
-      <input type="text" name = "bairro" class="form-control" placeholder="Bairro" required ng-model="usuario.bairro">
+      <input type="text" name = "bairro" class="form-control" placeholder="Bairro" required ng-model="usuario.endereco.bairro">
     </div>
 
     <div class="form-group">
       <input type="number" name = "telefone" class="form-control" placeholder="Telefone" required ng-model="usuario.telefone">
     </div>
-    <div class="form-group" id="vagas">
+    <!--<div class="form-group" id="vagas">
       <input ng-if="opcao.value == 'Motorista'" type="number" name = "vagas"  class="form-control" required placeholder="Nº Vagas" ng-model="vagas">
     </div>
 
     <select ng-model="opcao" ng-options="opt.value for opt in options">
     </select>
-
+-->
 
     <input type="submit" class="btn btn-primary" value="Ok" data-ng-disabled="form.nome.$error.required ||
             form.email.$error.required || form.senha.$error.required || form.numeroMatricula.$error.required ||

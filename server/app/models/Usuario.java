@@ -12,12 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "tipo", length = 1, discriminatorType = DiscriminatorType.STRING)
 public class Usuario extends Model {
 
     private static final long serialVersionUID = 1L;
-
 
     @Id
     @Constraints.Min(100)
@@ -29,37 +26,34 @@ public class Usuario extends Model {
     @Constraints.Required
     private String telefone;
     @Constraints.Required
-    private String bairro;
-    @Constraints.Required
     private String email;
-    @Constraints.Required
-    private String rua;
     @Constraints.Required
     private String senha;
 
+    private Endereco endereco;
 
-    @OneToMany(mappedBy = "usuario",cascade= CascadeType.ALL)
-    @JsonIgnore
-    private List<Horario> horarios;
+    private List<Carona> caronas;
 
 
+  /*  @ManyToOne(cascade= CascadeType.ALL)
+    private Carona carona;
+*/
     public static Finder<Long, Usuario> find = new Finder<Long, Usuario>(
             Long.class, Usuario.class
     );
 
-    public Usuario(String nome, String matricula, String telefone, String bairro, String email, String rua, String senha) {
+    public Usuario(String nome, String matricula, String telefone, String email, String senha, Endereco endereco) {
         this.nome = nome;
         this.matricula = matricula;
         this.telefone = telefone;
-        this.bairro = bairro;
         this.email = email;
-        this.rua = rua;
         this.senha = senha;
-        this.horarios = new ArrayList<Horario>();
+        this.endereco = endereco;
+        this.caronas = new ArrayList<Carona>();
     }
 
     public Usuario(){
-
+        this.caronas = new ArrayList<Carona>();
     }
 
     public String getNome() {
@@ -78,22 +72,6 @@ public class Usuario extends Model {
         this.matricula = matricula;
     }
 
-    public String getBairro() {
-        return bairro;
-    }
-
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
-    }
-
-    public String getRua() {
-        return rua;
-    }
-
-    public void setRua(String rua) {
-        this.rua = rua;
-    }
-
     public String getSenha() {
         return senha;
     }
@@ -110,17 +88,14 @@ public class Usuario extends Model {
         this.email = email;
     }
 
-    public List<Horario> getHorarios() {
-        return horarios;
+    public List<Carona> getCaronas() {
+        return caronas;
     }
 
-    public void setHorarios(List<Horario> horarios) {
-        this.horarios.addAll(horarios);
+    public void setCaronas(List<Carona> caronas) {
+        this.caronas = caronas;
     }
 
-    public void setHorario(Horario horario) {
-        this.horarios.add(horario);
-    }
 
     public String getTelefone() {
         return telefone;
@@ -128,6 +103,14 @@ public class Usuario extends Model {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    public Endereco getEndereco(){
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco){
+        this.endereco = endereco;
     }
 
     public void setId(Long id){
