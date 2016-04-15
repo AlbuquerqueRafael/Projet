@@ -5,7 +5,7 @@ angular.module("clienteApp").factory("horarioService", function($http){
     var horarioService = {};
 
     horarioService.getHorarios = function(usuario){
-         return $http.post("/app/horario", usuario);
+         return $http.post("/app/caronas", usuario);
     }
 
     horarioService.salvarHorario = function(usuario){

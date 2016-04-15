@@ -29,7 +29,7 @@ angular.module("clienteApp").controller("horarioCtrl", function($scope, horarioS
   };
 
   $scope.inicio = horarioService.getHorarios($scope.usuario).success(function(caronas){
-    console.log(caronas);
+    console.log($scope.usuario);
     $scope.horarios = caronas;
   }).error(function(error){
     console.log(error);
