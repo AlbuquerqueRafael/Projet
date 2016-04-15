@@ -11,10 +11,10 @@ import java.util.List;
  * Singleton Pattern
  */
 
-public class SistemaUsuarios extends Model{
+public class SistemaUsuarios{
 
 	private List<Usuario> usuarios;
-	private SistemaUsuarios sistemaUsuarios;
+	private static SistemaUsuarios sistemaUsuarios;
 
 
 	public SistemaUsuarios (){
@@ -24,6 +24,7 @@ public class SistemaUsuarios extends Model{
 	public static SistemaUsuarios getInstance(){
 		if (sistemaUsuarios == null){
 			sistemaUsuarios = new SistemaUsuarios();
+			System.out.println("Testa");
 		}
 
 		return sistemaUsuarios;

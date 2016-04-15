@@ -11,10 +11,10 @@ import java.util.List;
  * Singleton Pattern
  */
 
-public class SistemaCaronas extends Model{
+public class SistemaCaronas{
 
 	private List<Carona> caronas;
-	private SistemaCaronas sistemaCaronas;
+	private static SistemaCaronas sistemaCaronas;
 
 
 	public SistemaCaronas (){

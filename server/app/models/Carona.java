@@ -10,7 +10,7 @@ import java.util.List;
  * Created by Mafra on 27/03/16.
  */
 
-public class Carona extends Model {
+public class Carona {
 
 
     private Horario horario;

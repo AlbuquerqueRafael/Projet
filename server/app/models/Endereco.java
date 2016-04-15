@@ -4,7 +4,7 @@ package models;
  * Created by rafael on 10/04/16.
  */
 
-public class Endereco extends Model {
+public class Endereco {
 
     private String rua;
     private String bairro;
@@ -15,6 +15,9 @@ public class Endereco extends Model {
         this.bairro = bairro;
     }
 
+    public Endereco(){
+
+    }
 
     public String getRua(){
         return rua;

@@ -31,7 +31,7 @@ public class Solicitacao {
         return passageiro_da_solicitacao;
     }
     
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 

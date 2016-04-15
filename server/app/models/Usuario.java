@@ -3,19 +3,21 @@ package models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Usuario extends Model {
+public class Usuario{
 
 
     private String nome, matricula, telefone, email, senha;
+    @JsonProperty
     private Endereco endereco;
-    public List<Carona> caronasMotorista;
-    public List<Carona> caronasPassageiro;
-    public List<Solicitacao> solicitacoesEnviadas;
-    public List<Solicitacao> solicitacoesRecebidas;
+    private List<Carona> caronasMotorista;
+    private List<Carona> caronasPassageiro;
+    private List<Solicitacao> solicitacoesEnviadas;
+    private List<Solicitacao> solicitacoesRecebidas;
 
 
     public Usuario(String nome, String matricula, String telefone, String email, String senha, Endereco endereco) {
@@ -27,7 +29,18 @@ public class Usuario extends Model {
         this.endereco = endereco;
         this.caronasMotorista = new ArrayList<Carona>();
         this.caronasPassageiro = new ArrayList<Carona>();
+        this.solicitacoesEnviadas = new ArrayList<Solicitacao>();
+        this.solicitacoesRecebidas = new ArrayList<Solicitacao>();
     }
+
+    public Usuario(){
+        this.caronasMotorista = new ArrayList<Carona>();
+        this.caronasPassageiro = new ArrayList<Carona>();
+        this.solicitacoesEnviadas = new ArrayList<Solicitacao>();
+        this.solicitacoesRecebidas = new ArrayList<Solicitacao>();
+    }
+
+
 
     public List<Solicitacao> getSolicitacoesRecebidas(){
         return solicitacoesRecebidas;
@@ -76,11 +89,6 @@ public class Usuario extends Model {
     public List<Carona> getCaronasPassageiro() {
         return caronasPassageiro;
     }
-
-    public void setCaronas(List<Carona> caronas) {
-        this.caronas = caronas;
-    }
-
 
     public String getTelefone() {
         return telefone;

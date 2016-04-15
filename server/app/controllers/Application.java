@@ -38,7 +38,7 @@ public class Application extends Controller {
     }
 
     public  Result postLogin() {
-        JsonNode json = request().body().asJson();
+/*        JsonNode json = request().body().asJson();
         List<Usuario> usuarios = Usuario.find.all();
         Usuario user = Json.fromJson(json, Usuario.class);
         System.out.println(Arrays.toString(usuarios.toArray()));
@@ -55,7 +55,7 @@ public class Application extends Controller {
                 usuario.setId(usuarios.get(i).getId());
                 return ok(Json.toJson(usuario));
             }
-        }
+        }*/
 
         return badRequest("Usuario ou senha inválidos!");
     }
@@ -69,6 +69,7 @@ public class Application extends Controller {
     @Transactional
     public Result postCadastro() {
         JsonNode json = request().body().asJson();
+        System.out.println(json.toString());
         Usuario usuario = Json.fromJson(json, Usuario.class);
 
         if(!Util.isValidEmailAddress(usuario.getEmail())){
@@ -79,19 +80,25 @@ public class Application extends Controller {
             return badRequest("O telefone deve possuir 9 digítos.");
         }
 
-        usuario.save();
+        SistemaUsuarios.getInstance().adicionarUsuario(usuario);
+        for(Usuario s : SistemaUsuarios.getInstance().getUsuarios()){
+            System.out.println(s.getCaronasMotorista());
+            System.out.println(s.getEndereco());
+            System.out.println(s.getEmail());
+        }
         return ok(Json.toJson(usuario));
     }
 
     public Result getHorariosMotoristas(){
-        List<Usuario> usuarios = Usuario.find.all();
-        return ok(toJson(usuarios));
+        /*List<Usuario> usuarios = Usuario.find.all();
+        return ok(toJson(usuarios));*/
+        return badRequest("O telefone deve possuir 9 digítos.");
     }
 
 
 
     public Result getHorarios(){
-        JsonNode json = request().body().asJson();
+        /*JsonNode json = request().body().asJson();
         System.out.println(json.toString());
         Usuario user = Json.fromJson(json, Usuario.class);
 
@@ -102,7 +109,7 @@ public class Application extends Controller {
             }
             return ok(Json.toJson(usuario.getCaronas()));
         }
-
+*/
         return badRequest("Usuario não Encontrado!");
     }
 
@@ -111,7 +118,7 @@ public class Application extends Controller {
         Usuario usuario = Json.fromJson(json, Usuario.class);
         System.out.println(json.toString());
 
-        if(Usuario.find.byId(usuario.getId()) != null){
+/*        if(Usuario.find.byId(usuario.getId()) != null){
             Usuario user = Usuario.find.byId(usuario.getId());
             List<Carona> caronas = usuario.getCaronas();
             System.out.println(caronas);
@@ -120,13 +127,13 @@ public class Application extends Controller {
 
             return ok((Json.toJson(user)));
 
-        }
+        }*/
 
         return badRequest("Usuario não Encontrado!");
     }
 
     public Result getAllCadastro(){
-        List<Usuario> usuarios = Usuario.find.all();
+        List<Usuario> usuarios = SistemaUsuarios.getInstance().getUsuarios();
         return ok(toJson(usuarios));
     }
 

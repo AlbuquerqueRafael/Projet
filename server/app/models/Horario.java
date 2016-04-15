@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * Created by Mafra on 27/03/16.
  */
 
-public class Horario extends Model{
+public class Horario{
 
 
     private String aula; // 8-10, 10-12, 14-16, 16-18
