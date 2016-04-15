@@ -1,47 +1,9 @@
 body{
-  background-image: url('../images/carona.jpg');
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-color: #fffbf9 ;
+  background-color: rgb(0,121,192) ;
 }
 
 .container{
   position:relative;
-}
-.car {
-  position: absolute;
-  z-index: 1;
-  top: 106px;
-  right:-10px;
-  animation:run 20s infinite linear;
-}
-
-.car-body img{
-  width:200px;
-}
-.tair{
-  position:absolute;
-}
-.tair img{
-  width:40px;
-  animation:rotate 3s infinite linear;
-  position:relative;
-}
-.tair1{
-  left:35px;
-  top:106px;
-}
-.tair2{
-  left:128px;
-  top:106px;
-}
-@keyframes rotate{
-  100% {transform: rotate(-360deg);}
-}
-
-@keyframes run{
-  100% {transform:translateX(-1200px);}
 }
 
 #title{
