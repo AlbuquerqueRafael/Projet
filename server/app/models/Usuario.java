@@ -1,48 +1,22 @@
 package models;
 
-import com.avaje.ebean.Model;
-
-import javax.persistence.*;
-
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import play.data.validation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
 public class Usuario extends Model {
 
-    private static final long serialVersionUID = 1L;
 
-    @Id
-    @Constraints.Min(100)
-    private Long id;
-    @Constraints.Required
-    private String nome;
-    @Constraints.Required
-    private String matricula;
-    @Constraints.Required
-    private String telefone;
-    @Constraints.Required
-    private String email;
-    @Constraints.Required
-    private String senha;
-
+    private String nome, matricula, telefone, email, senha;
     private Endereco endereco;
+    public List<Carona> caronasMotorista;
+    public List<Carona> caronasPassageiro;
+    public List<Solicitacao> solicitacoesEnviadas;
+    public List<Solicitacao> solicitacoesRecebidas;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-    public List<Carona> caronas;
-
-
-  /*  @ManyToOne(cascade= CascadeType.ALL)
-    private Carona carona;
-*/
-    public static Finder<Long, Usuario> find = new Finder<Long, Usuario>(
-            Long.class, Usuario.class
-    );
 
     public Usuario(String nome, String matricula, String telefone, String email, String senha, Endereco endereco) {
         this.nome = nome;
@@ -51,11 +25,16 @@ public class Usuario extends Model {
         this.email = email;
         this.senha = senha;
         this.endereco = endereco;
-        this.caronas = new ArrayList<Carona>();
+        this.caronasMotorista = new ArrayList<Carona>();
+        this.caronasPassageiro = new ArrayList<Carona>();
     }
 
-    public Usuario(){
-        this.caronas = new ArrayList<Carona>();
+    public List<Solicitacao> getSolicitacoesRecebidas(){
+        return solicitacoesRecebidas;
+    }
+
+    public List<Solicitacao> getSolicitacoesEnviadas(){
+        return solicitacoesEnviadas;
     }
 
     public String getNome() {
@@ -90,8 +69,12 @@ public class Usuario extends Model {
         this.email = email;
     }
 
-    public List<Carona> getCaronas() {
-        return caronas;
+    public List<Carona> getCaronasMotorista() {
+        return caronasMotorista;
+    }
+
+    public List<Carona> getCaronasPassageiro() {
+        return caronasPassageiro;
     }
 
     public void setCaronas(List<Carona> caronas) {
@@ -113,14 +96,6 @@ public class Usuario extends Model {
 
     public void setEndereco(Endereco endereco){
         this.endereco = endereco;
-    }
-
-    public void setId(Long id){
-        this.id = id;
-    }
-
-    public Long getId(){
-        return id;
     }
 
 }

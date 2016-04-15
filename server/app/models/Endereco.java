@@ -1,26 +1,12 @@
 package models;
 
-import com.avaje.ebean.Model;
-import play.data.validation.Constraints;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
 /**
  * Created by rafael on 10/04/16.
  */
 
-@Entity
 public class Endereco extends Model {
 
-    @Id
-    @Constraints.Min(100)
-    private Long id;
-
-    @Constraints.Required
     private String rua;
-
-    @Constraints.Required
     private String bairro;
 
 
