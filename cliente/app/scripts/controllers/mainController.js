@@ -26,7 +26,6 @@ angular.module('clienteApp')
     $scope.logar = function(usuario) {
       mainService.logar(usuario).success(function(info){
         usuario = info;
-        mainService.credenciar(usuario);
         menuService.setMenu("Usuario");
         $location.path("/horario");
       }).error(function(error){
