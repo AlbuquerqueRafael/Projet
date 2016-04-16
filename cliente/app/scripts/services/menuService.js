@@ -9,6 +9,10 @@ angular.module("clienteApp").factory("menuService", function($location, $cookieS
 
   }
 
+  service.getMenu = function(){
+    return $cookieStore.get('menu');
+  }
+
   service.getMenuInicial = function(){
     menus = [{path : "/", href : "#/", nome: "Inicio", class:"home", slide:1},
       {path : "/sobre", href : "#/sobre", nome: "Sobre", class: "star", slide:2},
@@ -40,7 +44,7 @@ angular.module("clienteApp").factory("menuService", function($location, $cookieS
 
   service.getRoute = function(){
     route = "inicio";
-    if($cookieStore.get('menu') == "logado"){
+    if($cookieStore.get('menu') === "Usuario"){
       route = "/home"
     }
     return route;

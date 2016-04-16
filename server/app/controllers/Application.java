@@ -36,6 +36,7 @@ public class Application extends Controller {
         List<Usuario> usuarios = SistemaUsuarios.getInstance().getUsuarios();
         Usuario user = Json.fromJson(json, Usuario.class);
 
+        System.out.println(usuarios);
         if(usuarios == null){
            return badRequest("Usuario ou senha inválidos");
         }
