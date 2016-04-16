@@ -3,23 +3,26 @@
 </div>
 <br>
 <br>
+<br>
 
 <div class="almostJumbotron">
   <form name="form">
-    <div data-ng-show="error" class="alert alert-danger">
-      {{errorMessage}}
-    </div>
+
     <div class="form-group">
       <input type="text" name = "nome" class="form-control" placeholder="Nome" required ng-model="usuario.nome">
     </div>
     <div class="form-group">
-      <input type="text" name = "email" class="form-control" placeholder="Email" required ng-model="usuario.email">
+      <input type="email" name = "email" class="form-control" placeholder="Email"
+             title="Preencha com um email válido. Exemplo caroname@caroname.com"
+             required ng-model="usuario.email">
     </div>
     <div class="form-group">
-      <input type="text" name = "senha" class="form-control" placeholder="Senha" required ng-model="usuario.senha">
+      <input type="password" name = "senha" class="form-control" placeholder="Senha"
+             title="Pelo menos 8 characteres" pattern=".{8,}" required ng-model="usuario.senha">
     </div>
     <div class="form-group">
-      <input type="text" name = "numeroMatricula" class="form-control" placeholder="Nº Matricula" required ng-model="usuario.matricula">
+      <input type="text" name = "numeroMatricula" class="form-control" placeholder="Nº Matricula"
+             title="Digite os 9 números da sua matrícula" pattern="[0-9]{9}" maxlength="9"  required ng-model="usuario.matricula">
     </div>
 
     <div class="form-group">
@@ -27,21 +30,16 @@
     </div>
 
     <div class="form-group">
-      <input type="text" name = "bairro" class="form-control" placeholder="Bairro" required ng-model="usuario.endereco.bairro">
+      <input type="text" name = "bairro" pattern=".{4,}" class="form-control"
+             placeholder="Bairro" required ng-model="usuario.endereco.bairro">
     </div>
 
     <div class="form-group">
-      <input type="number" name = "telefone" class="form-control" placeholder="Telefone" required ng-model="usuario.telefone">
-    </div>
-    <!--<div class="form-group" id="vagas">
-      <input ng-if="opcao.value == 'Motorista'" type="number" name = "vagas"  class="form-control" required placeholder="Nº Vagas" ng-model="vagas">
+      <input type="text" name = "telefone" class="form-control" placeholder="Telefone sem ddd" maxlength="9"
+             pattern="[0-9]{8,9}" title="Digite os números do seu telefone" required ng-model="usuario.telefone">
     </div>
 
-    <select ng-model="opcao" ng-options="opt.value for opt in options">
-    </select>
--->
-
-    <input type="submit" class="btn btn-primary" value="Ok" data-ng-disabled="form.nome.$error.required ||
+    <input type="submit" class="btn btn-default" value="Ok" data-ng-disabled="form.nome.$error.required ||
             form.email.$error.required || form.senha.$error.required || form.numeroMatricula.$error.required ||
             form.rua.$error.required  || form.bairro.$error.required || form.telefone.$error.required"
            ng-click="cadastrar(usuario)">
