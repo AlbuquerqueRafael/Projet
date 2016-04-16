@@ -13,7 +13,7 @@
                 {{errorMessage}}
               </div>
               <div class="form-group">
-                <label for="diasSemana"> <h5 style ="color: #2aabd2;"><b>
+                <label for="diasSemana"> <h5 ><b>
                   DiaDaSemana</b></h5></label>
                 <select class="form-control" ng-model="horario.DiaDaSemana" ng-options="opt.value for opt in diaSemanas">
                 </select>
@@ -22,32 +22,32 @@
 
 
               <div class="form-group">
-                <label for="horario"> <h5 style ="color: #2aabd2;"><b>
+                <label for="horario"> <h5><b>
                   Aula </b></h5></label>
                 <select class="form-control" ng-model="horario.aula" ng-options="opt.value for opt in horarios">
                   </select>
               </div>
 
               <div class="form-group">
-                <label for="vagas"> <h5 style ="color: #2aabd2;"><b>
+                <label for="vagas"> <h5 ><b>
                   Vagas </b></h5></label>
                 <select class="form-control" ng-model="vagas" ng-options="opt.value for opt in NumVagas">
                 </select>
               </div>
 
-              <label for="tipoCarona"> <h5 style ="color:  #2aabd2;"><b>
+              
+              <label for="tipoCarona"> <h5><b>
                 Tipo de Carona</b></h5></label>
-
               <br>
+              <div class="form-group2">
               <div class="radio">
                 <label><input type="radio" name="optradio" ng-model="opcaoCarona" value=0>Ida</label>
               </div>
               <div class="radio" ng-model="opcaoCarona" value="volta">
                 <label><input type="radio" name="optradio" ng-model="opcaoCarona" value=1>Volta</label>
               </div>
-
+              </div>
             </div>
-
 
             </form>
             <button id="singlebutton" name="salvar" class="btn btn-primary center-block" ng-click="salvarCarona()">
