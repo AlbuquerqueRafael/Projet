@@ -27,6 +27,10 @@ public class Carona {
         this.numero_de_vagas = vagas;
     }
 
+    public Usuario getMotorista(){
+        return motorista;
+    }
+
 
     public int getVagas() {
         return numero_de_vagas;

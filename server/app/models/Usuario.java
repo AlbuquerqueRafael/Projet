@@ -90,6 +90,14 @@ public class Usuario{
         return caronasPassageiro;
     }
 
+    public void cadastraCarona(Carona c){
+        caronasMotorista.add(c);
+    }
+
+    public void novaCaronaPassageiro(Carona c){
+        caronasPassageiro.add(c);
+    }
+
     public String getTelefone() {
         return telefone;
     }

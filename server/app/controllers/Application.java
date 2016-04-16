@@ -80,29 +80,42 @@ public class Application extends Controller {
         return ok(Json.toJson(usuario));
     }
 
-    public Result getHorariosMotoristas(){
-        /*List<Usuario> usuarios = Usuario.find.all();
-        return ok(toJson(usuarios));*/
-        return badRequest("O telefone deve possuir 9 digítos.");
-    }
 
-
-
-    public Result getHorarios(){
-        /*JsonNode json = request().body().asJson();
+    public Result postCadastroCarona() {
+        JsonNode json = request().body().asJson();
         System.out.println(json.toString());
-        Usuario user = Json.fromJson(json, Usuario.class);
+        Carona carona = Json.fromJson(json, Carona.class);
 
-        if(Usuario.find.byId(user.getId()) != null){
-            Usuario usuario = Usuario.find.byId(user.getId());
-            for(Carona c : usuario.getCaronas()){
-                System.out.println(c.getHorario());
-            }
-            return ok(Json.toJson(usuario.getCaronas()));
-        }
-*/
-        return badRequest("Usuario não Encontrado!");
+
+        SistemaCaronas.getInstance().adicionarCarona(carona);  // add na lista geral de caronas
+
+        carona.getMotorista().cadastraCarona(carona);   // add nas caronas como motorista do usuario motorista dela
+
+        return ok(Json.toJson(carona));
     }
+
+    public Result postBuscarCarona() {  // isso seria um GET ou um POST?
+        JsonNode json = request().body().asJson();
+        System.out.println(json.toString());
+        Horario horario = Json.fromJson(json, Horario.class);
+
+        List<Carona> allCaronas = SistemaCaronas.getInstance().getCaronas();  
+
+        List<Carona> caronasFiltradas = new ArrayList<Carona>();
+
+        for (Carona c : allCaronas){
+            if (c.getHorario().equals(horario)){
+                caronasFiltradas.add(c);                 // por enquanto sem limite de busca, retorna todas as que coincidem
+            }
+        }
+    
+
+        return ok(Json.toJson(caronasFiltradas));
+    }
+
+
+
+
 
     public Result postCaronas(){
         JsonNode json = request().body().asJson();

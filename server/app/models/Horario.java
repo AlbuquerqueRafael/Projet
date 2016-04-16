@@ -23,11 +23,11 @@ public class Horario{
         return dia;
    }
 
-   public TipoCarona tipo (){
+   public TipoCarona getTipo (){
         return tipo;
    }
 
-   public String aula (){
+   public String getAula (){
         return aula;
    }
 
@@ -41,6 +41,18 @@ public class Horario{
 
    public void setAula(String aula){
         this.aula = aula;
+   }
+
+   public boolean equals (Object obj){
+      boolean resp = false;
+
+      if (obj instanceof Horario){
+        Horario other = (Horario) obj;
+
+        resp = other.getTipo() == getTipo() && other.getDia() == getDia() && other.getAula().equals(getAula());
+      }
+      
+      return resp;
    }
 }
 
