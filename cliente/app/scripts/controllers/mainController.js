@@ -27,12 +27,7 @@ angular.module('clienteApp')
       mainService.logar(usuario).success(function(info){
         usuario = info;
         mainService.credenciar(usuario);
-
-        if($scope.opcao.value === "Motorista"){
-          menuService.setMenu("Motorista");
-        }else{
-          menuService.setMenu("Passageiro");
-        }
+        menuService.setMenu("Usuario");
         $location.path("/horario");
       }).error(function(error){
         $scope.error = true;
@@ -42,10 +37,7 @@ angular.module('clienteApp')
     }
 
     $scope.cadastrar = function(usuario){
-      if($scope.opcao.value === "Motorista"){
-        usuario.vagas = $scope.vagas;
-      }
-      mainService.cadastrar(usuario, $scope.opcao.value).success(function(info){
+      mainService.cadastrar(usuario).success(function(info){
         $location.path("/");
         console.log(info);
       }).error(function(error){

@@ -1,65 +1,53 @@
 package models;
 
-import com.avaje.ebean.Model;
 
-import javax.persistence.*;
-
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import play.data.validation.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "tipo", length = 1, discriminatorType = DiscriminatorType.STRING)
-public class Usuario extends Model {
-
-    private static final long serialVersionUID = 1L;
+public class Usuario{
 
 
-    @Id
-    @Constraints.Min(100)
-    private Long id;
-    @Constraints.Required
-    private String nome;
-    @Constraints.Required
-    private String matricula;
-    @Constraints.Required
-    private String telefone;
-    @Constraints.Required
-    private String bairro;
-    @Constraints.Required
-    private String email;
-    @Constraints.Required
-    private String rua;
-    @Constraints.Required
-    private String senha;
+    private String nome, matricula, telefone, email, senha;
+    @JsonProperty
+    private Endereco endereco;
+    private List<Carona> caronasMotorista;
+    private List<Carona> caronasPassageiro;
+    private List<Solicitacao> solicitacoesEnviadas;
+    private List<Solicitacao> solicitacoesRecebidas;
 
 
-    @OneToMany(mappedBy = "usuario",cascade= CascadeType.ALL)
-    @JsonIgnore
-    private List<Horario> horarios;
-
-
-    public static Finder<Long, Usuario> find = new Finder<Long, Usuario>(
-            Long.class, Usuario.class
-    );
-
-    public Usuario(String nome, String matricula, String telefone, String bairro, String email, String rua, String senha) {
+    public Usuario(String nome, String matricula, String telefone, String email, String senha, Endereco endereco) {
         this.nome = nome;
         this.matricula = matricula;
         this.telefone = telefone;
-        this.bairro = bairro;
         this.email = email;
-        this.rua = rua;
         this.senha = senha;
-        this.horarios = new ArrayList<Horario>();
+        this.endereco = endereco;
+        this.caronasMotorista = new ArrayList<Carona>();
+        this.caronasPassageiro = new ArrayList<Carona>();
+        this.solicitacoesEnviadas = new ArrayList<Solicitacao>();
+        this.solicitacoesRecebidas = new ArrayList<Solicitacao>();
     }
 
     public Usuario(){
+        this.caronasMotorista = new ArrayList<Carona>();
+        this.caronasPassageiro = new ArrayList<Carona>();
+        this.solicitacoesEnviadas = new ArrayList<Solicitacao>();
+        this.solicitacoesRecebidas = new ArrayList<Solicitacao>();
+    }
 
+
+
+    public List<Solicitacao> getSolicitacoesRecebidas(){
+        return solicitacoesRecebidas;
+    }
+
+    public List<Solicitacao> getSolicitacoesEnviadas(){
+        return solicitacoesEnviadas;
     }
 
     public String getNome() {
@@ -78,22 +66,6 @@ public class Usuario extends Model {
         this.matricula = matricula;
     }
 
-    public String getBairro() {
-        return bairro;
-    }
-
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
-    }
-
-    public String getRua() {
-        return rua;
-    }
-
-    public void setRua(String rua) {
-        this.rua = rua;
-    }
-
     public String getSenha() {
         return senha;
     }
@@ -110,16 +82,12 @@ public class Usuario extends Model {
         this.email = email;
     }
 
-    public List<Horario> getHorarios() {
-        return horarios;
+    public List<Carona> getCaronasMotorista() {
+        return caronasMotorista;
     }
 
-    public void setHorarios(List<Horario> horarios) {
-        this.horarios.addAll(horarios);
-    }
-
-    public void setHorario(Horario horario) {
-        this.horarios.add(horario);
+    public List<Carona> getCaronasPassageiro() {
+        return caronasPassageiro;
     }
 
     public String getTelefone() {
@@ -130,12 +98,12 @@ public class Usuario extends Model {
         this.telefone = telefone;
     }
 
-    public void setId(Long id){
-        this.id = id;
+    public Endereco getEndereco(){
+        return endereco;
     }
 
-    public Long getId(){
-        return id;
+    public void setEndereco(Endereco endereco){
+        this.endereco = endereco;
     }
 
 }

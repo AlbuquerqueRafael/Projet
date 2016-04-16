@@ -10,13 +10,8 @@ angular.module("clienteApp").factory("mainService", function($http, $cookieStore
     return $http.post("/app/logar", dados);
   }
 
-  service.cadastrar = function(usuario, tipo){
-    console.log(tipo)
-    if(tipo === "Motorista"){
-      return $http.post("/app/cadastrarMotorista", usuario);
-    }else{
-      return $http.post("/app/cadastrarPassageiro", usuario);
-    }
+  service.cadastrar = function(usuario){
+    return $http.post("/app/cadastrar", usuario);
 
   }
 

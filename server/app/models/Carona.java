@@ -1,68 +1,57 @@
 package models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import play.data.validation.Constraints;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by rafael on 27/03/16.
+ * Created by Mafra on 27/03/16.
  */
 
 public class Carona {
-    @Id
-    @Constraints.Min(100)
-    private Long id;
 
 
-    private int vagas_disponiveis;
-
-    @OneToMany(cascade= CascadeType.ALL)
-    @JsonIgnore
+    private Horario horario;
+    private Usuario motorista;
     private List<Usuario> listaPassageiros;
+    private int numero_de_vagas;
 
-    private Motorista motorista;
 
-    public Carona (Motorista motorista){
-      //  this.horario = horario;
+
+    public Carona (Usuario motorista, Horario horario, int vagas){
+        this.horario = horario;
         this.motorista = motorista;
-
-        // cria lista de passageiros zeradas
-        listaPassageiros = new ArrayList<Usuario>();
-
-        //inicialmente as vagas disponiveis recebem o num de vagas do carro do motorista
-        vagas_disponiveis = Integer.parseInt(motorista.getVagas());
+        this.listaPassageiros = new ArrayList<Usuario>();
+        this.numero_de_vagas = vagas;
     }
 
- //   public Horario getHorario(){
-   //     return horario;
-    //}
 
-    public int getVagas_disponiveis() {
-        return vagas_disponiveis;
+    public int getVagas() {
+        return numero_de_vagas;
+    }
+
+    public void novoPassageiro(Usuario usr){
+        listaPassageiros.add(usr);
     }
 
     public List<Usuario> getListaPassageiros() {
         return listaPassageiros;
     }
 
-    public Motorista getMotorista() {
-        return motorista;
+
+    public void setListaPassageiros(List<Usuario> listaPassageiros) {
+        this.listaPassageiros = listaPassageiros;
     }
 
-    public boolean cadastraNovoPassageiro (Usuario usr){
-        if (vagas_disponiveis > 0){
-            listaPassageiros.add(usr);
-            vagas_disponiveis--;
-            return true;
-        }
-        return false;
+
+    public Horario getHorario(){
+        return horario;
     }
 
-    public void removePassageiro (Usuario usr){
-        if (listaPassageiros.remove(usr))
-            vagas_disponiveis++;
+    public void setHorario(Horario horario){
+        this.horario = horario;
     }
+
 }

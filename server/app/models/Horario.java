@@ -1,64 +1,46 @@
 package models;
 
-import com.avaje.ebean.Model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import play.data.validation.Constraints;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import java.time.LocalDate;
 
 /**
- * Created by rafael on 27/03/16.
+ * Created by Mafra on 27/03/16.
  */
-@Entity
-public class Horario {
-    @Id
-    @Constraints.Min(100)
-    private Long id;
 
-    private String data;
-    private String hora;
-    private String tipo;
+public class Horario{
 
-    @ManyToOne(cascade= CascadeType.ALL)
-    @JsonIgnore
-    public Usuario usuario;
 
-    public static Model.Finder<Long, Horario> find = new Model.Finder<Long, Horario>(
-            Long.class, Horario.class
-    );
+    private String aula; // 8-10, 10-12, 14-16, 16-18
+    private DiaDaSemana dia;
+    private TipoCarona tipo;
 
-    public Horario(String tipo, String dia_hora, String hora) {
-        this.data = dia_hora;
-        this.hora = hora;
+    public Horario(String aula, DiaDaSemana dia, TipoCarona tipo) {
+        this.aula = aula;
+        this.dia = dia;
         this.tipo = tipo;
     }
 
-    public String getData() {
-        return data;
-    }
+   public DiaDaSemana getDia(){
+        return dia;
+   }
 
-    public void setData(String data) {
-        this.data = data;
-    }
-
-    public String getTipo() {
+   public TipoCarona tipo (){
         return tipo;
-    }
+   }
 
-    public void setTipo(String tipo) {
+   public String aula (){
+        return aula;
+   }
+
+   public void setDia(DiaDaSemana dia){
+        this.dia = dia;
+   }
+
+   public void setTipo(TipoCarona tipo){
         this.tipo = tipo;
-    }
+   }
 
-    public String getHora(){
-        return hora;
-    }
-
-    public void setHora(String hora){
-        this.hora = hora;
-    }
+   public void setAula(String aula){
+        this.aula = aula;
+   }
 }
 

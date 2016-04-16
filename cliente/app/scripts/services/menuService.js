@@ -18,14 +18,8 @@ angular.module("clienteApp").factory("menuService", function($location, $cookieS
     return menus;
   };
 
-  service.getMenuPassageiro= function(){
-    menus = service.getMenuMotorista();
-    menus.splice(1, 0, {path : "/busca", href : "#/busca", nome: "Buscar", class: "search", slide: 6});
 
-    return menus;
-  };
-
-  service.getMenuMotorista = function(){
+  service.getMenuUsuario = function(){
     menus = [{path : "/home", href : "#/inicio", nome: "Home", class:"home", slide: 1},
       {path : "/cadastroHome", href : "#/cadastroHome", nome: "Cadastrar", class: "user", slide: 2},
       {path : "/horario", href : "#/horario", nome: "Horario", class: "time", slide: 3},
@@ -37,10 +31,8 @@ angular.module("clienteApp").factory("menuService", function($location, $cookieS
   };
 
   service.getMenuAtual = function(){
-    if("Passageiro" === $cookieStore.get('menu')){
-      return service.getMenuPassageiro();
-    }else if("Motorista" === $cookieStore.get('menu')){
-      return service.getMenuMotorista();
+    if("Usuario" === $cookieStore.get('menu')){
+      return service.getMenuUsuario();
     }else{
       return service.getMenuInicial();
     }
