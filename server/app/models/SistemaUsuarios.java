@@ -16,7 +16,6 @@ public class SistemaUsuarios{
 	private List<Usuario> usuarios;
 	private static SistemaUsuarios sistemaUsuarios;
 
-
 	private SistemaUsuarios (){
 		usuarios = new ArrayList<Usuario>();
 	}
@@ -24,12 +23,9 @@ public class SistemaUsuarios{
 	public static SistemaUsuarios getInstance(){
 		if (sistemaUsuarios == null){
 			sistemaUsuarios = new SistemaUsuarios();
-			System.out.println("Testa");
 		}
-
 		return sistemaUsuarios;
 	}
-
 
 	public List<Usuario> getUsuarios(){
 		return usuarios;
@@ -42,6 +38,5 @@ public class SistemaUsuarios{
 	public void removerUsuario(Usuario usr) {
 		usuarios.remove(usr);
 	}
-
 
 }
