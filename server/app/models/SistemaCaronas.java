@@ -16,8 +16,7 @@ public class SistemaCaronas{
 	private List<Carona> caronas;
 	private static SistemaCaronas sistemaCaronas;
 
-
-	public SistemaCaronas (){
+	private SistemaCaronas (){
 		caronas = new ArrayList<Carona>();
 	}
 
@@ -25,10 +24,8 @@ public class SistemaCaronas{
 		if (sistemaCaronas == null){
 			sistemaCaronas = new SistemaCaronas();
 		}
-
 		return sistemaCaronas;
 	}
-
 
 	public List<Carona> getCaronas(){
 		return caronas;
