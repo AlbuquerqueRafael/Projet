@@ -14,6 +14,7 @@ public class Usuario{
     private String nome, matricula, telefone, email, senha;
     @JsonProperty
     private Endereco endereco;
+    @JsonProperty
     private List<Carona> caronasMotorista;
     private List<Carona> caronasPassageiro;
     private List<Solicitacao> solicitacoesEnviadas;
@@ -82,20 +83,16 @@ public class Usuario{
         this.email = email;
     }
 
+    public void setCaronasMotorista(Carona carona){
+        this.caronasMotorista.add(carona);
+    }
+
     public List<Carona> getCaronasMotorista() {
         return caronasMotorista;
     }
 
     public List<Carona> getCaronasPassageiro() {
         return caronasPassageiro;
-    }
-
-    public void cadastraCarona(Carona c){
-        caronasMotorista.add(c);
-    }
-
-    public void novaCaronaPassageiro(Carona c){
-        caronasPassageiro.add(c);
     }
 
     public String getTelefone() {
@@ -112,6 +109,18 @@ public class Usuario{
 
     public void setEndereco(Endereco endereco){
         this.endereco = endereco;
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        if(!(obj instanceof Usuario)){
+            return false;
+        }
+
+        Usuario usu = (Usuario) obj;
+
+        return usu.getEmail().equals(this.getEmail());
+
     }
 
 }

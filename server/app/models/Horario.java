@@ -19,6 +19,10 @@ public class Horario{
         this.tipo = tipo;
     }
 
+    public Horario(){
+
+    }
+
    public DiaDaSemana getDia(){
         return dia;
    }
@@ -41,18 +45,6 @@ public class Horario{
 
    public void setAula(String aula){
         this.aula = aula;
-   }
-
-   public boolean equals (Object obj){
-      boolean resp = false;
-
-      if (obj instanceof Horario){
-        Horario other = (Horario) obj;
-
-        resp = other.getTipo() == getTipo() && other.getDia() == getDia() && other.getAula().equals(getAula());
-      }
-      
-      return resp;
    }
 }
 

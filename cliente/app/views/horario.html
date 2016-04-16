@@ -84,20 +84,19 @@
         <table class="table table-striped">
           <thead>
           <tr style="color:#00A000">
-            <th>Dia</th>
             <th>Dia Semana</th>
-            <th>Hora</th>
+            <th>Aula</th>
             <th>Tipo</th>
-            <th>Status</th>
+            <th>Vagas</th>
           </tr>
           </thead>
           <tbody>
-          <tr ng-repeat="caro in horarios">
-            <td>{{caro.data | date:"dd/MM/yyyy"}}</td>
-            <td>{{caro.data | date:'EEEE'}}</td>
-            <td>{{caro.hora | date:'HH:mm' }}</td>
-            <td>{{caro.tipo}}</td>
-            <td> Passageiro</td>
+          <tr ng-repeat="caro in caronas">
+            <td>{{caro.horario.dia}}</td>
+            <td>{{caro.horario.aula}}</td>
+            <td>{{caro.horario.tipo}}</td>
+            <td>{{caro.vagas}}</td>
+            <td> Motorista</td>
 
           </tr>
 

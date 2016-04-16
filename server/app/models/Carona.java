@@ -16,24 +16,24 @@ public class Carona {
     private Horario horario;
     private Usuario motorista;
     private List<Usuario> listaPassageiros;
-    private int numero_de_vagas;
+    private int vagas;
 
 
 
     public Carona (Usuario motorista, Horario horario, int vagas){
         this.horario = horario;
         this.motorista = motorista;
-        this.listaPassageiros = new ArrayList<Usuario>();
-        this.numero_de_vagas = vagas;
+        //this.listaPassageiros = new ArrayList<Usuario>();
+        this.vagas = vagas;
     }
 
-    public Usuario getMotorista(){
-        return motorista;
+    public Carona(){
+        //this.listaPassageiros = new ArrayList<Usuario>();
     }
 
 
     public int getVagas() {
-        return numero_de_vagas;
+        return vagas;
     }
 
     public void novoPassageiro(Usuario usr){
@@ -49,6 +49,9 @@ public class Carona {
         this.listaPassageiros = listaPassageiros;
     }
 
+    public void setMotorista(Usuario usuario){
+        this.motorista = usuario;
+    }
 
     public Horario getHorario(){
         return horario;

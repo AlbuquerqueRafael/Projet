@@ -18,6 +18,9 @@ public class SistemaUsuarios{
 
 	private SistemaUsuarios (){
 		usuarios = new ArrayList<Usuario>();
+		Endereco endereco = new Endereco("Rua da Flores", "Centro");
+		Usuario usuario = new Usuario("Pedro", "123", "456", "Pedro@hotmail.com", "123", endereco);
+		usuarios.add(usuario);
 	}
 
 	public static SistemaUsuarios getInstance(){

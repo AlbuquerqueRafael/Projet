@@ -15,20 +15,9 @@ angular.module("clienteApp").factory("mainService", function($http, $cookieStore
 
   }
 
-
-  service.credenciar = function(login){
-    if ($cookieStore.get('login') !== undefined){
-      $cookieStore.remove('login');
-    }
-
-    $cookieStore.put('login', login);
-
-    /*   $http.defaults.headers.common['Authorization'] = 'Basic ' + professor.senha; // jshint ignore:line
-     $cookieStore.put('globals', $rootScope.globals);*/
-  }
-
   service.logout = function(){
     $cookieStore.remove('login');
+    return $http.post("/app/logout");
   }
 
   service.getUserAtual = function(){
@@ -43,10 +32,5 @@ angular.module("clienteApp").factory("mainService", function($http, $cookieStore
   }
 
   return service;
-
-
-  /* service.login = function(usuario){
-       return $resource('/usuario:id',{id: "@id"});
-   }*/
 
 });
