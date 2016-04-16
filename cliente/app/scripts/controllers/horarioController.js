@@ -3,20 +3,43 @@
  */
 angular.module("clienteApp").controller("horarioCtrl", function($scope, horarioService, mainService, $filter, $location) {
 
-  $scope.bairros = [{value:"Malvinas", add: false},
-                    {value:"Centro", add: false},
-                    {value:"Prata", add: false},
-                    {value:"Catolé", add: false},
-                    {value:"Alto Branco", add: false}
+  $scope.bairros = [{Id: 1, value:"Malvinas", add: false},
+                    {Id: 2, value:"Centro", add: false},
+                    {Id: 3, value:"Prata", add: false},
+                    {Id: 4, value:"Catolé", add: false},
+                    {Id: 5, value:"Alto Branco", add: false}
   ]
 
+  $scope.NumVagas = [{value: 1},
+                  {value: 2},
+                  {value: 3},
+                  {value: 4},
+                  {value: 5}];
+
+  $scope.diaSemanas = [ {Id: 0, value: "Segunda"},
+                        {Id: 1, value: "Terça"},
+                        {Id: 2, value: "Quarta"},
+                        {Id: 3, value:"Quinta"},
+                        {Id: 4, value:"Sexta"}];
+
+  $scope.horarios = [{value: "8-10"},
+                    {value: "10-12"},
+                    {value: "14-16"},
+                    {value: "16-18"},
+                    {value:"18-20"}];
+
+
+  $scope.horario = {};
+  $scope.horario.DiaDaSemana =  $scope.diaSemanas[0];
+  $scope.horario.aula =  $scope.horarios[0];
+  $scope.vagas = $scope.NumVagas[0];
+
+
   $scope.error = false;
-  $scope.usuario = mainService.getUserAtual();
   $scope.bairro = $scope.bairros[1];
   $scope.data = $filter('date')(new Date(), 'dd/MM/yyyy');
-  $scope.horarios = [];
   $scope.routes = [];
-  $scope.opcaoCarona = "Ida";
+  $scope.opcaoCarona = "0";
   $scope.hora = new Date();
 
   $scope.hstep = 1;
@@ -28,14 +51,13 @@ angular.module("clienteApp").controller("horarioCtrl", function($scope, horarioS
     $scope.ismeridian = ! $scope.ismeridian;
   };
 
-  $scope.inicio = horarioService.getHorarios($scope.usuario).success(function(caronas){
-    console.log($scope.usuario);
-    $scope.horarios = caronas;
+  $scope.inicio = horarioService.getHorarios().success(function(caronas){
+    console.log(caronas);
+    $scope.caronas = caronas;
   }).error(function(error){
     console.log(error);
 
   });
-
 
   $scope.adicionarRotas = function(bairro){
     if(!bairro.add){
@@ -69,29 +91,22 @@ angular.module("clienteApp").controller("horarioCtrl", function($scope, horarioS
     }
 
     $scope.salvarCarona = function(){
-        var separaData = $scope.data.split("/");
-        var data = new Date(separaData[2], separaData[1] - 1, separaData[0]);
-
-        if($scope.hora !== null) {
+          console.log("gg")
           var carona = {};
-          carona.horario = {};
-          carona.horario.data = data;
-          carona.horario.hora = $scope.hora;
-          carona.horario.tipo = $scope.opcaoCarona;
-          $scope.usuario.caronas = []
-          $scope.usuario.caronas.push(carona);
-          $scope.error = false;
-          console.log($scope.usuario);
-          horarioService.salvarHorario($scope.usuario).success(function (info) {
-            console.log("dd");
-          }).error(function(error){
-            console.log(error);
+          carona.horario = {}
+          carona.horario = {}
+          carona.horario.aula = $scope.horario.aula.value;
+          carona.horario.dia = $scope.horario.DiaDaSemana.Id;
+          carona.horario.tipo = parseInt($scope.opcaoCarona);
+          carona.vagas = $scope.vagas.value;
 
+
+          horarioService.salvarHorario(carona).success(function(info){
+            console.log(info);
+          }).error(function(erro){
+            console.log(erro);
           });
-        }else{
-          $scope.error = true;
-          $scope.errorMessage = "Hora inválida";
-        }
+
 
     }
 

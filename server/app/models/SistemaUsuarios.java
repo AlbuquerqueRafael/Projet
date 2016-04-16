@@ -16,20 +16,19 @@ public class SistemaUsuarios{
 	private List<Usuario> usuarios;
 	private static SistemaUsuarios sistemaUsuarios;
 
-
-	public SistemaUsuarios (){
+	private SistemaUsuarios (){
 		usuarios = new ArrayList<Usuario>();
+		Endereco endereco = new Endereco("Rua da Flores", "Centro");
+		Usuario usuario = new Usuario("Pedro", "123", "456", "Pedro@hotmail.com", "123", endereco);
+		usuarios.add(usuario);
 	}
 
 	public static SistemaUsuarios getInstance(){
 		if (sistemaUsuarios == null){
 			sistemaUsuarios = new SistemaUsuarios();
-			System.out.println("Testa");
 		}
-
 		return sistemaUsuarios;
 	}
-
 
 	public List<Usuario> getUsuarios(){
 		return usuarios;
@@ -42,6 +41,5 @@ public class SistemaUsuarios{
 	public void removerUsuario(Usuario usr) {
 		usuarios.remove(usr);
 	}
-
 
 }

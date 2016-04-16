@@ -302,7 +302,7 @@ body {
   font-size: 14px;
   line-height: 1.428571429;
   color: #333333;
-  background-color: #ffffff;
+  background-color: rgb(0,121,192);
 }
 
 input,
@@ -1488,6 +1488,11 @@ textarea.form-control {
 
 .form-group {
   margin-bottom: 15px;
+  color: #2aabd2;
+}
+
+.form-group2 {  
+  color: #000000;
 }
 
 .radio,
@@ -2473,6 +2478,7 @@ a.list-group-item.active .list-group-item-text {
 
 .panel-info {
   border-color: #bce8f1;
+  background-color: transparent;
 }
 
 .panel-info .panel-heading {

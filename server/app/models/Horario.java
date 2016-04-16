@@ -19,15 +19,19 @@ public class Horario{
         this.tipo = tipo;
     }
 
+    public Horario(){
+
+    }
+
    public DiaDaSemana getDia(){
         return dia;
    }
 
-   public TipoCarona tipo (){
+   public TipoCarona getTipo (){
         return tipo;
    }
 
-   public String aula (){
+   public String getAula (){
         return aula;
    }
 
