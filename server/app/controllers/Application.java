@@ -4,18 +4,13 @@ package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import models.*;
-import play.db.ebean.Transactional;
 import play.libs.Json;
 import play.mvc.*;
 import util.Util;
-import views.html.busca;
 import views.html.index;
-import views.html.home;
-import views.html.cadastro;
 import views.html.main;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -25,8 +20,6 @@ import static play.data.Form.form;
 
 public class Application extends Controller {
 
-    @PersistenceContext
-    private EntityManager em;
 
 
     public Result main(String any) {
@@ -38,24 +31,21 @@ public class Application extends Controller {
     }
 
     public  Result postLogin() {
-/*        JsonNode json = request().body().asJson();
-        List<Usuario> usuarios = Usuario.find.all();
+        JsonNode json = request().body().asJson();
+        List<Usuario> usuarios = SistemaUsuarios.getInstance().getUsuarios();
         Usuario user = Json.fromJson(json, Usuario.class);
-        System.out.println(Arrays.toString(usuarios.toArray()));
 
         if(usuarios == null){
            return badRequest("Usuario ou senha inválidos");
         }
 
         for(int i = 0; i < usuarios.size(); i++){
-            System.out.println(usuarios.get(i).getEmail());
             if(usuarios.get(i).getEmail() != null && usuarios.get(i).getEmail().equals(user.getEmail()) && usuarios.get(i).getSenha().equals(user.getSenha())){
                 Usuario usuario = new Usuario();
                 usuario.setNome(usuarios.get(i).getNome());
-                usuario.setId(usuarios.get(i).getId());
                 return ok(Json.toJson(usuario));
             }
-        }*/
+        }
 
         return badRequest("Usuario ou senha inválidos!");
     }
@@ -66,7 +56,6 @@ public class Application extends Controller {
     }
 */
 
-    @Transactional
     public Result postCadastro() {
         JsonNode json = request().body().asJson();
         System.out.println(json.toString());
@@ -85,7 +74,9 @@ public class Application extends Controller {
             System.out.println(s.getCaronasMotorista());
             System.out.println(s.getEndereco());
             System.out.println(s.getEmail());
+            System.out.println(s.getSenha());
         }
+
         return ok(Json.toJson(usuario));
     }
 

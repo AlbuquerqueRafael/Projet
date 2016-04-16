@@ -17,7 +17,7 @@ public class SistemaUsuarios{
 	private static SistemaUsuarios sistemaUsuarios;
 
 
-	public SistemaUsuarios (){
+	private SistemaUsuarios (){
 		usuarios = new ArrayList<Usuario>();
 	}
 
