@@ -65,6 +65,21 @@ public class Application extends Controller {
         Usuario usuario = Json.fromJson(json, Usuario.class);
 
 
+        if(!Util.isValidEmailAddress(usuario.getEmail())){
+            return badRequest("Email inválido");
+        }
+
+        if(!Util.isValidMatricula(usuario.getMatricula())){
+            return badRequest("Matricula inválida");
+        }
+
+        if(!Util.isValidPassword(usuario.getSenha())){
+            return badRequest("Senha inválida");
+        }
+
+        if(!Util.isValidTelefone(usuario.getTelefone())){
+            return badRequest("Telefone inválido");
+        }
 
         SistemaUsuarios.getInstance().adicionarUsuario(usuario);
         for(Usuario s : SistemaUsuarios.getInstance().getUsuarios()){

@@ -1,8 +1,7 @@
 package util;
 
+import play.data.validation.Constraints.EmailValidator;
 import play.mvc.Controller;
-
-
 
 /**
  * Created by rafael on 04/04/16.
@@ -10,8 +9,13 @@ import play.mvc.Controller;
 public class Util extends Controller {
 
     public static boolean isValidEmailAddress(String email) {
-        return true;
+        EmailValidator validator = new EmailValidator();
+
+        return isValidEmailAddress(email);
     }
+
+
+
 
     public static boolean isValidTelefone(String phone) {
         boolean result = false;
