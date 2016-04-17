@@ -1491,6 +1491,11 @@ textarea.form-control {
   color: #2aabd2;
 }
 
+.form-group-login {
+  margin-bottom: 15px;
+  color: white;
+}
+
 .form-group2 {  
   color: #000000;
 }
@@ -1755,6 +1760,8 @@ fieldset[disabled] .btn {
           box-shadow: none;
 }
 
+
+
 .btn-default {
   color: #ffffff;
   background-color: #474949;
@@ -1786,6 +1793,10 @@ fieldset[disabled] .btn-default:active,
 fieldset[disabled] .btn-default.active {
   background-color: #474949;
   border-color: #474949;
+}
+
+.btn-default-blue {
+  color: #2aabd2;
 }
 
 .btn-primary {
