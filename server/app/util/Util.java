@@ -11,7 +11,7 @@ public class Util extends Controller {
     public static boolean isValidEmailAddress(String email) {
         EmailValidator validator = new EmailValidator();
 
-        return isValidEmailAddress(email);
+        return validator.isValid(email);
     }
 
 

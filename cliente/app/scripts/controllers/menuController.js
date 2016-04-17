@@ -5,6 +5,7 @@ angular.module("clienteApp").controller("menuController", function($scope, $loca
 
   $scope.menus = menuService.getMenuAtual();
   $scope.open = false;
+
   $scope.$on('$routeChangeStart', function() {
     $scope.menus = menuService.getMenuAtual();
   });

@@ -41,7 +41,7 @@ angular
       .when('/horario', {
         templateUrl: 'views/horario.html',
         controller: 'horarioCtrl',
-        requireLogin : true
+        requireLogin : false
       })
       .when('/cadastroHome', {
         templateUrl: 'views/cadastro.html',
@@ -51,9 +51,9 @@ angular
       .when('/carona', {
         templateUrl: 'views/carona.html',
         controller: 'horarioCtrl',
-        requireLogin : true
+        requireLogin : false
       })
-      .when('/busca', {
+      .when('/buscar', {
         templateUrl: 'views/busca.html',
         controller: 'buscaCtrl',
         requireLogin : true

@@ -3,11 +3,22 @@
  */
 angular.module("clienteApp").controller("horarioCtrl", function($scope, horarioService, mainService, $filter, $location) {
 
+  //noinspection JSDuplicatedDeclaration
   $scope.bairros = [{Id: 1, value:"Malvinas", add: false},
                     {Id: 2, value:"Centro", add: false},
-                    {Id: 3, value:"Prata", add: false},
-                    {Id: 4, value:"Catolé", add: false},
-                    {Id: 5, value:"Alto Branco", add: false}
+                    {Id: 3, value:"Catolé", add: false},
+                    {Id: 4, value:"Alto Branco", add: false},
+                    {Id: 5, value:"Prata", add: false},
+                    {Id: 6, value:"Liberdade", add: false},
+                    {Id: 7, value:"Cruzeiro", add: false},
+                    {Id: 8, value:"Castelo Branco", add: false},
+                    {Id: 9, value:"José Pinheiro", add: false},
+                    {Id: 10, value:"Jardim Paulistano", add: false},
+                    {Id: 11, value:"Bodocongó", add: false},
+                    {Id: 12, value:"Distrito Industrial", add: false},
+                    {Id: 13, value:"Ramadinha", add: false},
+                    {Id: 14, value:"Dinamérica", add: false},
+                    {Id: 15, value:"São José", add: false},
   ]
 
   $scope.NumVagas = [{value: 1},
@@ -29,10 +40,13 @@ angular.module("clienteApp").controller("horarioCtrl", function($scope, horarioS
                     {value:"18-20"}];
 
 
+  $scope.tab = 1;
+  $scope.routes = [];
   $scope.horario = {};
   $scope.horario.DiaDaSemana =  $scope.diaSemanas[0];
   $scope.horario.aula =  $scope.horarios[0];
-  $scope.vagas = $scope.NumVagas[0];
+  $scope.vagas = $scope.NumVagas[2];
+  $scope.rota = $scope.bairros[0];
 
 
   $scope.error = false;
@@ -60,6 +74,7 @@ angular.module("clienteApp").controller("horarioCtrl", function($scope, horarioS
   });
 
   $scope.adicionarRotas = function(bairro){
+    console.log(bairro);
     if(!bairro.add){
       bairro.add = true;
       $scope.routes.push(bairro);
@@ -85,8 +100,10 @@ angular.module("clienteApp").controller("horarioCtrl", function($scope, horarioS
       console.log(rota);
       if(rota === "OferecerCarona"){
          $location.path('/carona')
-      }else{
+      }else if(rota=== "gg"){
         $location.path('/buscar')
+      }else{
+          $location.path('/horario')
       }
     }
 
