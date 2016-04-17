@@ -16,15 +16,16 @@ public class Carona {
     private Horario horario;
     private Usuario motorista;
     private Endereco endereco;
-    private List<Usuario> listaPassageiros;
+    private List<Usuario> listaPassageiros;    
     private int vagas;
+    private List<String> rota;    
 
 
-
-    public Carona (Usuario motorista, Horario horario, int vagas){
+    public Carona (Usuario motorista, Horario horario, int vagas, List<String> rota){
         this.horario = horario;
         this.motorista = motorista;
-        //this.listaPassageiros = new ArrayList<Usuario>();
+        this.listaPassageiros = new ArrayList<Usuario>();
+        this.rota = rota;
         this.vagas = vagas;
     }
 
@@ -60,6 +61,14 @@ public class Carona {
 
     public void setHorario(Horario horario){
         this.horario = horario;
+    }
+
+    public List<String> getRota(){
+        return rota;
+    }
+
+    public void setRota(List<String> novaRota){
+        this.rota = novaRota;
     }
 
     public void setEndereco(Endereco endereco){
