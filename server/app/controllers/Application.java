@@ -46,6 +46,7 @@ public class Application extends Controller {
                 autenticar(usuarios.get(i));
                 Usuario usuario = new Usuario();
                 usuario.setNome(usuarios.get(i).getNome());
+                usuario.setEndereco(usuarios.get(i).getEndereco());
                 return ok(Json.toJson(usuario));
             }
         }
@@ -102,10 +103,14 @@ public class Application extends Controller {
         JsonNode json = request().body().asJson();
         Carona carona = Json.fromJson(json, Carona.class);
 
-
+        System.out.println(Json.toJson(carona));
         Usuario motorista = isAuthenticated();
         carona.setMotorista(motorista);
         motorista.setCaronasMotorista(carona);
+
+        if(carona.getEndereco() == null){
+            carona.setEndereco(motorista.getEndereco());
+        }
 
 
         SistemaCaronas.getInstance().adicionarCarona(carona);

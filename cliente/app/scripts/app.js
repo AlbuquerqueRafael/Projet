@@ -50,7 +50,7 @@ angular
       })
       .when('/carona', {
         templateUrl: 'views/carona.html',
-        controller: 'horarioCtrl',
+        controller: 'caronaCtrl',
         requireLogin : false
       })
       .when('/buscar', {

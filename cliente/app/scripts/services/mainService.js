@@ -20,8 +20,16 @@ angular.module("clienteApp").factory("mainService", function($http, $cookieStore
     return $http.post("/app/logout");
   }
 
+  service.autenticar = function(usuario){
+    $cookieStore.put('login', usuario);
+  }
+
   service.getUserAtual = function(){
     return $cookieStore.get('login');
+  }
+
+  service.logout = function(){
+    $cookieStore.remove('login');
   }
 
   service.trocar = function(texto){
@@ -30,6 +38,8 @@ angular.module("clienteApp").factory("mainService", function($http, $cookieStore
     }
     $location.path(texto);
   }
+
+
 
   return service;
 

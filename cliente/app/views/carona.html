@@ -1,9 +1,7 @@
 
-<body
-<div class="container">
-    <div class="modal-dialog" style="left:0px; width: 500px">
-        <div class="modal-content">
-            <div class="panel panel-info" >
+<body>
+<div class="almostJumbotron">
+            <div class="panel panel-info" id="panelCarona" >
                 <div>
                     <form>
                         <div class="form-group">
@@ -29,7 +27,6 @@
                             </div>
 
 
-
                             <div class="form-group">
                                 <label for="tipoCarona"> <h5><b>
                                     Tipo de Carona</b></h5></label>
@@ -41,18 +38,18 @@
                                 </div>
                             </div>
 
-                            <button name="salvar" class="btn btn-info center-block" ng-click="tab=2">
-                                Novo Endereco
+                            <button name="salvar" ng-show="opcaoCarona==1" class="btn btn-info center-block" ng-click="tabs=!tabs">
+                                Endereco
                             </button>
-                            <br>
-                            <br>
-                            <div class="form-group"  ng-show="tab == 2">
+
+                            <div class="form-group"  ng-show="!tabs">
+                                <br>
                                 <input type="text" name = "rua" class="form-control" placeholder="Rua" required ng-model="usuario.endereco.rua">
                             </div>
 
-                            <div class="form-group"  ng-show="tab == 2">
-                                <input type="text" name = "bairro" pattern=".{4,}" class="form-control"
-                                       placeholder="Bairro" required ng-model="usuario.endereco.bairro">
+                            <div class="form-group"  ng-show="!tabs">
+                                <select class="form-control" ng-model="bairro" ng-options="opt.value for opt in bairros">
+                                </select>
                             </div>
 
                             <div class="form-group">
@@ -88,7 +85,6 @@
                     Cancelar
                 </button>
             </div>
-        </div>
-    </div>
+
 </div>
 </body>

@@ -28,7 +28,7 @@ public class Endereco {
     }
 
     public String getBairro(){
-        return rua;
+        return bairro;
     }
 
     public void setBairro(String bairro){
