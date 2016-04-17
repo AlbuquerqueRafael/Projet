@@ -42,11 +42,10 @@ body {
 
 .tab-content{
     border: 1px solid #ddd;
-    width: 10px;
+    width: 800px;
     height: 350px;
   /*  padding: 20px;*/
 }
-
 
 #tabelaHorario{
     display: block;
