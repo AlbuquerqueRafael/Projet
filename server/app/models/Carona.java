@@ -15,6 +15,7 @@ public class Carona {
 
     private Horario horario;
     private Usuario motorista;
+    private Endereco endereco;
     private List<Usuario> listaPassageiros;
     private int vagas;
 
@@ -61,4 +62,11 @@ public class Carona {
         this.horario = horario;
     }
 
+    public void setEndereco(Endereco endereco){
+        this.endereco = endereco;
+    }
+
+    public Endereco getEndereco(){
+        return endereco;
+    }
 }

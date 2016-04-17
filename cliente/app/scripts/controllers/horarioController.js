@@ -49,6 +49,7 @@ angular.module("clienteApp").controller("horarioCtrl", function($scope, horarioS
   $scope.rota = $scope.bairros[0];
 
 
+  console.log($scope.tab);
   $scope.error = false;
   $scope.bairro = $scope.bairros[1];
   $scope.data = $filter('date')(new Date(), 'dd/MM/yyyy');

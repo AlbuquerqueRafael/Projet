@@ -51,14 +51,18 @@
                     <th class="item" >Aula</th>
                     <th class="item" >Tipo</th>
                     <th class="item" >Vagas</th>
+                      <th class="item" >Bairro</th>
+                      <th class="item" >Rua</th>
                   </tr>
                   </thead>
                   <tbody>
                   <tr ng-repeat="caro in caronas">
                     <td class="item">{{caro.horario.dia}}</td>
                     <td class="item">{{caro.horario.aula}}</td>
-                    <td class="item">{{caro.horario.tipo}}</td>
+                      <td class="item">{{caro.horario.tipo}}</td>
                     <td class="item">{{caro.vagas}}</td>
+                      <td class="item">{{caro.endereco.bairro}}</td>
+                      <td class="item">{{caro.endereco.rua}}</td>
                     <td class="item"> Motorista</td>
                   </tr>
                   </tbody>

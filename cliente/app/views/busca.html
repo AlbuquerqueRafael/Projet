@@ -9,33 +9,34 @@
 <div class="row">
   <div class="col-md-2 col-md-offset-1">
     <div class="panel panel-info" style="background-color: transparent" >
-      <form action="/horario" method="post">
-        <div class="form-group">
-          <div class="form-group">
-            <label for="diasSemana"> <h5 style ="color: #2aabd2;"><b>
-              Data</b></h5></label>
-            <select ng-model="opcaoHora" ng-options="hor.data | date:'dd/MM/yyyy' for hor in horarios">
-            </select>
-            <br/>
-          </div>
+      <form>
+      <div class="form-group">
+        <label for="diasSemana"> <h5><b>
+          Dia Da Semana</b></h5></label>
+        <select class="form-control" ng-model="horario.DiaDaSemana" ng-options="opt.value for opt in diaSemanas">
+        </select>
+      </div>
 
+      <div class="form-group">
+        <label for="horario"> <h5><b>
+          Aula </b></h5></label>
+        <select class="form-control" ng-model="horario.aula" ng-options="opt.value for opt in horarios">
+        </select>
+      </div>
 
-          <div class="form-group">
-            <label for="horario"> <h5 style ="color: #2aabd2;"><b>
-              Horario </b></h5></label>
-            <select ng-model="opcaoHora" ng-options="hor.hora | date:'HH:mm' for hor in horarios">
-            </select>
-          </div>
-
-
+      <div class="form-group">
+        <label for="tipoCarona"> <h5><b>
+          Tipo de Carona</b></h5></label>
+        <div class="radio">
+          <label><input type="radio" name="optradio" ng-model="opcaoCarona" value=0>Ida</label>
         </div>
-
-
+        <div class="radio" ng-model="opcaoCarona" value="volta">
+          <label><input type="radio" name="optradio" ng-model="opcaoCarona" value=1>Volta</label>
+        </div>
+      </div>
       </form>
-      <button id="singlebutton" name="salvar" class="btn btn-primary center-block" ng-click="salvarCarona()">
-        Salvar
-      </button>
-    </div>
+      </div>
+
   </div>
   <div class="col-md-3">
     <div class="panel panel-primary"  style="width: 250px">

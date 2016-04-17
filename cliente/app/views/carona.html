@@ -41,6 +41,20 @@
                                 </div>
                             </div>
 
+                            <button name="salvar" class="btn btn-info center-block" ng-click="tab=2">
+                                Novo Endereco
+                            </button>
+                            <br>
+                            <br>
+                            <div class="form-group"  ng-show="tab == 2">
+                                <input type="text" name = "rua" class="form-control" placeholder="Rua" required ng-model="usuario.endereco.rua">
+                            </div>
+
+                            <div class="form-group"  ng-show="tab == 2">
+                                <input type="text" name = "bairro" pattern=".{4,}" class="form-control"
+                                       placeholder="Bairro" required ng-model="usuario.endereco.bairro">
+                            </div>
+
                             <div class="form-group">
                                 <label for="tipoCarona"> <h5><b>
                                     Rotas</b></h5></label>
@@ -60,9 +74,6 @@
                             <div class="panel panel-primary">
                                 <table class="table table-striped" id="tableRota">
                                     <td  ng-repeat="opt in routes"><input type="checkbox" ng-model="opt.selected"> {{opt.value}}</td>
-                           <!--         <div  class="form-control" ng-repeat="opt in routes">
-                                        <input type="checkbox" ng-model="opt.selected"> {{opt.value}}
-                                    </div>-->
                                 </table>
                             </div>
 
