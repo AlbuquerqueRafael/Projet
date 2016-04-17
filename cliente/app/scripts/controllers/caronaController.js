@@ -3,7 +3,7 @@
  */
 
 angular.module("clienteApp")
-    .controller("caronaCtrl", function($scope, mainService, caronaService){
+    .controller("caronaCtrl", function($scope, $location, mainService, caronaService, horarioService){
 
         $scope.bairros = caronaService.getBairrosArray();
         $scope.horarios = caronaService.getAulaArray();
@@ -24,8 +24,9 @@ angular.module("clienteApp")
 
         $scope.inicia = function(){
             for(var i = 0; i < $scope.bairros.length; i++){
-                if($scope.bairros[i].value == $scope.usuario.endereco.bairro){
+                if($scope.bairros[i].value === $scope.usuario.endereco.bairro){
                     $scope.bairro = $scope.bairros[i];
+                    $scope.rua = $scope.usuario.endereco.rua;
                     break;
                 }
             }
@@ -57,6 +58,17 @@ angular.module("clienteApp")
 
         }
 
+        var filtraRotaPorValor = function(routes){
+            var rotas = [];
+            for(var i = 0; i < $scope.routes.length; i++){
+                rotas.push( $scope.routes[i].value);
+            }
+
+
+            return rotas;
+        }
+
+
         $scope.salvarCarona = function(){
             var carona = {};
             carona.horario = {}
@@ -65,10 +77,13 @@ angular.module("clienteApp")
             carona.horario.dia = $scope.horario.DiaDaSemana.Id;
             carona.horario.tipo = parseInt($scope.opcaoCarona);
             carona.vagas = $scope.vagas.value;
-
+            carona.endereco = {}
+            carona.endereco.rua = $scope.rua;
+            carona.endereco.bairro = $scope.bairro.value;
+            carona.rota = filtraRotaPorValor($scope.routes);
 
             horarioService.salvarHorario(carona).success(function(info){
-                console.log(info);
+               $location.path("/horario");
             }).error(function(erro){
                 console.log(erro);
             });

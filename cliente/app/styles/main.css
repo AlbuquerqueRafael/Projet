@@ -69,17 +69,6 @@ body{
   overflow-y: scroll;
 }
 
-#tabelaHorario{
-  display: block;
-  height: 300px;
-  overflow-y: scroll;
-}
-
-.item {
-  width: 150px;
-  text-align: center;
-}
-
 #welcomeNotify{
   color:white;
   background-color: #5998d2;

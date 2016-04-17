@@ -21,16 +21,17 @@ public class Carona {
     private List<String> rota;    
 
 
-    public Carona (Usuario motorista, Horario horario, int vagas, List<String> rota){
+    public Carona (Usuario motorista, Horario horario, int vagas, List<String> rota, Endereco endereco){
         this.horario = horario;
         this.motorista = motorista;
         this.listaPassageiros = new ArrayList<Usuario>();
         this.rota = rota;
         this.vagas = vagas;
+        this.endereco = endereco;
     }
 
     public Carona(){
-        //this.listaPassageiros = new ArrayList<Usuario>();
+        this.listaPassageiros = new ArrayList<Usuario>();
     }
 
 

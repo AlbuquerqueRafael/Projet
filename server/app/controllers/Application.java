@@ -103,14 +103,9 @@ public class Application extends Controller {
         JsonNode json = request().body().asJson();
         Carona carona = Json.fromJson(json, Carona.class);
 
-        System.out.println(Json.toJson(carona));
         Usuario motorista = isAuthenticated();
         carona.setMotorista(motorista);
         motorista.setCaronasMotorista(carona);
-
-        if(carona.getEndereco() == null){
-            carona.setEndereco(motorista.getEndereco());
-        }
 
 
         SistemaCaronas.getInstance().adicionarCarona(carona);

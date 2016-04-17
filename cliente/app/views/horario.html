@@ -15,7 +15,7 @@
     <br>
   </div>
 
-  <div class="col-md-2 col-md-offset-1">
+  <div class="col-md-2">
     <div class="form-group">
       <button name="salvar" class="btn btn-info center-block" data-toggle="modal" data-target="#modalCarona" ng-click="trocarRota('OferecerCarona')">
         Oferecer Carona
@@ -30,9 +30,9 @@
     </div>
   </div>
 
-  <div class="col-md-6 col-md-offset-0">
+  <div class="col-md-6">
       <div class="panel-heading">
-        <span class="glyphicon glyphicon-list"></span> Caronas
+        <span class="glyphicon glyphicon-list" ></span> Caronas
       </div>
 
       <div class="container">
@@ -42,7 +42,7 @@
       </ul>
 
       <div class="tabs-container">
-          <div class="tab-content" ng-show="tab == 1">
+          <div class="tab-content" ng-show="tab == 1" style="width: 800px;">
               <div class="panel-body">
                 <table class="table table-striped" id="tabelaHorario">
                   <thead>
@@ -63,7 +63,6 @@
                     <td class="item">{{caro.vagas}}</td>
                       <td class="item">{{caro.endereco.bairro}}</td>
                       <td class="item">{{caro.endereco.rua}}</td>
-                    <td class="item"> Motorista</td>
                   </tr>
                   </tbody>
                 </table>

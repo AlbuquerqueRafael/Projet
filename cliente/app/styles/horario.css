@@ -6,11 +6,20 @@ body {
 }
 .container {
  /*   padding: 50px;*/
-    max-width: 100px;
     margin: auto;
 }
 
-.tabs-nav {padding: 15px 0 0; list-style: none;}
+.tabs-container {
+    position:relative;
+    right: -20px;
+}
+
+.tabs-nav {
+    padding: 15px 0 0;
+    list-style: none;
+    position:relative;
+    right: -20px;
+}
 .tabs-nav li {display: inline;}
 .tabs-nav a {
     display:inline-block;
@@ -31,13 +40,31 @@ body {
     margin-bottom: -1px;
 }
 
-.tab-content {
+.tab-content{
     border: 1px solid #ddd;
-    width: 800px;
+    width: 10px;
     height: 350px;
   /*  padding: 20px;*/
 }
 
+
+#tabelaHorario{
+    display: block;
+    height: 250px;
+    padding-top: 5px;
+    overflow-y: scroll;
+}
+
+.item {
+    width: 120px;
+    text-align: center;
+}
+
 p {
     margin-bottom: 15px;
+}
+
+.panel-heading {
+    position:relative;
+    right: -50px;
 }

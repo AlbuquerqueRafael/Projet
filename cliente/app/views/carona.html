@@ -3,7 +3,7 @@
 <div class="almostJumbotron">
             <div class="panel panel-info" id="panelCarona" >
                 <div>
-                    <form>
+                    <form name="form">
                         <div class="form-group">
                             <div class="form-group">
                                 <label for="diasSemana"> <h5><b>
@@ -44,7 +44,7 @@
 
                             <div class="form-group"  ng-show="!tabs">
                                 <br>
-                                <input type="text" name = "rua" class="form-control" placeholder="Rua" required ng-model="usuario.endereco.rua">
+                                <input type="text" name = "rua" class="form-control" placeholder="Rua" required ng-model="rua">
                             </div>
 
                             <div class="form-group"  ng-show="!tabs">
@@ -78,7 +78,7 @@
                     </form>
                 </div>
 
-                <button name="salvar" class="btn btn-success center-block" ng-click="salvarCarona()">
+                <button name="salvar" data-ng-disabled="form.rua.$error.required" class="btn btn-success center-block" ng-click="salvarCarona()">
                     Salvar
                 </button>
                 <button name="salvar" class="btn btn-danger center-block" ng-click="trocarRota('buscar')">

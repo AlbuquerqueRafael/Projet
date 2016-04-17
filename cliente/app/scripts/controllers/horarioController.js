@@ -5,6 +5,7 @@ angular.module("clienteApp").controller("horarioCtrl", function($scope, horarioS
 
   //noinspection JSDuplicatedDeclaration
 
+
   $scope.tab = 1;
 
   console.log($scope.tab);
