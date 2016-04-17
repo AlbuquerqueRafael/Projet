@@ -3,23 +3,20 @@
   <div class="col-md-12">
     <div id="bemVindo">
       <h3>
-        Bem-vindo à página de horários!
-
+        Bem-vindo , [Nome do usuário]!
       </h3>
-      <h4>Aqui você pode cadastrar e ver informações sobre seus horários</h4>
-
+      <br>
+      <h4>Aqui você encontra informações, bem como pode pedir ou criar uma carona</h4>
     </div>
   </div>
 
   <div class="col-md-12">
     <br>
-
-
   </div>
 
   <div class="col-md-2 col-md-offset-1">
     <div class="form-group">
-      <button name="salvar" class="btn btn-primary center-block" ng-click="trocarRota('OferecerCarona')">
+      <button name="salvar" class="btn btn-primary center-block" data-toggle="modal" data-target="#modalCarona">
         Oferecer Carona
       </button>
       <br>
@@ -31,50 +28,7 @@
       </button>
     </div>
   </div>
-    <!--  <div class="col-md-2 col-md-offset-1">
-    <div class="panel panel-info" style="background-color: transparent" >
-      <form action="/horario" method="post">
-        <div class="form-group">
-          <div data-ng-show="error" class="alert alert-danger">
-            {{errorMessage}}
-          </div>
-          <div class="form-group">
-            <label for="diasSemana"> <h5 style ="color: #2aabd2;"><b>
-              Data</b></h5></label>
-            <input type="text" ng-model="data" jqdatepicker />
-            <br/>
-            <br/>
-          </div>
 
-
-          <div class="form-group">
-            <label for="horario"> <h5 style ="color: #2aabd2;"><b>
-              Horario </b></h5></label>
-            <uib-timepicker ng-model="hora" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
-          </div>
-
-          <label for="tipoCarona"> <h5 style ="color:  #2aabd2;"><b>
-            Tipo de Carona</b></h5></label>
-
-          <br>
-
-          <div class="radio">
-            <label><input type="radio" name="optradio" ng-model="opcaoCarona" value="Ida">Ida</label>
-          </div>
-          <div class="radio" ng-model="opcaoCarona" value="volta">
-            <label><input type="radio" name="optradio" ng-model="opcaoCarona" value="Volta">Volta</label>
-          </div>
-
-        </div>
-
-
-      </form>
-      <button id="singlebutton" name="salvar" class="btn btn-primary center-block" ng-click="salvarCarona()">
-        Salvar
-      </button>
-    </div>
-  </div>
--->
   <div class="col-md-6 col-md-offset-0">
       <div class="panel-heading">
         <span class="glyphicon glyphicon-list"></span> Caronas
@@ -83,7 +37,7 @@
       <div class="panel-body">
         <table class="table table-striped">
           <thead>
-          <tr style="color:#00A000">
+          <tr style="color:#ffffff">
             <th>Dia Semana</th>
             <th>Aula</th>
             <th>Tipo</th>
@@ -97,42 +51,157 @@
             <td>{{caro.horario.tipo}}</td>
             <td>{{caro.vagas}}</td>
             <td> Motorista</td>
-
           </tr>
-
-
           </tbody>
         </table>
       </div>
 
   </div>
- <!-- <div class="col-md-2">
-    <div class="panel panel-info" style="background-color: transparent" >
-      <div class="form-group">
-        <label for="rotas"> <h5 style ="color: #2aabd2;"><b>
-          Rotas</b></h5></label>
-        <select class="form-control" ng-model="bairro" ng-options="opt.value for opt in bairros">
-        </select>
 
-        <br>
-        <button name="adicionar" class="btn btn-primary " ng-click="adicionarRotas(bairro)">
-          Add
-        </button>
-        <button name="remover" class="btn btn-primary " ng-click="removerRota()">
-          Del
-        </button>
-      </div>
+</div>
 
-      <div class="panel panel-primary">
-        <table class="table table-striped" id="tabelaRotas" scrolling="yes">
-          <div  class="form-control" ng-repeat="opt in routes">
-            <input type="checkbox" ng-model="opt.selected"> {{opt.value}}
+<div class="container">
+  <!-- Modal -->
+  <div class="modal fade" id="modalCarona" role="dialog" >
+    <div class="modal-dialog" style="left:0px;">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h2 class="modal-title"><center>Crie aqui sua carona</center></h2>
+        </div>
+
+        <div class="modal-body">
+          <div class="panel panel-info" >
+            <form action="/horario" method="post">
+              <div class="form-group">
+                <div class="form-group">
+                  <label for="diasSemana"> <h5 ><b>
+                    Dia Da Semana</b></h5></label>
+                  <select class="form-control" ng-model="horario.DiaDaSemana" ng-options="opt.value for opt in diaSemanas">
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="horario"> <h5><b>
+                    Aula </b></h5></label>
+                  <select class="form-control" ng-model="horario.aula" ng-options="opt.value for opt in horarios">
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="vagas"> <h5 ><b>
+                    Vagas </b></h5></label>
+                  <select class="form-control" ng-model="vagas" ng-options="opt.value for opt in NumVagas">
+                  </select>
+                </div>
+
+                <label for="tipoCarona"> <h5><b>
+                  Tipo de Carona</b></h5></label>
+                <br>
+                <div class="form-group2">
+                  <div class="radio">
+                    <label><input type="radio" name="optradio" ng-model="opcaoCarona" value=0>Ida</label>
+                  </div>
+                  <div class="radio" ng-model="opcaoCarona" value="volta">
+                    <label><input type="radio" name="optradio" ng-model="opcaoCarona" value=1>Volta</label>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="rotas"> <h5 style ="color: #ffffff;"><b>
+                    Selecione Bairros </b></h5></label>
+
+                  <select class="form-control" id="selecaoBairro" title = "Selecione um Bairro">
+                    <option value="segunda">Malvinas</option>
+                    <option value="terca">Centro</option>
+                    <option value="quarta">Catolé</option>
+                    <option value="quinta">Mirante</option>
+                    <option value="sexta">Liberdade</option>
+                    <option value="setimaa">Prata</option>
+                    <option value="oitava">Jardim Paulistano</option>
+                    <option value="nona">Tambor</option>
+                    <option value="decima">Distrito Industrial</option>
+                    <option value="decimaPri">Catolé de Zé Ferreira</option>
+                    <option value="decimaSeg">Ramadinha</option>
+                    <option value="decimaTer">Catolé</option>
+                    <option value="decimaQua">Bodocongó</option>
+                    <option value="decimaQui">Alto Branco</option>
+                    <option value="decimaSex">Cruzeiro</option>
+                    <option value="decimaSet">Novo Cruzeiro</option>
+                    <option value="decimaOit">São José</option>
+                    <option value="decimaNon">Palmeira</option>
+                    <option value="vigesima">Castelo Branco</option>
+                    <option value="vigesimaPri">José Pinheiro</option>
+                    <option value="vigesimaSec">Itararé</option>
+                    <option value="vigesimaTer">Presidente Médici</option>
+                    <option value="vigesimaQua">Dinamérica</option>
+                    <option value="vigesimaQui">Santa Rosa</option>
+                  </select>
+
+                  <br>
+                  <button id="singlebutton" name="Adicionar" class="btn btn-default " onclick="adicionaRotas()">
+                    Add
+                  </button>
+                  <button id="singlebutton" name="Adicionar" class="btn btn-default " onclick="deletarRota()">
+                    Del
+                  </button>
+                </div>
+
+                <div class="panel panel-primary">
+                  <table class="table table-striped" id="tabelaRotas"></table>
+                </div>
+
+              </div>
+            </form>
           </div>
-        </table>
+
+          <button id="singlebutton" name="salvar" class="btn btn-success center-block" ng-click="salvarCarona()">
+            Salvar
+          </button>
+
+        </div>
       </div>
     </div>
   </div>
--->
 </div>
+
+<script>
+
+  function adicionaRotas(){
+    var bairro = document.getElementById("selecaoBairro");
+    var table = document.getElementById("tabelaRotas");
+    if (bairro.selectedIndex >= 0) {
+      var tableLinha = table.insertRow(table.rows.length);
+      var celulaTabela = tableLinha.insertCell(0);
+      var objInputCheckBox = document.createElement("input");
+      objInputCheckBox.type = "checkbox";
+      celulaTabela.appendChild(objInputCheckBox);
+      var celulaBairro = tableLinha.insertCell(1);
+      celulaBairro.innerHTML = bairro.options[ bairro.selectedIndex ].text;
+    }
+  }
+  function deletarRota() {
+    var table = document.getElementById("tabelaRotas");
+    var tamTable = table.rows.length;
+    var contador = 0;
+    for (var i = 0; i < table.rows.length; i++) {
+      /*** Get checkbox object ***/
+      var chk = table.rows[i].cells[0].childNodes[0];
+      if (chk.checked) {
+        /*** if checked we del ***/
+        table.deleteRow(i);
+        tamTable--;
+        i--;
+        contador = contador + 1;
+      }
+    }
+  }
+</script>
+
+
+
 
 </body>

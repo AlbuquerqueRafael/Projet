@@ -24,11 +24,11 @@ angular.module("clienteApp").factory("menuService", function($location, $cookieS
 
 
   service.getMenuUsuario = function(){
-    menus = [{path : "/home", href : "#/inicio", nome: "Home", class:"home", slide: 1},
+    menus = [{path : "/horario", href : "#/horario", nome: "Home", class:"home", slide: 1},
       {path : "/cadastroHome", href : "#/cadastroHome", nome: "Cadastrar", class: "user", slide: 2},
-      {path : "/horario", href : "#/horario", nome: "Horario", class: "time", slide: 3},
+      {path : "/busca", href : "#/busca", nome: "Pedir Carona", class: "map-marker", slide: 3},
       {path : "/notificacao", href: "#/notificacao", nome: "Notificação", class : "alert", slide: 4},
-      {path : "/sair", href: "#/sair", nome: "Sair", class: "leaf", slide: 5}
+      {path : "/sair", href: "#/sair", nome: "Sair", class: "leaf", slide: 6}
     ];
 
     return menus;
