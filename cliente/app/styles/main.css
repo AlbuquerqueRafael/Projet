@@ -47,6 +47,11 @@ body{
   padding-top: 60px;
   font-size: 18px;
   text-align: justify;
+  
+}
+
+#panelLogin {
+  top:120px;
 }
 
 .jumbotron{
@@ -143,8 +148,18 @@ input[readonly] {
   text-align: center;
   position: absolute;
   font-size: 12px;
-  top: 10%;
+  top: 10%;  
   width: 100%;
+}
+
+#titleInicial {
+  top:112px;
+}
+
+#titleCadastro {
+  color: #fffbf9 ;
+  text-align: center; 
+  font-family: Goudy Stout;
 }
 
 .borda-2px {
