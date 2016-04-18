@@ -95,6 +95,18 @@ public class Usuario{
         return caronasPassageiro;
     }
 
+    public void setCaronasPassageiro(Carona carona){
+        this.caronasPassageiro.add(carona);
+    }
+
+    public void setSolicitacoesEnviadas(Solicitacao s){
+        this.solicitacoesEnviadas.add(s);
+    }
+
+    public void setSolicitacoesRecebidas(Solicitacao s){
+        this.solicitacoesRecebidas.add(s);
+    }
+
     public String getTelefone() {
         return telefone;
     }
