@@ -31,7 +31,7 @@
   </div>
 
   <div class="col-md-6">
-      <div class="panel-heading">
+      <div class="panel-heading" id="HeadPanelHorario">
         <span class="glyphicon glyphicon-list" ></span> Caronas
       </div>
 
@@ -59,7 +59,7 @@
                   <tr ng-repeat="caro in caronas">
                     <td class="item">{{caro.horario.dia}}</td>
                     <td class="item">{{caro.horario.aula}}</td>
-                      <td class="item">{{caro.horario.tipo}}</td>
+                      <td class="item">{{caro.tipo}}</td>
                     <td class="item">{{caro.vagas}}</td>
                       <td class="item">{{caro.endereco.bairro}}</td>
                       <td class="item">{{caro.endereco.rua}}</td>

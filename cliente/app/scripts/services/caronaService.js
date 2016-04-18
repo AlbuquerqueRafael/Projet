@@ -2,9 +2,13 @@
  * Created by rafael on 17/04/16.
  */
 
-angular.module("clienteApp").factory("caronaService", function(){
+angular.module("clienteApp").factory("caronaService", function($http){
 
     var caronaService = {};
+
+    caronaService.buscarCarona = function(carona){
+      return $http.post('/app/buscarCaronas/2', carona);
+    }
 
     caronaService.getAulaArray = function(){
         var aula =[{value: "8-10"},

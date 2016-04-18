@@ -52,16 +52,16 @@ public class SistemaUsuarios{
 		usuarios.add(usuario9);
 		usuarios.add(usuario10);
 
-		Horario horario = new Horario("8-10", DiaDaSemana.SEGUNDA, TipoCarona.IDA);
-		Horario horario2 = new Horario("10-12", DiaDaSemana.SEGUNDA, TipoCarona.VOLTA);
-		Horario horario3 = new Horario("8-10", DiaDaSemana.TERCA, TipoCarona.IDA);
-		Horario horario4 = new Horario("14-16", DiaDaSemana.TERCA, TipoCarona.VOLTA);
-		Horario horario5 = new Horario("14-16", DiaDaSemana.QUARTA, TipoCarona.IDA);
-		Horario horario6 = new Horario("16-18", DiaDaSemana.QUARTA, TipoCarona.VOLTA);
-		Horario horario7 = new Horario("8-10", DiaDaSemana.QUARTA, TipoCarona.IDA);
-		Horario horario8 = new Horario("14-16", DiaDaSemana.QUARTA, TipoCarona.VOLTA);
-		Horario horario9 = new Horario("14-16", DiaDaSemana.SEXTA, TipoCarona.IDA);
-		Horario horario10 = new Horario("14-16", DiaDaSemana.SEXTA, TipoCarona.IDA);
+		Horario horario = new Horario("8-10", DiaDaSemana.SEGUNDA);
+		Horario horario2 = new Horario("10-12", DiaDaSemana.SEGUNDA);
+		Horario horario3 = new Horario("8-10", DiaDaSemana.TERCA);
+		Horario horario4 = new Horario("14-16", DiaDaSemana.TERCA);
+		Horario horario5 = new Horario("14-16", DiaDaSemana.QUARTA);
+		Horario horario6 = new Horario("16-18", DiaDaSemana.QUARTA);
+		Horario horario7 = new Horario("8-10", DiaDaSemana.QUARTA);
+		Horario horario8 = new Horario("14-16", DiaDaSemana.QUARTA);
+		Horario horario9 = new Horario("14-16", DiaDaSemana.SEXTA);
+		Horario horario10 = new Horario("14-16", DiaDaSemana.SEXTA);
 		List<String> rota0 = new ArrayList<String>();
 		List<String> rota1 = new ArrayList<String>();
 		rota1.add("Centro");
@@ -69,32 +69,38 @@ public class SistemaUsuarios{
 		List<String> rota2 = new ArrayList<String>();
 		rota1.add("Catolé");
 		rota1.add("Centro");
-		Carona carona = new Carona(usuario, horario, 4, rota1, endereco);
-		Carona carona2 = new Carona(usuario2, horario2, 4, rota2, endereco2);
-		Carona carona3 = new Carona(usuario3, horario3, 3, rota2, endereco3);
-		Carona carona4 = new Carona(usuario4, horario4, 1, rota0, endereco4);
-		Carona carona5 = new Carona(usuario5, horario5, 2, rota1, endereco5);
-		Carona carona6 = new Carona(usuario, horario6, 4, rota0, endereco6);
-		Carona carona7 = new Carona(usuario3, horario7, 3, rota0, endereco7);
-		Carona carona8 = new Carona(usuario, horario8, 3, rota0, endereco8);
+		Carona carona = new Carona(usuario, horario, 4, rota1, endereco, TipoCarona.IDA);
+		Carona carona2 = new Carona(usuario2, horario2, 4, rota2, endereco2, TipoCarona.IDA);
+		Carona carona3 = new Carona(usuario3, horario2, 3, rota2, endereco2, TipoCarona.IDA);
+		Carona carona4 = new Carona(usuario4, horario2, 1, rota0, endereco2, TipoCarona.IDA);
+		Carona carona5 = new Carona(usuario5, horario2, 2, rota1, endereco2, TipoCarona.IDA);
+		Carona carona6 = new Carona(usuario, horario, 4, rota0, endereco2, TipoCarona.VOLTA);
+		Carona carona7 = new Carona(usuario6, horario2, 3, rota0, endereco2, TipoCarona.IDA);
+		Carona carona8 = new Carona(usuario, horario, 3, rota0, endereco2, TipoCarona.IDA);
+		Carona carona9 = new Carona(usuario7, horario2, 3, rota0, endereco2, TipoCarona.IDA);
+		Carona carona10 = new Carona(usuario10, horario2, 3, rota0, endereco2, TipoCarona.IDA);
 
 		SistemaCaronas.getInstance().adicionarCarona(carona);
-		usuario.setCaronasMotorista(carona);
 		SistemaCaronas.getInstance().adicionarCarona(carona2);
 		SistemaCaronas.getInstance().adicionarCarona(carona3);
 		SistemaCaronas.getInstance().adicionarCarona(carona4);
 		SistemaCaronas.getInstance().adicionarCarona(carona5);
 		SistemaCaronas.getInstance().adicionarCarona(carona6);
 		SistemaCaronas.getInstance().adicionarCarona(carona7);
+		SistemaCaronas.getInstance().adicionarCarona(carona8);
+		SistemaCaronas.getInstance().adicionarCarona(carona9);
+		SistemaCaronas.getInstance().adicionarCarona(carona10);
 
-
+		usuario.setCaronasMotorista(carona);
 		usuario2.setCaronasMotorista(carona2);
 		usuario3.setCaronasMotorista(carona3);
 		usuario4.setCaronasMotorista(carona4);
 		usuario5.setCaronasMotorista(carona5);
 		usuario.setCaronasMotorista(carona6);
-		usuario3.setCaronasMotorista(carona7);
+		usuario6.setCaronasMotorista(carona7);
 		usuario.setCaronasMotorista(carona8);
+		usuario7.setCaronasMotorista(carona9);
+		usuario10.setCaronasMotorista(carona10);
 
 	}
 

@@ -16,7 +16,8 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'angularUtils.directives.dirPagination'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -51,6 +52,8 @@ angular
       .when('/carona', {
         templateUrl: 'views/carona.html',
         controller: 'caronaCtrl',
+        css:"styles/buscar.css",
+
         requireLogin : false
       })
       .when('/buscar', {

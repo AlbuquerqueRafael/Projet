@@ -1,5 +1,6 @@
 package util;
 
+import models.Carona;
 import play.data.validation.Constraints.EmailValidator;
 import play.mvc.Controller;
 
@@ -13,9 +14,6 @@ public class Util extends Controller {
 
         return validator.isValid(email);
     }
-
-
-
 
     public static boolean isValidTelefone(String phone) {
         boolean result = false;
@@ -43,5 +41,25 @@ public class Util extends Controller {
         }
         return result;
     }
+
+    public static boolean isValidHorarioCarona(Carona carona, Carona comparada){
+        if(carona.getHorario().getDia().equals(comparada.getHorario().getDia()) &&
+                carona.getHorario().getAula().equals(comparada.getHorario().getAula())){
+            return false;
+        }
+
+        return true;
+    }
+
+    public static boolean isEnderecoCompativel(Carona carona, Carona comparada){
+        if(carona.getEndereco().equals(comparada.getEndereco()) || carona.getRota().contains(comparada) ){
+            return true;
+        }
+
+
+        return false;
+    }
+
+
 
 }
