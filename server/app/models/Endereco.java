@@ -34,4 +34,16 @@ public class Endereco {
     public void setBairro(String bairro){
         this.bairro = bairro;
     }
+
+    @Override
+    public boolean equals(Object obj){
+        if(!(obj instanceof Endereco)){
+            return false;
+        }
+
+        Endereco end = (Endereco) obj;
+
+        return end.getBairro().equals(this.getBairro());
+
+    }
 }

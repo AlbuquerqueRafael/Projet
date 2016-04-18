@@ -1,15 +1,27 @@
-<br><br><br><br><br>
-<uib-pagination
+<br xmlns:users><br><br><br><br>
+<!--<uib-pagination
   ng-model="currentPage"
   total-items="todos.length"
   max-size="maxSize"
-  boundary-links="true">
-</uib-pagination>
+  boundary-links="true" style="position: relative;
+  right: -50px;">
+</uib-pagination> -->
+
+<dir-pagination-controls
+  max-size="8"
+  direction-links="true"
+  boundary-links="true"
+  on-page-change="data.getData(newPageNumber)">
+</dir-pagination-controls>
 
 <div class="row">
-  <div class="col-md-2 col-md-offset-1">
+  <div class="col-md-2" style="position:relative;
+    right: -50px;">
     <div class="panel panel-info" style="background-color: transparent" >
       <form>
+        <div data-ng-show="error" class="alert alert-danger">
+          {{errorMessage}}
+        </div>
       <div class="form-group">
         <label for="diasSemana"> <h5><b>
           Dia Da Semana</b></h5></label>
@@ -34,36 +46,59 @@
           <label><input type="radio" name="optradio" ng-model="opcaoCarona" value=1>Volta</label>
         </div>
       </div>
+
+        <button name="endereco" ng-show="opcaoCarona==1" class="btn btn-info center-block" ng-click="tabs=!tabs">
+          Endereco
+        </button>
+
+        <div class="form-group"  ng-show="!tabs">
+          <br>
+          <input type="text" name = "rua" class="form-control" placeholder="Rua" required ng-model="rua">
+        </div>
+
+        <div class="form-group"  ng-show="!tabs">
+          <select class="form-control" ng-model="bairro" ng-options="opt.value for opt in bairros">
+          </select>
+        </div>
+
+        <button name="salvar" data-ng-disabled="form.rua.$error.required" class="btn btn-success center-block" ng-click="buscar()">
+          Salvar
+        </button>
+
       </form>
       </div>
 
   </div>
-  <div class="col-md-3">
-    <div class="panel panel-primary"  style="width: 250px">
-      <div class="panel-heading">
-        <b>Carona-me</b>
-      </div>
-      <div class="panel-body">
-        <a href="../html-link.htm">
-          <div align="middle">
-            <img src="http://lorempixel.com/140/140/" class= "img-circle" class="img-responsive"
-                 height="70" width="70" >
-          </div>
-        </a>
-        <p></p>
-        <p style="font-size: 12px"><b>Nome</b>: Fulano B. &nbsp &nbsp<br> <b>Tel:</b>(083) 99999-3333 <br>
-          <b>E-mail</b>: fulano.siclano.at.ccc.ufcg.edu.br <br>
-          <b>Rua</b>: Aprinio Velosso Barosso <br>
-          <b>Bairro</b>: Malvinas
-        </p>
+  <div dir-paginate='motorista in motoristas|itemsPerPage:itemsPorPag' total-items='total_count'>
+    <div class="col-md-10" ng-if="$index % 3 == 0">
+    </div>
+    <div class="col-md-3">
+      <div class="panel panel-primary" style="position:relative;
+    right: -50px; width: 250px;">
+        <div class="panel-heading" style="">
+          <b>Carona-me</b>
+        </div>
+        <div class="panel-body" >
+          <a href="../html-link.htm">
+            <div align="middle">
+              <img src="http://lorempixel.com/140/140/" class= "img-circle" class="img-responsive"
+                   height="70" width="70" >
+            </div>
+          </a>
+          <p></p>
+          <p style="font-size: 12px"><b>Nome</b>: {{motorista.nome}} &nbsp &nbsp<br> <b>Tel:</b>(083) {{motorista.telefone}} <br>
+            <b>E-mail</b>: {{motorista.email}}<br>
+            <b>Rua</b>: {{motorista.endereco.rua}} <br>
+            <b>Bairro</b>: {{motorista.endereco.bairro}}
+          </p>
 
-        <div style="text-align: center;">
-          <input type="button" class="btn btn-default"  value="Carona-me" style="color: #2aabd2;" >
+          <div style="text-align: center;">
+            <input type="button" class="btn btn-default"  value="Carona-me" style="color: #2aabd2;" >
+          </div>
         </div>
       </div>
     </div>
   </div>
-
 
 
 

@@ -75,7 +75,7 @@ angular.module("clienteApp")
             carona.horario = {}
             carona.horario.aula = $scope.horario.aula.value;
             carona.horario.dia = $scope.horario.DiaDaSemana.Id;
-            carona.horario.tipo = parseInt($scope.opcaoCarona);
+            carona.tipo = parseInt($scope.opcaoCarona);
             carona.vagas = $scope.vagas.value;
             carona.endereco = {}
             carona.endereco.rua = $scope.rua;

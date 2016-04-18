@@ -14,7 +14,7 @@ public class Usuario{
     private String nome, matricula, telefone, email, senha;
     @JsonProperty
     private Endereco endereco;
-    @JsonProperty
+    @JsonBackReference
     private List<Carona> caronasMotorista;
     private List<Carona> caronasPassageiro;
     private List<Solicitacao> solicitacoesEnviadas;

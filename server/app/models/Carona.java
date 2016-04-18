@@ -2,6 +2,8 @@ package models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,20 +16,22 @@ public class Carona {
 
 
     private Horario horario;
+    @JsonSerialize
     private Usuario motorista;
     private Endereco endereco;
     private List<Usuario> listaPassageiros;    
     private int vagas;
     private List<String> rota;    
+    private TipoCarona tipo;
 
-
-    public Carona (Usuario motorista, Horario horario, int vagas, List<String> rota, Endereco endereco){
+    public Carona (Usuario motorista, Horario horario, int vagas, List<String> rota, Endereco endereco, TipoCarona tipo){
         this.horario = horario;
-        this.motorista = motorista;
         this.listaPassageiros = new ArrayList<Usuario>();
         this.rota = rota;
         this.vagas = vagas;
         this.endereco = endereco;
+        this.tipo = tipo;
+        this.motorista = motorista;
     }
 
     public Carona(){
@@ -47,13 +51,16 @@ public class Carona {
         return listaPassageiros;
     }
 
-
     public void setListaPassageiros(List<Usuario> listaPassageiros) {
         this.listaPassageiros = listaPassageiros;
     }
 
-    public void setMotorista(Usuario usuario){
-        this.motorista = usuario;
+    public void setMotorista(Usuario motorista){
+        this.motorista = motorista;
+    }
+
+    public Usuario getMotorista(){
+        return motorista;
     }
 
     public Horario getHorario(){
@@ -79,4 +86,15 @@ public class Carona {
     public Endereco getEndereco(){
         return endereco;
     }
+
+    public TipoCarona getTipo(){
+        return tipo;
+    }
+
+    public void setTipo(TipoCarona tipo){
+        this.tipo = tipo;
+    }
+
+
+
 }

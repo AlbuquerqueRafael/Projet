@@ -1,42 +1,60 @@
 /**
  * Created by rafael on 05/04/16.
  */
-angular.module("clienteApp").controller("buscaCtrl", function($scope, horarioService, mainService) {
+angular.module("clienteApp").controller("buscaCtrl", function($scope, caronaService, mainService) {
 
-  $scope.horarios = horarioService.getAulaArray();
-  $scope.diaSemanas = horarioService.getDiaSemanasArray();
+  $scope.horarios = caronaService.getAulaArray();
+  $scope.diaSemanas = caronaService.getDiaSemanasArray();
+  $scope.bairros = caronaService.getBairrosArray();
 
-  console.log($scope.horarios);
-  $scope.filteredTodos = []
-  $scope.currentPage = 1
-  $scope.numPerPage = 10
-  $scope.maxSize = 5;
+  $scope.users = []; //declare an empty array
+  $scope.pageno = 1; // initialize page no to 1
+  $scope.total_count = 0;
+  $scope.itemsPorP = 6;
   $scope.usuario = mainService.getUserAtual();
-
+  $scope.tabs = true;
+  $scope.motoristas = [];
+  $scope.error = false;
   $scope.horario = {};
   $scope.horario.aula =  $scope.horarios[0];
   $scope.horario.DiaDaSemana =  $scope.diaSemanas[0];
   $scope.opcaoCarona = "0";
 
-  $scope.makeTodos = function() {
-    $scope.todos = [];
-    for (i=1;i<=1000;i++) {
-      $scope.todos.push({ text:'todo '+i, done:false});
+
+  $scope.inicia = function(){
+    for(var i = 0; i < $scope.bairros.length; i++){
+      if($scope.bairros[i].value === $scope.usuario.endereco.bairro){
+        $scope.bairro = $scope.bairros[i];
+        $scope.rua = $scope.usuario.endereco.rua;
+        break;
+      }
     }
-  };
-  $scope.makeTodos();
+  }
 
-  $scope.inicio = horarioService.getHorarios($scope.usuario).success(function(horarios){
-  //  $scope.horarios = horarios;
-   // console.log($scope.horarios);
-  });
+  $scope.inicia();
 
-  $scope.opcaoHora = $scope.horarios[0];
-  $scope.$watch('currentPage + numPerPage', function() {
-    var begin = (($scope.currentPage - 1) * $scope.numPerPage)
-      , end = begin + $scope.numPerPage;
 
-    $scope.filteredTodos = $scope.todos.slice(begin, end);
-  });
+  $scope.buscar = function(){
+    var carona = {};
+    carona.horario = {}
+    carona.horario.aula = $scope.horario.aula.value;
+    carona.horario.dia = $scope.horario.DiaDaSemana.Id;
+    carona.tipo = parseInt($scope.opcaoCarona);
+    carona.endereco = {}
+    carona.endereco.rua = $scope.rua;
+    carona.endereco.bairro = $scope.bairro.value;
+
+    caronaService.buscarCarona(carona, pageN).success(function(info){
+      $scope.motoristas = info;
+      console.log($scope.motoristas);
+    }).error(function(erro){
+      $scope.error = true;
+      $scope.errorMessage = erro;
+      console.log("errou");
+      console.log(erro);
+    });
+
+
+  }
 
 });

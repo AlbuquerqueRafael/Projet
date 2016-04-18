@@ -11,12 +11,10 @@ public class Horario{
 
     private String aula; // 8-10, 10-12, 14-16, 16-18
     private DiaDaSemana dia;
-    private TipoCarona tipo;
 
-    public Horario(String aula, DiaDaSemana dia, TipoCarona tipo) {
+    public Horario(String aula, DiaDaSemana dia) {
         this.aula = aula;
         this.dia = dia;
-        this.tipo = tipo;
     }
 
     public Horario(){
@@ -27,20 +25,12 @@ public class Horario{
         return dia;
    }
 
-   public TipoCarona getTipo (){
-        return tipo;
-   }
-
    public String getAula (){
         return aula;
    }
 
    public void setDia(DiaDaSemana dia){
         this.dia = dia;
-   }
-
-   public void setTipo(TipoCarona tipo){
-        this.tipo = tipo;
    }
 
    public void setAula(String aula){

@@ -63,7 +63,7 @@ p {
     margin-bottom: 15px;
 }
 
-.panel-heading {
+#HeadPanelHorario{
     position:relative;
     right: -50px;
 }
