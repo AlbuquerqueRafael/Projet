@@ -179,6 +179,36 @@ public class Application extends Controller {
         return ok(Json.toJson(motorista.getCaronasMotorista()));
     }
 
+    public Result solicitarCarona(){
+        JsonNode json = request().body().asJson();
+        Solicitacao solicitacao = Json.fromJson(json, Solicitacao.class);
+
+        Usuario passageiro = usuarioAutenticado();
+        passageiro.setSolicitacoesEnviadas(solicitacao);
+
+        Usuario motorista = solicitacao.getCarona().getMotorista();
+        motorista.setSolicitacoesRecebidas(solicitacao);
+
+        return ok(Json.toJson(solicitacao)); // precisaria disso mesmo?
+    }
+
+    public Result aceitarCarona(){                        // esse metodo so pode ser chamado apos um motorista clicar em ACEITAR
+        JsonNode json = request().body().asJson();
+        Solicitacao solicitacao = Json.fromJson(json, Solicitacao.class);
+        
+        Usuario passageiro = solicitacao.getPassageiro();
+
+        Carona carona = solicitacao.getCarona();
+
+        carona.novoPassageiro(passageiro);
+        solicitacao.setStatus(Status.ACEITO);
+
+
+        return ok(Json.toJson(solicitacao));
+    }
+
+
+
     public Result getAllCadastro(){
         List<Usuario> usuarios = SistemaUsuarios.getInstance().getUsuarios();
         return ok(toJson(usuarios));
