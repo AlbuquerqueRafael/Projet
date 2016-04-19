@@ -183,6 +183,11 @@ public class Application extends Controller {
         JsonNode json = request().body().asJson();
         Solicitacao solicitacao = Json.fromJson(json, Solicitacao.class);
 
+        
+        if (Util.isCaronaLotada(solicitacao.getCarona())){
+            return badRequest("Ops! Carona lotada!");
+        }
+
         Usuario passageiro = usuarioAutenticado();
         passageiro.setSolicitacoesEnviadas(solicitacao);
 
@@ -192,20 +197,43 @@ public class Application extends Controller {
         return ok(Json.toJson(solicitacao)); // precisaria disso mesmo?
     }
 
-    public Result aceitarCarona(){                        // esse metodo so pode ser chamado apos um motorista clicar em ACEITAR
+    public Result aceitarCarona(){                       
         JsonNode json = request().body().asJson();
         Solicitacao solicitacao = Json.fromJson(json, Solicitacao.class);
-        
-        Usuario passageiro = solicitacao.getPassageiro();
 
-        Carona carona = solicitacao.getCarona();
+        if (Util.isCaronaLotada(solicitacao.getCarona())){
+            return badRequest("Ops! Carona lotada!");
+        }
 
-        carona.novoPassageiro(passageiro);
-        solicitacao.setStatus(Status.ACEITO);
+        if (solicitacao.setStatus(Status.ACEITO)){                          // so pode aceitar se a carona estiver pendente
+            Usuario passageiro = solicitacao.getPassageiro();
+            Carona carona = solicitacao.getCarona();
+            carona.novoPassageiro(passageiro);
+            return ok(Json.toJson(solicitacao));
 
+        } else {
+            return badRequest("Você já tomou uma decisão sobre esse pedido");
+        }
 
-        return ok(Json.toJson(solicitacao));
     }
+
+
+    public Result rejeitarCarona(){                       
+        JsonNode json = request().body().asJson();
+        Solicitacao solicitacao = Json.fromJson(json, Solicitacao.class);
+
+        if (solicitacao.setStatus(Status.REJEITADO)){                          // so pode recusar se a carona estiver pendente
+            return ok(Json.toJson(solicitacao));
+
+        } else {
+            
+            return badRequest("Você já tomou uma decisão sobre esse pedido");
+        }
+        
+    }
+
+
+
 
 
 

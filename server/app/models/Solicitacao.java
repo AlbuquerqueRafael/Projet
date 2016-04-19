@@ -35,8 +35,13 @@ public class Solicitacao {
         return status;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
+    public boolean setStatus(Status status) {
+        if (this.status == Status.PENDENTE){
+            this.status = status;
+            return true;
+        }
+
+        return false;
     }
 
     

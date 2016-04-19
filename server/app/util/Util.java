@@ -61,5 +61,16 @@ public class Util extends Controller {
     }
 
 
+    public static boolean isCaronaLotada(Carona c){
+        int numero_vagas = c.getVagas();
+        int ocupadas = c.getListaPassageiros().size();
+
+        if (ocupadas == numero_vagas){
+            return true;
+        }
+
+        return false;
+    }
+
 
 }
