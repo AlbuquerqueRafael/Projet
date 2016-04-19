@@ -35,7 +35,7 @@ public class Solicitacao {
         return status;
     }
 
-    private void setStatus(Status status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
