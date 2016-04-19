@@ -52,7 +52,6 @@ public class Application extends Controller {
 
 
     public Result buscarCarona(Long id){
-        System.out.println(id);
         JsonNode json = request().body().asJson();
         Carona carona = Json.fromJson(json, Carona.class);
         carona.setMotorista(usuarioAutenticado());
@@ -61,7 +60,7 @@ public class Application extends Controller {
             return badRequest("Horário já preenchido");
         }
 
-        int numeroPaginas = 0;
+        int numeroPaginas = Math.toIntExact(id-1) * 6;
         boolean fimDaLista = false;
         int count = numeroPaginas;
         List<Carona> caronas = SistemaCaronas.getInstance().getCaronas();
@@ -69,7 +68,7 @@ public class Application extends Controller {
         List<Usuario> filterMotoristas = new ArrayList<Usuario>();
         Carona caroItera = caronas.get(count);
 
-        while(caroItera != null && count < numeroPaginas + 7 && !fimDaLista){
+        while(caroItera != null && count < numeroPaginas + 6 && !fimDaLista){
            if(!caroItera.getMotorista().equals(usuarioAutenticado())) {
               if(!Util.isValidHorarioCarona(caroItera, carona) && Util.isEnderecoCompativel(caroItera, carona)
                       && caroItera.getTipo().equals(carona.getTipo())){
