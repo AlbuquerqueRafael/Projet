@@ -6,8 +6,11 @@ angular.module("clienteApp").factory("caronaService", function($http){
 
     var caronaService = {};
 
-    caronaService.buscarCarona = function(carona){
-      return $http.post('/app/buscarCaronas/2', carona);
+    caronaService.buscarCarona = function(carona, numPagina){
+      if(numPagina === undefined){
+        numPagina = 1;
+      }
+      return $http.post('/app/buscarCaronas/' + numPagina, carona);
     }
 
     caronaService.getAulaArray = function(){

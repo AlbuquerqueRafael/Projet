@@ -1,19 +1,16 @@
 <br xmlns:users><br><br><br><br>
-<!--<uib-pagination
-  ng-model="currentPage"
-  total-items="todos.length"
-  max-size="maxSize"
-  boundary-links="true" style="position: relative;
-  right: -50px;">
-</uib-pagination> -->
 
-<dir-pagination-controls
-  max-size="8"
-  direction-links="true"
-  boundary-links="true"
-  on-page-change="data.getData(newPageNumber)">
-</dir-pagination-controls>
+<ul class="pagination"  style="position:relative;
+    right: -50px;">
+  <li><a ng-click="buscar('voltar')">Página Anterior</a></li>
+  <li ng-click="motoristas.length < 6 || buscar('proxima')"><a>Proxima Pagina</a></li>
+</ul>
 
+<div>
+  {{newPageNumber}}
+  {{itemsPorP}}
+
+</div>
 <div class="row">
   <div class="col-md-2" style="position:relative;
     right: -50px;">
@@ -69,7 +66,7 @@
       </div>
 
   </div>
-  <div dir-paginate='motorista in motoristas|itemsPerPage:itemsPorPag' total-items='total_count'>
+  <div ng-repeat="motorista in motoristas">
     <div class="col-md-10" ng-if="$index % 3 == 0">
     </div>
     <div class="col-md-3">
@@ -99,7 +96,5 @@
       </div>
     </div>
   </div>
-
-
 
 </div>

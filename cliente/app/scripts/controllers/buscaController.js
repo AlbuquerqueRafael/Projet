@@ -7,13 +7,11 @@ angular.module("clienteApp").controller("buscaCtrl", function($scope, caronaServ
   $scope.diaSemanas = caronaService.getDiaSemanasArray();
   $scope.bairros = caronaService.getBairrosArray();
 
-  $scope.users = []; //declare an empty array
-  $scope.pageno = 1; // initialize page no to 1
-  $scope.total_count = 0;
-  $scope.itemsPorP = 6;
+ // $scope.pageno = 1; // initialize page no to 1
   $scope.usuario = mainService.getUserAtual();
   $scope.tabs = true;
   $scope.motoristas = [];
+  var id = 1;
   $scope.error = false;
   $scope.horario = {};
   $scope.horario.aula =  $scope.horarios[0];
@@ -34,7 +32,12 @@ angular.module("clienteApp").controller("buscaCtrl", function($scope, caronaServ
   $scope.inicia();
 
 
-  $scope.buscar = function(){
+  $scope.buscar = function(pagina){
+    if('proxima' === pagina){
+      id += 1;
+    }else if(id > 1){
+      id -= 1;
+    }
     var carona = {};
     carona.horario = {}
     carona.horario.aula = $scope.horario.aula.value;
@@ -44,9 +47,9 @@ angular.module("clienteApp").controller("buscaCtrl", function($scope, caronaServ
     carona.endereco.rua = $scope.rua;
     carona.endereco.bairro = $scope.bairro.value;
 
-    caronaService.buscarCarona(carona, pageN).success(function(info){
+
+    caronaService.buscarCarona(carona, id).success(function(info){
       $scope.motoristas = info;
-      console.log($scope.motoristas);
     }).error(function(erro){
       $scope.error = true;
       $scope.errorMessage = erro;
@@ -54,7 +57,9 @@ angular.module("clienteApp").controller("buscaCtrl", function($scope, caronaServ
       console.log(erro);
     });
 
-
   }
+
+ // console.log("teste");
+//  $scope.buscar(1, 0);
 
 });
