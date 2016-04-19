@@ -64,6 +64,7 @@ public class Application extends Controller {
         boolean fimDaLista = false;
         int count = numeroPaginas;
         List<Carona> caronas = SistemaCaronas.getInstance().getCaronas();
+        System.out.println(caronas.size());
         int limite = caronas.size();
         List<Usuario> filterMotoristas = new ArrayList<Usuario>();
         Carona caroItera = caronas.get(count);
