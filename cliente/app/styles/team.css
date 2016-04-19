@@ -1,0 +1,42 @@
+.centered {
+  text-align: center;
+}
+
+.row {
+  margin-right: 0px;
+  margin-left: -15px;
+}
+
+#ids {
+ margin-right: 10px;
+}
+
+.btn {
+  margin-right: 10px;
+  align-content: center;
+}
+/*
+.panel-body{
+  display: block;
+  margin: 0 auto;
+  /*width: 200px
+}*/
+
+.nome {
+  text-align: center;
+}
+
+.containerAjuste {
+  background-color: transparent;
+  background:transparent;
+  width: 1100px;
+  text-align: center;
+  margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  padding-top: 60px;
+  font-size: 18px;
+  text-align: justify;
+
+}

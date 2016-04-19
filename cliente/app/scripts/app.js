@@ -61,6 +61,10 @@ angular
         controller: 'buscaCtrl',
         requireLogin : true
       })
+      .when('/team', {
+        templateUrl: 'views/team.html',
+        controller: 'teamCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
