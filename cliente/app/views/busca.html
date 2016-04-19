@@ -1,7 +1,6 @@
 <br xmlns:users><br><br><br><br>
 
-<ul class="pagination"  style="position:relative;
-    right: -50px;">
+<ul class="pagination" id = "positionBusca" >
   <li><a ng-click="buscar('voltar')">Página Anterior</a></li>
   <li ng-click="motoristas.length < 6 || buscar('proxima')"><a>Proxima Pagina</a></li>
 </ul>
@@ -12,9 +11,8 @@
 
 </div>
 <div class="row">
-  <div class="col-md-2" style="position:relative;
-    right: -50px;">
-    <div class="panel panel-info" style="background-color: transparent" >
+  <div class="col-md-2" id = "positionBusca">
+    <div class="panel panel-info"  >
       <form>
         <div data-ng-show="error" class="alert alert-danger">
           {{errorMessage}}
@@ -70,8 +68,7 @@
     <div class="col-md-10" ng-if="$index % 3 == 0">
     </div>
     <div class="col-md-3">
-      <div class="panel panel-primary" style="position:relative;
-    right: -50px; width: 250px;">
+      <div class="panel panel-primary" id = "panelBusca">
         <div class="panel-heading" style="">
           <b>Carona-me</b>
         </div>
@@ -83,14 +80,14 @@
             </div>
           </a>
           <p></p>
-          <p style="font-size: 12px"><b>Nome</b>: {{motorista.nome}} &nbsp &nbsp<br> <b>Tel:</b>(083) {{motorista.telefone}} <br>
+          <p id = "fontSizeBusca"><b>Nome</b>: {{motorista.nome}} &nbsp &nbsp<br> <b>Tel:</b>(083) {{motorista.telefone}} <br>
             <b>E-mail</b>: {{motorista.email}}<br>
             <b>Rua</b>: {{motorista.endereco.rua}} <br>
             <b>Bairro</b>: {{motorista.endereco.bairro}}
           </p>
 
-          <div style="text-align: center;">
-            <input type="button" class="btn btn-default"  value="Carona-me" style="color: #2aabd2;" >
+          <div id = "alignCaroname">
+            <input type="button" class="btn btn-default"  value="Carona-me" id = "colorCaroname" >
           </div>
         </div>
       </div>

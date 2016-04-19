@@ -1,2 +1,28 @@
+#positionBusca{
+	position:relative;
+    right: -50px;
 
+}
 
+#panelTransparent{
+	background-color: transparent;
+}
+
+#panelBusca{
+	position:relative;
+    right: -50px; 
+    width: 250px;
+}
+
+#FontsizeBusca{
+	font-size: 10px
+}
+
+#alignCaroname{
+	text-align: center;
+
+}
+
+#colorCaroname{
+	color: #2aabd2;
+}
