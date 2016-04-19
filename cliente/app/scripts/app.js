@@ -65,6 +65,11 @@ angular
         templateUrl: 'views/team.html',
         controller: 'teamCtrl'
       })
+      .when('/notificacao', {
+        templateUrl: 'views/notificacao.html',
+        controller: 'teamCtrl',
+        requireLogin : false
+      })
       .otherwise({
         redirectTo: '/'
       });

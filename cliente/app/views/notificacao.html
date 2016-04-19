@@ -1,0 +1,92 @@
+<body>
+<div class="row" >
+  <div class="col-md-12">
+    <div id="bemVindo">
+      <h3>
+        Bem-vindo à página de notificações!
+
+      </h3>
+      <h4>Aqui você encontra pedidos pendentes, aceitos e rejeitados</h4>
+
+    </div>
+  </div>
+
+  <div class="col-md-12 text-center">
+    <ul class="pagination">
+      <li>
+        <a href="#">Pagina Anterior</a>
+      </li>
+      <li>
+        <a href="#">Prox Página</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+<div class="row" id = "news">
+
+  <div class="col-md-2">
+    <div id='cssmenu'>
+      <ul>
+        <li> <a class="button hvr-bounce-to-bottom" href='#' ><span>CARONAS BEM-SUCEDIDAS</span></a> </li>
+        <li> <a class="button hvr-sweep-to-top" href='#' ><span>CARONAS MAL-SUCEDIDAS</span></a> </li>
+        <li> <a class="button hvr-bounce-to-left" href='#' ><span>CARONAS PENDENTES</span></a> </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="panel panel-primary"  style="width: 250px">
+      <div class="panel-heading">
+        <b>Carona-me</b>
+      </div>
+      <div class="panel-body">
+        <a href="../html-link.htm">
+          <div align="middle">
+            <img src="http://lorempixel.com/140/140/" class= "img-circle" class="img-responsive"
+                 height="70" width="70" >
+          </div>
+        </a>
+        <p></p>
+        <p style="font-size: 12px">
+          <b>Nome</b>: Fulano B. &nbsp &nbsp<br>
+          <b>Horario Proposto</b>: Terça - 10:00 <br>
+          <b>Tipo</b>: Ida<br>
+          <b>Bairro</b>: Malvinas<br>
+          <b>Status</b>: Pendente<br>
+
+        </p>
+        <br>
+        <div style="text-align: center;">
+
+          <button type="button" data-toggle="modal" data-target="#myModal" id = "aceitarCarona" class="btn btn-default;">
+            Aceitar
+          </button>
+          <button type="button" id = "rejeitarCarona" class="btn btn-default">
+            Rejeitar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="container" >
+  <div class="modal fade" id="myModal" role="dialog" >
+    <div class="modal-dialog modal-sm" style="position: relative;right: 710px;" >
+      <div class="modal-content" style="position: relative;right: 710px;">
+        <div class="modal-header" style="position: relative;">
+          <button type="button" class="close" data-dismiss="modal" style="position: relative;">&times;</button>
+          <h4 class="modal-title">Você aceitou a carona!</h4>
+        </div>
+        <div class="modal-body" style="position: relative;">
+          <p><center>O telefone do passageiro é :</center> <br> <center>(083) 99999-3333 </center></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>

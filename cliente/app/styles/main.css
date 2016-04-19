@@ -47,7 +47,7 @@ body{
   padding-top: 60px;
   font-size: 18px;
   text-align: justify;
-  
+
 }
 
 #panelLogin {
@@ -98,22 +98,6 @@ body{
 
 }
 
-#aceitarCarona {
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-  cursor: pointer;
-}
-#rejeitarCarona {
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-  cursor: pointer;
-}
-#rejeitarCarona:hover {
-  background-color: #ff291c ;
-  color: white;
-}
-
-
 
 .btn-file {
   position: relative;
@@ -148,7 +132,7 @@ input[readonly] {
   text-align: center;
   position: absolute;
   font-size: 12px;
-  top: 10%;  
+  top: 10%;
   width: 100%;
 }
 
@@ -158,7 +142,7 @@ input[readonly] {
 
 #titleCadastro {
   color: #fffbf9 ;
-  text-align: center; 
+  text-align: center;
   font-family: Goudy Stout;
 }
 
