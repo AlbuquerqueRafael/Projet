@@ -47,11 +47,15 @@ body {
   /*  padding: 20px;*/
 }
 
+#colorHorario{
+    color:#ffffff;
+}
+
 #tabelaHorario{
     display: block;
     height: 250px;
     padding-top: 5px;
-    overflow-y: scroll;
+    overflow-y: scroll;    
 }
 
 .item {
