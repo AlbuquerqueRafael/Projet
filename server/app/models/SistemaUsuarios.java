@@ -123,4 +123,17 @@ public class SistemaUsuarios{
 		usuarios.remove(usr);
 	}
 
+	public static Usuario recuperarUsuarioPelaPosicao(int index){
+    	return this.getInstance().getUsuarios().get(index);
+    }
+
+	public static int recuperarPosicaoDoUsuario(Usuario usuario){
+		return this.getInstance().getUsuarios().indexOf(usuario);
+	}
+
+    public static List<Usuario> recuperaUsuarios(){
+    		return this.getInstance().getUsuarios();
+    }
+
+
 }
