@@ -20,9 +20,11 @@ import static play.data.Form.form;
 
 public class AutenticacaoController extends Controller {
 
+    private static SistemaUsuarios sistemaUsuarios = SistemaUsuarios.getInstance();
+
 	public  Result postLogin() {
         JsonNode json = request().body().asJson();
-        List<Usuario> usuarios = SistemaUsuarios.getInstance().getUsuarios();
+        List<Usuario> usuarios = sistemaUsuarios.getUsuarios();
         Usuario user = Json.fromJson(json, Usuario.class);
 
         for(Usuario usuario: usuarios){
@@ -63,7 +65,7 @@ public class AutenticacaoController extends Controller {
             return badRequest("Telefone inválido");
         }
 
-        SistemaUsuarios.getInstance().adicionarUsuario(usuario);
+        sistemaUsuarios.adicionarUsuario(usuario);
 
         return ok(Json.toJson(usuario));
     }

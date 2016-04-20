@@ -123,6 +123,13 @@ public class SistemaUsuarios{
 		usuarios.remove(usr);
 	}
 
+	public Usuario recuperarUsuarioPelaPosicao(int index){
+		return getUsuarios().get(index);
+	}
+
+	public int recuperarPosicaoDoUsuario(Usuario usuario){
+		return getUsuarios().indexOf(usuario);
+	}
 
 
 }
