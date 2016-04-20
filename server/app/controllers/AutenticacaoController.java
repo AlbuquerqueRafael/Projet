@@ -22,7 +22,7 @@ public class AutenticacaoController extends Controller {
 
 	public  Result postLogin() {
         JsonNode json = request().body().asJson();
-        List<Usuario> usuarios = SistemaUsuarios.recuperaUsuarios();
+        List<Usuario> usuarios = SistemaUsuarios.getInstance().getUsuarios();
         Usuario user = Json.fromJson(json, Usuario.class);
 
         for(Usuario usuario: usuarios){

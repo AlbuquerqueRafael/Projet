@@ -24,7 +24,7 @@ public class UsuarioController extends Controller {
 
 
     public Result getAllCadastro(){
-        List<Usuario> usuarios = SistemaUsuarios.recuperaUsuarios();
+        List<Usuario> usuarios = SistemaUsuarios.getInstance().getUsuarios();
         return ok(toJson(usuarios));
     }
 
@@ -39,8 +39,8 @@ public class UsuarioController extends Controller {
         } else {
             Usuario templateUsuario = new Usuario();
             templateUsuario.setEmail(session().get("logado"));
-            int index = SistemaUsuarios.recuperarPosicaoDoUsuario(templateUsuario);
-            Usuario usuario = SistemaUsuarios.recuperarUsuarioPelaPosicao(index);
+            int index = SistemaUsuarios.getInstance().getUsuarios().indexOf(templateUsuario);
+            Usuario usuario = SistemaUsuarios.getInstance().getUsuarios().get(index);
             return usuario;
         }
     }
