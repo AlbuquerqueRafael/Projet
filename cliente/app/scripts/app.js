@@ -59,7 +59,7 @@ angular
       .when('/buscar', {
         templateUrl: 'views/busca.html',
         controller: 'buscaCtrl',
-        requireLogin : true
+        requireLogin : false
       })
       .when('/team', {
         templateUrl: 'views/team.html',
@@ -67,7 +67,7 @@ angular
       })
       .when('/notificacao', {
         templateUrl: 'views/notificacao.html',
-        controller: 'teamCtrl',
+        controller: 'notifyCtrl',
         requireLogin : false
       })
       .otherwise({

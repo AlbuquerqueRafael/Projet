@@ -91,17 +91,17 @@ public class SistemaUsuarios{
 		SistemaCaronas.getInstance().adicionarCarona(carona9);
 		SistemaCaronas.getInstance().adicionarCarona(carona10);
 
-		usuario.setCaronasMotorista(carona);
-		usuario2.setCaronasMotorista(carona2);
-		usuario3.setCaronasMotorista(carona3);
-		usuario4.setCaronasMotorista(carona4);
-		usuario5.setCaronasMotorista(carona5);
-		usuario.setCaronasMotorista(carona6);
-		usuario6.setCaronasMotorista(carona7);
-		usuario.setCaronasMotorista(carona8);
-		usuario7.setCaronasMotorista(carona9);
-		usuario10.setCaronasMotorista(carona10);
+		Solicitacao solicitacao = new Solicitacao(carona, usuario2);
+		Solicitacao solicitacao2 = new Solicitacao(carona, usuario3);
+		Solicitacao solicitacao3 = new Solicitacao(carona, usuario4);
+		Solicitacao solicitacao4 = new Solicitacao(carona6, usuario7);
+		Solicitacao solicitacao5 = new Solicitacao(carona6, usuario10);
 
+		SistemaSolicitacao.getInstance().adicionarSolicitacao(solicitacao);
+		SistemaSolicitacao.getInstance().adicionarSolicitacao(solicitacao2);
+		SistemaSolicitacao.getInstance().adicionarSolicitacao(solicitacao3);
+		SistemaSolicitacao.getInstance().adicionarSolicitacao(solicitacao4);
+		SistemaSolicitacao.getInstance().adicionarSolicitacao(solicitacao5);
 	}
 
 	public static SistemaUsuarios getInstance(){

@@ -14,6 +14,7 @@ POST    /app/cadastrar             controllers.Application.postCadastro()
 POST    /app/buscarCaronas/:id         controllers.Application.buscarCarona(id : Long)
 
 GET     /app/getUsers              controllers.Application.getAllCadastro()
+GET     /app/pedidosCaronas/:id    controllers.Application.getPedidosCaronas(id : Long)
 
 POST    /app/logout                controllers.Application.logout()
 POST    /app/caronas               controllers.Application.getCaronasMotoristasUsuario()

@@ -11,14 +11,15 @@ import java.util.List;
 public class Usuario{
 
 
-    private String nome, matricula, telefone, email, senha;
+    private String nome;
+    private String matricula;
+    private String telefone;
+    private String email;
+    private String senha;
     @JsonProperty
     private Endereco endereco;
-    @JsonBackReference
-    private List<Carona> caronasMotorista;
-    private List<Carona> caronasPassageiro;
-    private List<Solicitacao> solicitacoesEnviadas;
-    private List<Solicitacao> solicitacoesRecebidas;
+
+
 
 
     public Usuario(String nome, String matricula, String telefone, String email, String senha, Endereco endereco) {
@@ -28,27 +29,9 @@ public class Usuario{
         this.email = email;
         this.senha = senha;
         this.endereco = endereco;
-        this.caronasMotorista = new ArrayList<Carona>();
-        this.caronasPassageiro = new ArrayList<Carona>();
-        this.solicitacoesEnviadas = new ArrayList<Solicitacao>();
-        this.solicitacoesRecebidas = new ArrayList<Solicitacao>();
     }
 
     public Usuario(){
-        this.caronasMotorista = new ArrayList<Carona>();
-        this.caronasPassageiro = new ArrayList<Carona>();
-        this.solicitacoesEnviadas = new ArrayList<Solicitacao>();
-        this.solicitacoesRecebidas = new ArrayList<Solicitacao>();
-    }
-
-
-
-    public List<Solicitacao> getSolicitacoesRecebidas(){
-        return solicitacoesRecebidas;
-    }
-
-    public List<Solicitacao> getSolicitacoesEnviadas(){
-        return solicitacoesEnviadas;
     }
 
     public String getNome() {
@@ -81,30 +64,6 @@ public class Usuario{
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public void setCaronasMotorista(Carona carona){
-        this.caronasMotorista.add(carona);
-    }
-
-    public List<Carona> getCaronasMotorista() {
-        return caronasMotorista;
-    }
-
-    public List<Carona> getCaronasPassageiro() {
-        return caronasPassageiro;
-    }
-
-    public void setCaronasPassageiro(Carona carona){
-        this.caronasPassageiro.add(carona);
-    }
-
-    public void setSolicitacoesEnviadas(Solicitacao s){
-        this.solicitacoesEnviadas.add(s);
-    }
-
-    public void setSolicitacoesRecebidas(Solicitacao s){
-        this.solicitacoesRecebidas.add(s);
     }
 
     public String getTelefone() {

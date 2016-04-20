@@ -36,36 +36,38 @@
     </div>
   </div>
 
-  <div class="col-md-3">
-    <div class="panel panel-primary"  style="width: 250px">
-      <div class="panel-heading">
-        <b>Carona-me</b>
-      </div>
-      <div class="panel-body">
-        <a href="../html-link.htm">
-          <div align="middle">
-            <img src="http://lorempixel.com/140/140/" class= "img-circle" class="img-responsive"
-                 height="70" width="70" >
+  <div ng-repeat="solicitacao in solicitacoes">
+    <div class="col-md-3">
+      <div class="panel panel-primary"  style="width: 250px">
+        <div class="panel-heading">
+          <b>Carona-me</b>
+        </div>
+        <div class="panel-body">
+          <a href="../html-link.htm">
+            <div align="middle">
+              <img src="http://lorempixel.com/140/140/" class= "img-circle" class="img-responsive"
+                   height="70" width="70" >
+            </div>
+          </a>
+          <p></p>
+          <p style="font-size: 12px">
+            <b>Nome</b>: {{solicitacao.passageiro.nome}} &nbsp &nbsp<br>
+            <b>Aul. Prop.</b>: {{solicitacao.carona.horario.dia}}: {{solicitacao.carona.horario.aula}} <br>
+            <b>Tipo</b>: {{solicitacao.carona.tipo}}<br>
+            <b>Bairro</b>: {{solicitacao.carona.endereco.bairro}}<br>
+            <b>Status</b>: Pendente<br>
+
+          </p>
+          <br>
+          <div style="text-align: center;">
+
+            <button type="button" data-toggle="modal" data-target="#myModal" id = "aceitarCarona" class="btn btn-default;">
+              Aceitar
+            </button>
+            <button type="button" id = "rejeitarCarona" class="btn btn-default">
+              Rejeitar
+            </button>
           </div>
-        </a>
-        <p></p>
-        <p style="font-size: 12px">
-          <b>Nome</b>: Fulano B. &nbsp &nbsp<br>
-          <b>Horario Proposto</b>: Terça - 10:00 <br>
-          <b>Tipo</b>: Ida<br>
-          <b>Bairro</b>: Malvinas<br>
-          <b>Status</b>: Pendente<br>
-
-        </p>
-        <br>
-        <div style="text-align: center;">
-
-          <button type="button" data-toggle="modal" data-target="#myModal" id = "aceitarCarona" class="btn btn-default;">
-            Aceitar
-          </button>
-          <button type="button" id = "rejeitarCarona" class="btn btn-default">
-            Rejeitar
-          </button>
         </div>
       </div>
     </div>

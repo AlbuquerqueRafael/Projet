@@ -25,7 +25,7 @@ angular.module("clienteApp").controller("horarioCtrl", function($scope, horarioS
       if(rota === "OferecerCarona"){
          $location.path('/carona')
       }else if(rota=== "gg"){
-        $location.path('/buscar/1')
+        $location.path('/buscar')
       }else{
           $location.path('/horario')
       }
