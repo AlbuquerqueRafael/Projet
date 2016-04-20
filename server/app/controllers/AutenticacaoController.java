@@ -22,28 +22,24 @@ public class AutenticacaoController extends Controller {
 
 	public  Result postLogin() {
         JsonNode json = request().body().asJson();
-        List<Usuario> usuarios = SistemaUsuarios.getInstance().getUsuarios();
+        List<Usuario> usuarios = SistemaUsuarios.recuperaUsuarios();
         Usuario user = Json.fromJson(json, Usuario.class);
 
-        for(int i = 0; i < usuarios.size(); i++){
-            if(usuarios.get(i).getEmail().equals(user.getEmail()) && usuarios.get(i).getSenha().equals(user.getSenha())){
-                autenticar(usuarios.get(i));
-                Usuario usuario = new Usuario();
-                usuario.setEmail(usuarios.get(i).getEmail());
-                usuario.setEndereco(usuarios.get(i).getEndereco());
-                return ok(Json.toJson(usuario));
+        for(Usuario usuario: usuarios){
+            if(usuario.getEmail().equals(user.getEmail()) && usuario.getSenha().equals(user.getSenha())){
+                autenticar(usuario);
+                Usuario newUsuario = new Usuario();
+                newUsuario.setEmail(usuario.getEmail());
+                newUsuario.setEndereco(usuario.getEndereco());
+                return ok(Json.toJson(newUsuario));
             }
         }
-
-
         return badRequest("Usuario ou senha inválidos!");
     }
 
     private void autenticar(Usuario usuario){
         session().put("logado", usuario.getEmail());
     }
-
-
 
      public Result postCadastro() {
         JsonNode json = request().body().asJson();
