@@ -18,11 +18,15 @@ import java.util.List;
 import static play.libs.Json.*;
 import static play.data.Form.form;
 
-public class Application extends Controller {
-	
 
-    public Result main(String any) {
-        return ok(main.render());
-    }
+
+public class PassageiroController extends Controller {
+
+
+	// retornar caronas cujo usuario logado é passageiro dela
+	// retornar solicitacoes cujo usuario logado é o solicitante dela
+
+
+
 
 }
