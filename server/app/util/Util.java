@@ -5,9 +5,13 @@ import play.data.validation.Constraints.EmailValidator;
 import play.mvc.Controller;
 
 /**
- * Created by rafael on 04/04/16.
+ * Classe utilitaria para validar as informacoes
  */
 public class Util extends Controller {
+    	private static final char CAMPUSCAMPINA = '1';
+    	private static final char PRIMEIROPERIODO = '1' , SEGUNDOPERIODO = '2';
+    	private static final char CODIGOEXATAS = '1', CODIGOBIOLOGICAS= '2', CODIGOHUMANAS= '4', CODIGOCIENCIASAGRARIAS= '3';
+
 
     public static boolean isValidEmailAddress(String email) {
         EmailValidator validator = new EmailValidator();
@@ -35,8 +39,8 @@ public class Util extends Controller {
 
     public static boolean isValidMatricula(String matricula) {
         boolean result = false;
-        int exactSizeMatricula = 9;
-        if (matricula.length() == exactSizeMatricula){
+        String regexStr = "[1-7,9][0-1][0-6][0-1][1-4][0-9]{4}";
+        if (matricula.matches(regexStr)){
             result = true;
         }
         return result;
