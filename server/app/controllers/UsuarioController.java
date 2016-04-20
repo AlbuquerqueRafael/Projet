@@ -22,9 +22,10 @@ import static play.data.Form.form;
 
 public class UsuarioController extends Controller {
 
+    private static SistemaUsuarios sistemaUsuarios = SistemaUsuarios.getInstance();
 
     public Result getAllCadastro(){
-        List<Usuario> usuarios = SistemaUsuarios.getInstance().getUsuarios();
+        List<Usuario> usuarios = sistemaUsuarios.getUsuarios();
         return ok(toJson(usuarios));
     }
 
@@ -39,8 +40,8 @@ public class UsuarioController extends Controller {
         } else {
             Usuario templateUsuario = new Usuario();
             templateUsuario.setEmail(session().get("logado"));
-            int index = SistemaUsuarios.getInstance().getUsuarios().indexOf(templateUsuario);
-            Usuario usuario = SistemaUsuarios.getInstance().getUsuarios().get(index);
+            int index = sistemaUsuarios.recuperarPosicaoDoUsuario(templateUsuario);
+            Usuario usuario = sistemaUsuarios.recuperarUsuarioPelaPosicao(index);
             return usuario;
         }
     }
