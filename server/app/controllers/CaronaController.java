@@ -32,6 +32,8 @@ public class CaronaController extends Controller {
 
         SistemaCaronas.getInstance().adicionarCarona(carona);
 
+        AdminController.novaCarona(carona);
+
 
         return ok("Carona cadastrada com sucesso!");
     }
@@ -47,6 +49,8 @@ public class CaronaController extends Controller {
         }
 
         SistemaSolicitacao.getInstance().adicionarSolicitacao(solicitacao);
+
+        AdminController.novaSolicitacao(solicitacao);
 
         return ok(Json.toJson(solicitacao)); // precisaria disso mesmo?
     }
@@ -64,6 +68,7 @@ public class CaronaController extends Controller {
             Usuario passageiro = solicitacao.getPassageiro();
             Carona carona = solicitacao.getCarona();
             carona.novoPassageiro(passageiro);
+            AdminController.novaSolicitacaoAceita(solicitacao);
             return ok(Json.toJson(solicitacao));
 
         } else {
@@ -77,7 +82,8 @@ public class CaronaController extends Controller {
         JsonNode json = request().body().asJson();
         Solicitacao solicitacao = Json.fromJson(json, Solicitacao.class);
 
-        if (solicitacao.setStatus(Status.REJEITADO)){                          // so pode recusar se a carona estiver pendente
+        if (solicitacao.setStatus(Status.REJEITADO)){   
+            AdminController.novaSolicitacaoRejeitada(solicitacao);                       // so pode recusar se a carona estiver pendente
             return ok(Json.toJson(solicitacao));
         } else {
             return badRequest("Você já tomou uma decisão sobre esse pedido");
