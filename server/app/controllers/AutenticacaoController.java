@@ -12,6 +12,8 @@ import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import play.Logger.ALogger;
+import play.Logger;
 
 import static play.libs.Json.*;
 import static play.data.Form.form;
@@ -20,6 +22,8 @@ import static play.data.Form.form;
 
 public class AutenticacaoController extends Controller {
 
+ //   private static final ALogger logger = Logger.of(AutenticacaoController.class);
+
 	public  Result postLogin() {
         JsonNode json = request().body().asJson();
         List<Usuario> usuarios = SistemaUsuarios.getInstance().getUsuarios();
@@ -27,6 +31,7 @@ public class AutenticacaoController extends Controller {
 
         for(int i = 0; i < usuarios.size(); i++){
             if(usuarios.get(i).getEmail().equals(user.getEmail()) && usuarios.get(i).getSenha().equals(user.getSenha())){
+                Logger.info("Usuário " + usuarios.get(i).getNome() + " logou no sistema");
                 autenticar(usuarios.get(i));
                 Usuario usuario = new Usuario();
                 usuario.setEmail(usuarios.get(i).getEmail());
