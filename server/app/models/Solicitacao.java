@@ -1,6 +1,7 @@
 package models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 
@@ -12,14 +13,19 @@ import javax.persistence.*;
 public class Solicitacao {
 
     private Status status;
-    private Usuario passageiro_da_solicitacao;
+    private Usuario passageiro;
+    @JsonProperty
     private Carona carona;
 
     public Solicitacao (Carona c, Usuario passageiro){
         
         this.carona = c;
-        this.passageiro_da_solicitacao = passageiro;
+        this.passageiro = passageiro;
         this.status = Status.PENDENTE;
+
+    }
+
+    public Solicitacao(){
 
     }
 
@@ -28,11 +34,19 @@ public class Solicitacao {
     }
 
     public Usuario getPassageiro() {
-        return passageiro_da_solicitacao;
+        return passageiro;
     }
     
     public Status getStatus() {
         return status;
+    }
+
+    public void setCarona(Carona carona){
+        this.carona = carona;
+    }
+
+    public void setPassageiro(Usuario passageiro){
+        this.passageiro = passageiro;
     }
 
     public boolean setStatus(Status status) {

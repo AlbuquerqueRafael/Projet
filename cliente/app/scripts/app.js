@@ -59,11 +59,16 @@ angular
       .when('/buscar', {
         templateUrl: 'views/busca.html',
         controller: 'buscaCtrl',
-        requireLogin : true
+        requireLogin : false
       })
       .when('/team', {
         templateUrl: 'views/team.html',
         controller: 'teamCtrl'
+      })
+      .when('/notificacao', {
+        templateUrl: 'views/notificacao.html',
+        controller: 'notifyCtrl',
+        requireLogin : false
       })
       .otherwise({
         redirectTo: '/'
