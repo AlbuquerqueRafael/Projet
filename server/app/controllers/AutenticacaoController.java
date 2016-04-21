@@ -45,9 +45,7 @@ public class AutenticacaoController extends Controller {
 
      public Result postCadastro() {
         JsonNode json = request().body().asJson();
-        System.out.println(json.toString());
         Usuario usuario = Json.fromJson(json, Usuario.class);
-        System.out.println(Json.toJson(usuario));
 
         if(!Util.isValidEmailAddress(usuario.getEmail())){
             return badRequest("Email inválido");

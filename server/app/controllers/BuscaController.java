@@ -22,86 +22,107 @@ import static play.data.Form.form;
 
 public class BuscaController extends Controller {
 
+    public static final int NUM_ITENS_PAGINA = 6;
 
     public Result buscarCarona(Long id){
         JsonNode json = request().body().asJson();
         Carona carona = Json.fromJson(json, Carona.class);
         carona.setMotorista(UsuarioController.usuarioAutenticado());
+        List<Carona> caronasUsuario = new ArrayList<Carona>();
+        List<Carona> caronasFiltradas = new ArrayList<Carona>();
 
-        if(verificaSeHorarioPreenchido(carona)){
+        separaCaronas(caronasUsuario, caronasFiltradas);
+
+
+        if(verHorarioPreenchidoUsuario(caronasUsuario, carona)){
             return badRequest("Horário já preenchido");
         }
 
-        int numeroItens = Math.toIntExact(id-1) * 6;
+
+
+        int numeroItens = Math.toIntExact(id-1) * NUM_ITENS_PAGINA;
         int count = numeroItens;
-
         boolean fimDaLista = false;
-        List<Carona> caronas = SistemaCaronas.getInstance().getCaronas();
-        int limite = caronas.size();
-        List<Usuario> filterMotoristas = new ArrayList<Usuario>();
-        Carona caroItera = caronas.get(count);
 
-        while(caroItera != null && count < numeroItens + 6 && !fimDaLista){
-           if(!caroItera.getMotorista().equals(UsuarioController.usuarioAutenticado())) {
-              if(!Util.isValidHorarioCarona(caroItera, carona) && Util.isEnderecoCompativel(caroItera, carona)
-                      && caroItera.getTipo().equals(carona.getTipo())){
-                  Usuario usuario = new Usuario();
+        int limite = caronasFiltradas.size();
+        List<Carona> infoCaronas = new ArrayList<Carona>();
+        Carona caroItera = new Carona();
+        int quantElementosLista = infoCaronas.size();
+
+        try {
+            caroItera = caronasFiltradas.get(count);
+        }catch(ArrayIndexOutOfBoundsException e){
+            return badRequest("Carona não encontrada");
+        }
+
+        while(caroItera != null && quantElementosLista < 6 && !fimDaLista){
+            if(!Util.isValidHorarioCarona(caroItera, carona) && Util.isEnderecoCompativel(caroItera, carona)
+                      && caroItera.getTipo().equals(carona.getTipo()) && caroItera.getVagas() > 0
+                      && !isRequestAlreadyMade(caroItera) ){
+
+                  Carona templateCarona = new Carona();
+                  Usuario templateMotorista = new Usuario();
 
                   Usuario motoristaCarona = caroItera.getMotorista();
-                  usuario.setNome(motoristaCarona.getNome());
-                  usuario.setEmail(motoristaCarona.getEmail());
-                  usuario.setTelefone(motoristaCarona.getTelefone());
-                  Endereco enderecoMotorista = motoristaCarona.getEndereco();
-                  usuario.setEndereco(enderecoMotorista);
 
-                  filterMotoristas.add(usuario);
-                  numeroItens--;
-               }
+                  templateMotorista.setNome(motoristaCarona.getNome());
+                  templateMotorista.setEmail(motoristaCarona.getEmail());
+                  templateMotorista.setTelefone(motoristaCarona.getTelefone());
+                  Horario horarioCarona = caroItera.getHorario();
+
+
+                  templateCarona.setHorario(horarioCarona);
+                  templateCarona.setMotorista(templateMotorista);
+
+
+
+                  infoCaronas.add(templateCarona);
+
            }
 
-            numeroItens++;
-
-            if(count < limite) {
-                caroItera = caronas.get(count++);
-            }else{
+            quantElementosLista = infoCaronas.size();
+            if (++count < limite) {
+                caroItera = caronasFiltradas.get(count);
+            } else {
                 fimDaLista = true;
             }
         }
 
 
 
-        if(filterMotoristas.size() == 0){
+        if(infoCaronas.size() == 0){
             return badRequest("Não há caronas para este horário");
         }
-        return ok(Json.toJson(filterMotoristas));
+        return ok(Json.toJson(infoCaronas));
     }
 
 
-    private boolean verificaSeHorarioPreenchido(Carona carona){
-        List<Carona> caronasComoPassageiro = new ArrayList<Carona>();
-        List<Carona> caronasComoMotorista = new ArrayList<Carona>();
+    private void separaCaronas(List<Carona> caronasUsuario, List<Carona> caronasFiltradas){
+        List<Carona> caronasGerais = SistemaCaronas.getInstance().getCaronas();
+        boolean UserAutPertenceCarona= false;
 
-        for(Carona c : SistemaCaronas.getInstance().getCaronas()){
+        for(Carona c : caronasGerais){
             if(UsuarioController.usuarioAutenticado().equals(c.getMotorista())){
-                caronasComoMotorista.add(c);
-            }
-
-            for(Usuario passageiros : c.getListaPassageiros()){
-                if(UsuarioController.usuarioAutenticado().equals(caronasComoPassageiro)){
-                    caronasComoPassageiro.add(c);
+                caronasUsuario.add(c);
+                UserAutPertenceCarona = true;
+            }else{
+                for(Usuario passageiro :c.getListaPassageiros()){
+                    if(UsuarioController.usuarioAutenticado().equals(passageiro)){
+                        caronasUsuario.add(c);
+                        UserAutPertenceCarona = true;
+                    }
                 }
             }
+
+            if(!UserAutPertenceCarona){
+                caronasFiltradas.add(c);
+            }
+
+            UserAutPertenceCarona = false;
         }
 
-        if(verHorarioPreenchidoUsuario(caronasComoPassageiro, carona)){
-            return true;
-        }
-
-        if(verHorarioPreenchidoUsuario(caronasComoMotorista, carona)){
-            return true;
-        }
-        return false;
     }
+
 
     private boolean verHorarioPreenchidoUsuario(List<Carona> caronas, Carona carona){
         for(int i = 0; i < caronas.size(); i++){
@@ -113,6 +134,19 @@ public class BuscaController extends Controller {
         return false;
     }
 
+
+    private boolean isRequestAlreadyMade(Carona carona){
+        List<Solicitacao> solicitacoes = SistemaSolicitacao.getInstance().getSolicitacao();
+        Solicitacao solicitacao = new Solicitacao(carona, UsuarioController.usuarioAutenticado());
+
+        for(Solicitacao s : solicitacoes){
+            if(s.getCarona().equals(carona) && s.equals(solicitacao)){
+                return true;
+            }
+        }
+
+        return false;
+    }
 
 
 

@@ -39,16 +39,17 @@ public class CaronaController extends Controller {
 
     public Result solicitarCarona(){
         JsonNode json = request().body().asJson();
-        Solicitacao solicitacao = Json.fromJson(json, Solicitacao.class);
 
-        
-        if (Util.isCaronaLotada(solicitacao.getCarona())){
-            return badRequest("Ops! Carona lotada!");
-        }
+        Carona caronaSolicitada = Json.fromJson(json, Carona.class);
+        Solicitacao solicitacao = new Solicitacao(caronaSolicitada, UsuarioController.usuarioAutenticado());
 
         SistemaSolicitacao.getInstance().adicionarSolicitacao(solicitacao);
 
-        return ok(Json.toJson(solicitacao)); // precisaria disso mesmo?
+        for(Solicitacao sol : SistemaSolicitacao.getInstance().getSolicitacao()){
+            System.out.println(Json.toJson(sol));
+        }
+
+        return ok("Solicitação feita!");
     }
 
 
