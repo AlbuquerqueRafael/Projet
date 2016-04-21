@@ -14,6 +14,7 @@ import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import play.Logger;
 
 import static play.libs.Json.*;
 import static play.data.Form.form;
@@ -30,6 +31,8 @@ public class UsuarioController extends Controller {
     }
 
     public Result logout() {
+        Usuario usuarioAtual = usuarioAutenticado();
+        Logger.info(usuarioAtual.getEmail() + " acabou de sair");
         session().clear();
         return ok("Logged out successfully");
     }
