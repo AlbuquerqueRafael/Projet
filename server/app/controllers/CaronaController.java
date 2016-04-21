@@ -33,7 +33,7 @@ public class CaronaController extends Controller {
 
         SistemaCaronas.getInstance().adicionarCarona(carona);
 
-        Logger.info(motorista.getEmail() + " acabou de cadastrar uma nova carona");
+        SistemaLog.novaMensagemLog(motorista.getEmail() + " acabou de cadastrar uma nova carona");
 
 
         return ok("Carona cadastrada com sucesso!");

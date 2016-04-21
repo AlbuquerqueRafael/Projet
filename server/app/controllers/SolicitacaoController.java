@@ -23,7 +23,7 @@ public class SolicitacaoController extends Controller{
 
         SistemaSolicitacao.getInstance().adicionarSolicitacao(solicitacao);
 
-        Logger.info(solicitacao.getPassageiro().getEmail() + " acabou de solicitar uma carona a " + solicitacao.getCarona().getMotorista().getEmail());
+        SistemaLog.novaMensagemLog(solicitacao.getPassageiro().getEmail() + " solicitou uma carona a " + solicitacao.getCarona().getMotorista().getEmail());
 
         return ok(Json.toJson("Solicitação concluida!"));
 
@@ -46,6 +46,7 @@ public class SolicitacaoController extends Controller{
                 carona.setVagas(--vagas);
                 telefone = s.getPassageiro().getTelefone();
                 SistemaSolicitacao.getInstance().removerSolicitacao(s);
+                SistemaLog.novaMensagemLog(carona.getMotorista().getEmail() + " aceitou o pedido de carona de " + s.getPassageiro().getEmail());
                 break;
             }
         }

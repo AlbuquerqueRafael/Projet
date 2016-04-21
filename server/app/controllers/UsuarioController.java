@@ -32,8 +32,8 @@ public class UsuarioController extends Controller {
 
     public Result logout() {
         Usuario usuarioAtual = usuarioAutenticado();
-        Logger.info(usuarioAtual.getEmail() + " acabou de sair");
         session().clear();
+        SistemaLog.novaMensagemLog(usuarioAtual.getEmail() + " saiu do sistema");
         return ok("Logged out successfully");
     }
 

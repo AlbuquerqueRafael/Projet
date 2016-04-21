@@ -12,7 +12,6 @@ import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import play.Logger;
 
 import static play.libs.Json.*;
 import static play.data.Form.form;
@@ -31,7 +30,7 @@ public class AutenticacaoController extends Controller {
         for(Usuario usuario: usuarios){
             if(usuario.getEmail().equals(user.getEmail()) && usuario.getSenha().equals(user.getSenha())){
                 autenticar(usuario);
-                Logger.info(usuario.getEmail() + " acabou de logar");
+                SistemaLog.novaMensagemLog(usuario.getEmail() + " acabou de logar");
                 Usuario newUsuario = new Usuario();
                 newUsuario.setEmail(usuario.getEmail());
                 newUsuario.setEndereco(usuario.getEndereco());
@@ -39,7 +38,7 @@ public class AutenticacaoController extends Controller {
             }
         }
 
-        Logger.info(user.getEmail() + " tentou logar, mas possui email ou senha inválidos!");
+        SistemaLog.novaMensagemLog(user.getEmail() + " tentou logar, mas possui email ou senha inválidos!");
         return badRequest("Email ou senha inválidos!");
     }
 
@@ -69,7 +68,7 @@ public class AutenticacaoController extends Controller {
 
         sistemaUsuarios.adicionarUsuario(usuario);
 
-        Logger.info(usuario.getEmail() + " acabou de se cadastrar no sistema");
+        SistemaLog.novaMensagemLog(usuario.getEmail() + " acabou de se cadastrar no sistema");
 
         return ok(Json.toJson(usuario));
     }

@@ -14,6 +14,7 @@ import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.apache.log4j.PropertyConfigurator;
 
 import static play.libs.Json.*;
 import static play.data.Form.form;
@@ -22,6 +23,7 @@ public class Application extends Controller {
 	
 
     public Result main(String any) {
+    	PropertyConfigurator.configure("conf/log4j.properties");
         return ok(main.render());
     }
 
