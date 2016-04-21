@@ -1,4 +1,5 @@
 import org.junit.Test;
+import play.api.test.FakeRequest;
 
 import static org.junit.Assert.assertEquals;
 
@@ -22,6 +23,11 @@ public class ApplicationTest {
         /*Content html = views.html.index.render("Your new application is ready.");
         assertEquals("text/html", contentType(html));
         assertTrue(contentAsString(html).contains("Your new application is ready."));*/
+    }
+
+    @Test
+    public void testaAqui(){
+
     }
 
 

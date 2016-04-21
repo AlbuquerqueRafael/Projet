@@ -12,8 +12,6 @@ import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import play.Logger.ALogger;
-import play.Logger;
 
 import static play.libs.Json.*;
 import static play.data.Form.form;
@@ -22,33 +20,28 @@ import static play.data.Form.form;
 
 public class AutenticacaoController extends Controller {
 
- //   private static final ALogger logger = Logger.of(AutenticacaoController.class);
+    private static SistemaUsuarios sistemaUsuarios = SistemaUsuarios.getInstance();
 
-	public  Result postLogin() {
+    public  Result postLogin() {
         JsonNode json = request().body().asJson();
-        List<Usuario> usuarios = SistemaUsuarios.getInstance().getUsuarios();
+        List<Usuario> usuarios = sistemaUsuarios.getUsuarios();
         Usuario user = Json.fromJson(json, Usuario.class);
 
-        for(int i = 0; i < usuarios.size(); i++){
-            if(usuarios.get(i).getEmail().equals(user.getEmail()) && usuarios.get(i).getSenha().equals(user.getSenha())){
-                Logger.info("Usuário " + usuarios.get(i).getNome() + " logou no sistema");
-                autenticar(usuarios.get(i));
-                Usuario usuario = new Usuario();
-                usuario.setEmail(usuarios.get(i).getEmail());
-                usuario.setEndereco(usuarios.get(i).getEndereco());
-                return ok(Json.toJson(usuario));
+        for(Usuario usuario: usuarios){
+            if(usuario.getEmail().equals(user.getEmail()) && usuario.getSenha().equals(user.getSenha())){
+                autenticar(usuario);
+                Usuario newUsuario = new Usuario();
+                newUsuario.setEmail(usuario.getEmail());
+                newUsuario.setEndereco(usuario.getEndereco());
+                return ok(Json.toJson(newUsuario));
             }
         }
-
-
         return badRequest("Usuario ou senha inválidos!");
     }
 
     private void autenticar(Usuario usuario){
         session().put("logado", usuario.getEmail());
     }
-
-
 
      public Result postCadastro() {
         JsonNode json = request().body().asJson();
@@ -72,7 +65,7 @@ public class AutenticacaoController extends Controller {
             return badRequest("Telefone inválido");
         }
 
-        SistemaUsuarios.getInstance().adicionarUsuario(usuario);
+        sistemaUsuarios.adicionarUsuario(usuario);
 
         return ok(Json.toJson(usuario));
     }
