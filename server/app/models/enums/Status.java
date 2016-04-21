@@ -1,4 +1,4 @@
-package models;
+package models.enums;
 
 /**
  * Created by Mafra on 15/04/16.

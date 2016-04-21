@@ -1,10 +1,7 @@
-package models;
+package sistemasInfo;
 
 
 import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
-import org.apache.log4j.FileAppender;
-
 
 
 public class SistemaLog {
