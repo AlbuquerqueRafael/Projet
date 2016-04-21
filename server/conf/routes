@@ -17,7 +17,8 @@ GET     /app/solicitacoesCarona/:id    controllers.SolicitacaoController.getSoli
 
 POST    /app/logout                controllers.UsuarioController.logout()
 
-POST    /app/caronas               controllers.MotoristaController.getCaronasMotoristasUsuario()
+GET    /app/caronasMotorista      controllers.MotoristaController.getCaronasComoMotoristas()
+GET    /app/caronasPassageiro      controllers.PassageiroController.getCaronasComoPassageiro()
 
 POST    /app/salvarCarona          controllers.CaronaController.postCaronas()
 

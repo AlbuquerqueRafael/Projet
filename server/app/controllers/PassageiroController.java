@@ -23,8 +23,28 @@ import static play.data.Form.form;
 public class PassageiroController extends Controller {
 
 
-	// retornar caronas cujo usuario logado é passageiro dela
-	// retornar solicitacoes cujo usuario logado é o solicitante dela
+    public Result getCaronasComoPassageiro(){
+        List<Carona> caronasComoPassageiro = new ArrayList<Carona>();
+        for(Carona c : SistemaCaronas.getInstance().getCaronas()){
+            for(Usuario s: c.getListaPassageiros()){
+                if(UsuarioController.usuarioAutenticado().equals(s)){
+                    Carona carona = new Carona();
+                    Horario horarioCarona = c.getHorario();
+                    TipoCarona tipo = c.getTipo();
+                    int vagas = c.getVagas();
+                    String rua = c.getEndereco().getRua();
+                    caronasComoPassageiro.add(c);
+                }
+            }
+
+            System.out.println(Json.toJson(c));
+
+        }
+
+
+
+        return ok(Json.toJson(caronasComoPassageiro));
+    }
 
 
 

@@ -23,7 +23,7 @@ import static play.data.Form.form;
 public class MotoristaController extends Controller {
     
 
-     public Result getCaronasMotoristasUsuario(){
+     public Result getCaronasComoMotoristas(){
         List<Carona> caronasComoMotorista = new ArrayList<Carona>();
         for(Carona c : SistemaCaronas.getInstance().getCaronas()){
             if(UsuarioController.usuarioAutenticado().equals(c.getMotorista())){

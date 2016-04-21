@@ -15,6 +15,7 @@ import java.util.List;
 public class SolicitacaoController extends Controller{
 
     public static final int NUM_ITENS_PAGINA = 3;
+
     public Result solicitarCarona(){
         JsonNode json = request().body().asJson();
 
@@ -32,14 +33,14 @@ public class SolicitacaoController extends Controller{
     public Result aceitarCarona(){
         JsonNode json = request().body().asJson();
         Solicitacao solicitacao = Json.fromJson(json, Solicitacao.class);
+        System.out.println(json);
         List<Solicitacao> solicitacoes = SistemaSolicitacao.getInstance().getSolicitacao();
         solicitacao.getCarona().setMotorista(UsuarioController.usuarioAutenticado());
-        System.out.println(Json.toJson(solicitacao));
         String telefone = null;
+
         for(Solicitacao s: solicitacoes){
             Carona carona = s.getCarona();
             if(s.equals(solicitacao) && solicitacao.getCarona().equals(carona)){
-                s.setStatus(Status.ACEITO);
                 int vagas = solicitacao.getCarona().getVagas();
 
                 carona.novoPassageiro(solicitacao.getPassageiro());
@@ -51,7 +52,7 @@ public class SolicitacaoController extends Controller{
             }
         }
 
-        for(Solicitacao c : SistemaSolicitacao.getInstance().getSolicitacao()){
+        for(Carona c : SistemaCaronas.getInstance().getCaronas()){
             System.out.println(Json.toJson(c));
         }
 
@@ -98,7 +99,7 @@ public class SolicitacaoController extends Controller{
                 TipoCarona tipo = solicitacao.getCarona().getTipo();
                 String nomePassageiro = solicitacao.getPassageiro().getNome();
                 String emailPassageiro = solicitacao.getPassageiro().getEmail();
-                String telefonePassageiro = solicitacao.getPassageiro().getEmail();
+                String telefonePassageiro = solicitacao.getPassageiro().getTelefone();
                 Endereco endereco = solicitacao.getCarona().getEndereco();
                 int vagas = solicitacao.getCarona().getVagas();
 

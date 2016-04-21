@@ -71,3 +71,11 @@ p {
     position:relative;
     right: -50px;
 }
+
+#fixaPanel{
+  padding-top: 150px;
+  position:relative;
+  right: -50px;
+  text-align: center;
+
+}
