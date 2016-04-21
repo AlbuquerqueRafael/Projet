@@ -49,7 +49,7 @@ public class CaronaController extends Controller {
             System.out.println(Json.toJson(sol));
         }
 
-        return ok("Solicitação feita!");
+        return ok("Solicitação concluida!");
     }
 
 

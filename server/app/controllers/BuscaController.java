@@ -51,14 +51,13 @@ public class BuscaController extends Controller {
 
         try {
             caroItera = caronasFiltradas.get(count);
-        }catch(ArrayIndexOutOfBoundsException e){
+        }catch(Exception e){
             return badRequest("Carona não encontrada");
         }
 
         while(caroItera != null && quantElementosLista < 6 && !fimDaLista){
             if(!Util.isValidHorarioCarona(caroItera, carona) && Util.isEnderecoCompativel(caroItera, carona)
-                      && caroItera.getTipo().equals(carona.getTipo()) && caroItera.getVagas() > 0
-                      && !isRequestAlreadyMade(caroItera) ){
+                      && caroItera.getTipo().equals(carona.getTipo()) && caroItera.getVagas() > 0){
 
                   Carona templateCarona = new Carona();
                   Usuario templateMotorista = new Usuario();
@@ -100,7 +99,7 @@ public class BuscaController extends Controller {
     private void separaCaronas(List<Carona> caronasUsuario, List<Carona> caronasFiltradas){
         List<Carona> caronasGerais = SistemaCaronas.getInstance().getCaronas();
         boolean UserAutPertenceCarona= false;
-
+        boolean solicitacaoJaFeita = false;
         for(Carona c : caronasGerais){
             if(UsuarioController.usuarioAutenticado().equals(c.getMotorista())){
                 caronasUsuario.add(c);
@@ -114,11 +113,16 @@ public class BuscaController extends Controller {
                 }
             }
 
-            if(!UserAutPertenceCarona){
+            if(isRequestAlreadyMade(c)){
+                solicitacaoJaFeita = true;
+            }
+
+            if(!UserAutPertenceCarona && !solicitacaoJaFeita){
                 caronasFiltradas.add(c);
             }
 
             UserAutPertenceCarona = false;
+            solicitacaoJaFeita = false;
         }
 
     }
