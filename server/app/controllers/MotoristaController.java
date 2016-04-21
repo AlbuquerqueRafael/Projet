@@ -4,7 +4,11 @@ package controllers;
 import models.*;
 import play.libs.Json;
 import play.mvc.*;
+<<<<<<< HEAD
 import sistemasInfo.SistemaCaronas;
+=======
+import sistemaInfo.SistemaCaronas;
+>>>>>>> master
 
 import java.util.ArrayList;
 import java.util.List;

@@ -3,8 +3,13 @@ package controllers;
 
 import models.*;
 import play.mvc.*;
+<<<<<<< HEAD
 import sistemasInfo.SistemaLog;
 import sistemasInfo.SistemaUsuarios;
+=======
+import sistemaInfo.SistemaLog;
+import sistemaInfo.SistemaUsuarios;
+>>>>>>> master
 
 import java.util.List;
 
