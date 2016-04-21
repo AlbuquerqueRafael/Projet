@@ -19,29 +19,4 @@
     <appender-ref ref="STDOUT" />
   </root>
 
-
-   <appender name="CUSTOM" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${application.home}/logs/SystemLog.log</file>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${application.home}/logs/old/myLog-%d{yyyy-MM-dd}.log.%i</fileNamePattern>
-            <maxHistory>30</maxHistory>
-            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                <maxFileSize>100MB</maxFileSize>
-            </timeBasedFileNamingAndTriggeringPolicy>
-        </rollingPolicy>
-        <encoder>
-            <pattern>%date %M  %logger{0} %message%n</pattern>
-        </encoder>
-        <logger name="access" level="INFO" additivity="false">
-                <appender-ref ref="ACCESS_FILE" />
-          </logger>
-
-        <root level="INFO">
-        <appender-ref ref="FILE"/>
-        </root>
-
-    </appender>
-
-    <!-- additivity=false ensures access log data only goes to the access log -->
-
 </configuration>
