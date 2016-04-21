@@ -36,5 +36,19 @@ public class Horario{
    public void setAula(String aula){
         this.aula = aula;
    }
+
+
+    @Override
+    public boolean equals(Object obj){
+        if(!(obj instanceof Horario)){
+            return false;
+        }
+
+        Horario horario = (Horario) obj;
+
+
+        return this.getAula().equals(horario.getAula()) && horario.getDia().equals(horario.getDia());
+
+    }
 }
 

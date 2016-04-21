@@ -1,97 +1,97 @@
 <br xmlns:users><br><br><br><br>
+<body>
+  <ul class="pagination positionBusca">
+    <li><a ng-click="buscar('voltar')">Página Anterior</a></li>
+    <li ng-click="quantidadeElementosPagina < 6 || buscar('proxima')"><a>Proxima Pagina</a></li>
+  </ul>
 
-<ul class="pagination" id = "positionBusca" >
-  <li><a ng-click="buscar('voltar')">Página Anterior</a></li>
-  <li ng-click="motoristas.length < 6 || buscar('proxima')"><a>Proxima Pagina</a></li>
-</ul>
-
-<div>
-  {{newPageNumber}}
-  {{itemsPorP}}
-
-</div>
-<div class="row">
-  <div class="col-md-2" id = "positionBusca">
-    <div class="panel panel-info"  >
-      <form>
-        <div data-ng-show="error" class="alert alert-danger">
-          {{errorMessage}}
+  <div class="row">
+    <div class="col-md-2 positionBusca">
+      <div class="panel panel-info" >
+        <form>
+          <div data-ng-show="error" class="alert alert-danger">
+            {{errorMessage}}
+          </div>
+        <div class="form-group">
+          <label for="diasSemana"> <h5><b>
+            Dia Da Semana</b></h5></label>
+          <select class="form-control" ng-model="horario.DiaDaSemana" ng-options="opt.value for opt in diaSemanas">
+          </select>
         </div>
-      <div class="form-group">
-        <label for="diasSemana"> <h5><b>
-          Dia Da Semana</b></h5></label>
-        <select class="form-control" ng-model="horario.DiaDaSemana" ng-options="opt.value for opt in diaSemanas">
-        </select>
-      </div>
 
-      <div class="form-group">
-        <label for="horario"> <h5><b>
-          Aula </b></h5></label>
-        <select class="form-control" ng-model="horario.aula" ng-options="opt.value for opt in horarios">
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="tipoCarona"> <h5><b>
-          Tipo de Carona</b></h5></label>
-        <div class="radio">
-          <label><input type="radio" name="optradio" ng-model="opcaoCarona" value=0>Ida</label>
+        <div class="form-group">
+          <label for="horario"> <h5><b>
+            Aula </b></h5></label>
+          <select class="form-control" ng-model="horario.aula" ng-options="opt.value for opt in horarios">
+          </select>
         </div>
-        <div class="radio" ng-model="opcaoCarona" value="volta">
-          <label><input type="radio" name="optradio" ng-model="opcaoCarona" value=1>Volta</label>
+
+        <div class="form-group">
+          <label for="tipoCarona"> <h5><b>
+            Tipo de Carona</b></h5></label>
+          <div class="radio">
+            <label><input type="radio" name="optradio" ng-model="opcaoCarona" value=0>Ida</label>
+          </div>
+          <div class="radio" ng-model="opcaoCarona" value="volta">
+            <label><input type="radio" name="optradio" ng-model="opcaoCarona" value=1>Volta</label>
+          </div>
         </div>
-      </div>
 
-        <button name="endereco" ng-show="opcaoCarona==1" class="btn btn-info center-block" ng-click="tabs=!tabs">
-          Endereco
-        </button>
+        <div class="form-group alinhaBotao">
+          <button name="endereco" ng-show="opcaoCarona==1" class="btn btn-info center-block" ng-click="tabs=!tabs">
+            Endereco
+          </button>
+          <br>
+        </div>
 
-        <div class="form-group"  ng-show="!tabs">
+        <div class="form-group"  ng-show="!tabs && opcaoCarona == 1">
           <br>
           <input type="text" name = "rua" class="form-control" placeholder="Rua" required ng-model="rua">
         </div>
 
-        <div class="form-group"  ng-show="!tabs">
+        <div class="form-group"  ng-show="!tabs && opcaoCarona == 1">
           <select class="form-control" ng-model="bairro" ng-options="opt.value for opt in bairros">
           </select>
         </div>
 
-        <button name="salvar" data-ng-disabled="form.rua.$error.required" class="btn btn-success center-block" ng-click="buscar()">
-          Salvar
-        </button>
-
-      </form>
-      </div>
-
-  </div>
-  <div ng-repeat="motorista in motoristas">
-    <div class="col-md-10" ng-if="$index % 3 == 0">
-    </div>
-    <div class="col-md-3">
-      <div class="panel panel-primary" id = "panelBusca">
-        <div class="panel-heading" style="">
-          <b>Carona-me</b>
+        <div class="form-group alinhaBotao">
+          <button name="salvar" data-ng-disabled="form.rua.$error.required" class="btn btn-success center-block" ng-click="buscar()">
+            Buscar
+          </button>
         </div>
-        <div class="panel-body" >
-          <a href="../html-link.htm">
-            <div align="middle">
-              <img src="http://lorempixel.com/140/140/" class= "img-circle" class="img-responsive"
-                   height="70" width="70" >
-            </div>
-          </a>
-          <p></p>
-          <p id = "fontSizeBusca"><b>Nome</b>: {{motorista.nome}} &nbsp &nbsp<br> <b>Tel:</b>(083) {{motorista.telefone}} <br>
-            <b>E-mail</b>: {{motorista.email}}<br>
-            <b>Rua</b>: {{motorista.endereco.rua}} <br>
-            <b>Bairro</b>: {{motorista.endereco.bairro}}
-          </p>
 
-          <div id = "alignCaroname">
-            <input type="button" class="btn btn-default"  value="Carona-me" id = "colorCaroname" >
+        </form>
+        </div>
+
+    </div>
+    <div ng-repeat="carona in infoCaronas">
+      <div class="col-md-10" ng-if="$index % 3 == 0">
+      </div>
+      <div class="col-md-3">
+        <div class="panel panel-primary" id = "panelBusca">
+          <div class="panel-heading" style="">
+            <b>Carona-me</b>
+          </div>
+          <div class="panel-body" >
+            <a href="../html-link.htm">
+              <div align="middle">
+                <img src="http://lorempixel.com/140/140/" class= "img-circle" class="img-responsive"
+                     height="70" width="70" >
+              </div>
+            </a>
+            <p></p>
+            <p id = "fontSizeBusca"><b>Nome</b>: {{carona.motorista.nome}} &nbsp &nbsp<br> <b>Tel:</b>(083) {{carona.motorista.telefone}} <br>
+              <b>E-mail</b>: {{carona.motorista.email}}<br>
+              <b>Aul. Prop.</b>: {{carona.horario.dia}}: {{carona.horario.aula}} <br>
+            </p>
+
+            <div class="alinhaBotao">
+              <input type="button" class="btn btn-default"  value="Carona-me" id = "colorCaroname" ng-click="solicitaCarona(carona)">
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-</div>
+  </div>
+</body>

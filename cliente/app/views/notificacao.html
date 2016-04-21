@@ -38,7 +38,7 @@
 
   <div ng-repeat="solicitacao in solicitacoes">
     <div class="col-md-3">
-      <div class="panel panel-primary"  style="width: 250px">
+      <div class="panel panel-primary"  id = "panelNotification">
         <div class="panel-heading">
           <b>Carona-me</b>
         </div>
@@ -50,7 +50,7 @@
             </div>
           </a>
           <p></p>
-          <p style="font-size: 12px">
+          <p id="fonteNotification">
             <b>Nome</b>: {{solicitacao.passageiro.nome}} &nbsp &nbsp<br>
             <b>Aul. Prop.</b>: {{solicitacao.carona.horario.dia}}: {{solicitacao.carona.horario.aula}} <br>
             <b>Tipo</b>: {{solicitacao.carona.tipo}}<br>
@@ -77,13 +77,13 @@
 
 <div class="container" >
   <div class="modal fade" id="myModal" role="dialog" >
-    <div class="modal-dialog modal-sm" style="position: relative;right: 710px;" >
-      <div class="modal-content" style="position: relative;right: 710px;">
-        <div class="modal-header" style="position: relative;">
-          <button type="button" class="close" data-dismiss="modal" style="position: relative;">&times;</button>
+    <div class="modal-dialog modal-sm" id = "notificationPop" >
+      <div class="modal-content" id = "notificationPop">
+        <div class="modal-header" id = "notificationPopText">
+          <button type="button" class="close" data-dismiss="modal" id = "notificationPopText">&times;</button>
           <h4 class="modal-title">Você aceitou a carona!</h4>
         </div>
-        <div class="modal-body" style="position: relative;">
+        <div class="modal-body" id = "notificationPopText">
           <p><center>O telefone do passageiro é :</center> <br> <center>(083) 99999-3333 </center></p>
         </div>
         <div class="modal-footer">

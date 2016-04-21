@@ -96,5 +96,18 @@ public class Carona {
     }
 
 
+    @Override
+    public boolean equals(Object obj){
+        if(!(obj instanceof Carona)){
+            return false;
+        }
+
+        Carona carona = (Carona) obj;
+
+
+        return this.getTipo().equals(carona.getTipo()) && this.getHorario().equals(carona.getHorario())
+                && this.getMotorista().equals(carona.getMotorista());
+
+    }
 
 }

@@ -59,11 +59,13 @@ angular
       .when('/buscar', {
         templateUrl: 'views/busca.html',
         controller: 'buscaCtrl',
+        css: 'styles/buscar.css',
         requireLogin : false
       })
       .when('/team', {
         templateUrl: 'views/team.html',
-        controller: 'teamCtrl'
+        controller: 'teamCtrl',
+        requireLogin: false
       })
       .when('/notificacao', {
         templateUrl: 'views/notificacao.html',

@@ -58,5 +58,19 @@ public class Solicitacao {
         return false;
     }
 
+
+    @Override
+    public boolean equals(Object obj){
+        if(!(obj instanceof Solicitacao)){
+            return false;
+        }
+
+        Solicitacao solicitacao = (Solicitacao) obj;
+
+
+        return this.getPassageiro().equals(solicitacao.getPassageiro());
+
+    }
+
     
 }
