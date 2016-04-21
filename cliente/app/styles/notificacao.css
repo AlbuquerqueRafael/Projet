@@ -212,3 +212,20 @@
 
 }
 
+#panelNotification{
+  width: 250px;
+}
+
+#fonteNotification{
+  font-size: 12px;
+}
+
+#notificationPop{
+  position: relative;
+  right: 710px;
+}
+
+#notificationPopText{
+  position: relative;
+}
+
