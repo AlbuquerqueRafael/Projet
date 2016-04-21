@@ -22,53 +22,51 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
+        templateUrl: 'views/inicio/main.html',
         controller: 'MainCtrl',
         controllerAs: 'main',
         requireLogin : false
       })
       .when('/about', {
-        templateUrl: 'views/about.html',
+        templateUrl: 'views/inicio/about.html',
         controller: 'AboutCtrl',
         controllerAs: 'about',
         requireLogin : false
       })
+      .when('/team', {
+        templateUrl: 'views/inicio/team.html',
+        controller: 'teamCtrl',
+        requireLogin: false
+      })
       .when('/cadastro', {
-        templateUrl: 'views/cadastro.html',
+        templateUrl: 'views/inicio/cadastro.html',
         controller: 'MainCtrl',
         requireLogin : false
 
       })
       .when('/horario', {
-        templateUrl: 'views/horario.html',
+        templateUrl: 'views/usuario/horario.html',
         controller: 'horarioCtrl',
         requireLogin : false
       })
       .when('/cadastroHome', {
-        templateUrl: 'views/cadastro.html',
+        templateUrl: 'views/usuario/cadastro.html',
         controller: 'MainCtrl',
         requireLogin : true
       })
       .when('/carona', {
-        templateUrl: 'views/carona.html',
+        templateUrl: 'views/usuario/carona.html',
         controller: 'caronaCtrl',
-        css:"styles/buscar.css",
 
         requireLogin : false
       })
       .when('/buscar', {
-        templateUrl: 'views/busca.html',
+        templateUrl: 'views/usuario/busca.html',
         controller: 'buscaCtrl',
-        css: 'styles/buscar.css',
         requireLogin : false
       })
-      .when('/team', {
-        templateUrl: 'views/team.html',
-        controller: 'teamCtrl',
-        requireLogin: false
-      })
       .when('/notificacao', {
-        templateUrl: 'views/notificacao.html',
+        templateUrl: 'views/usuario/notificacao.html',
         controller: 'notifyCtrl',
         requireLogin : false
       })

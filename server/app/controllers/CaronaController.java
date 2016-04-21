@@ -40,43 +40,6 @@ public class CaronaController extends Controller {
     }
 
 
-    public Result solicitarCarona(){
-        JsonNode json = request().body().asJson();
-
-        Carona caronaSolicitada = Json.fromJson(json, Carona.class);
-        Solicitacao solicitacao = new Solicitacao(caronaSolicitada, UsuarioController.usuarioAutenticado());
-
-        SistemaSolicitacao.getInstance().adicionarSolicitacao(solicitacao);
-
-        Logger.info(solicitacao.getPassageiro().getEmail() + " acabou de solicitar uma carona a " + solicitacao.getCarona().getMotorista().getEmail());
-
-        return ok(Json.toJson("Solicitação concluida!")); // precisaria disso mesmo?
-
-    }
-
-
-    public Result aceitarCarona(){                       
-        JsonNode json = request().body().asJson();
-        Solicitacao solicitacao = Json.fromJson(json, Solicitacao.class);
-
-        if (Util.isCaronaLotada(solicitacao.getCarona())){
-            return badRequest("Ops! Carona lotada!");
-        }
-
-        if (solicitacao.setStatus(Status.ACEITO)){                          // so pode aceitar se a carona estiver pendente
-            Usuario passageiro = solicitacao.getPassageiro();
-            Carona carona = solicitacao.getCarona();
-            carona.novoPassageiro(passageiro);
-            Logger.info(passageiro.getEmail() + " foi adicionado a carona de " + carona.getMotorista().getEmail());
-            return ok(Json.toJson(solicitacao));
-
-        } else {
-            return badRequest("Você já tomou uma decisão sobre esse pedido");
-        }
-
-    }
-
-
     public Result rejeitarCarona(){                       
         JsonNode json = request().body().asJson();
         Solicitacao solicitacao = Json.fromJson(json, Solicitacao.class);

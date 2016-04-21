@@ -220,12 +220,16 @@
   font-size: 12px;
 }
 
-#notificationPop{
+.notificationPop{
   position: relative;
   right: 710px;
 }
 
-#notificationPopText{
+.notificationPopText{
   position: relative;
+}
+
+#alignText{
+  text-align: center;
 }
 
