@@ -1,4 +1,6 @@
-package models;
+package sistemaInfo;
+
+import models.Solicitacao;
 
 import java.util.ArrayList;
 import java.util.List;

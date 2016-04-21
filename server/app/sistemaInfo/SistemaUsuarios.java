@@ -1,7 +1,7 @@
-package models;
+package sistemaInfo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import models.*;
+import models.enums.TipoCarona;
 
 import java.util.ArrayList;
 import java.util.List;

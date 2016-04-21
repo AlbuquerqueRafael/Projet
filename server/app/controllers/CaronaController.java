@@ -3,20 +3,11 @@ package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import models.*;
-import play.data.Form;
 import play.libs.Json;
 import play.mvc.*;
-import util.Util;
-import views.html.index;
-import views.html.main;
+import sistemaInfo.SistemaCaronas;
+import sistemaInfo.SistemaLog;
 
-import javax.persistence.EntityManager;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import play.Logger;
-
-import static play.libs.Json.*;
 import static play.data.Form.form;
 
 
