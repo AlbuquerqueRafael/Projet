@@ -5,11 +5,7 @@ import models.*;
 import models.enums.TipoCarona;
 import play.libs.Json;
 import play.mvc.*;
-<<<<<<< HEAD
 import sistemasInfo.SistemaCaronas;
-=======
-import sistemaInfo.SistemaCaronas;
->>>>>>> master
 
 import java.util.ArrayList;
 import java.util.List;

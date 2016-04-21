@@ -6,16 +6,9 @@ import models.enums.Status;
 import models.enums.TipoCarona;
 import play.libs.Json;
 import play.mvc.*;
-<<<<<<< HEAD
 import sistemasInfo.SistemaCaronas;
 import sistemasInfo.SistemaLog;
 import sistemasInfo.SistemaSolicitacao;
-=======
-import sistemaInfo.SistemaCaronas;
-import sistemaInfo.SistemaLog;
-import sistemaInfo.SistemaSolicitacao;
->>>>>>> master
-
 import java.util.ArrayList;
 import java.util.List;
 
