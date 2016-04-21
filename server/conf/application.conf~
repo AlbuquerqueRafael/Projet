@@ -53,9 +53,6 @@ play.i18n.langs = [ "en" ]
 # play.evolutions.db.default.enabled=false
 
 
-%test.application.log=INFO
-%test.application.log.path=/log4j.xml
-
 application.log=INFO
-application.log.path=/log4j.properties
-application.log.system.out=off
+
+
