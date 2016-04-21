@@ -14,66 +14,66 @@
   <div class="col-md-12 text-center">
     <ul class="pagination">
       <li>
-        <a href="#">Pagina Anterior</a>
+        <a ng-click="buscarSolicitacoes('anterior')">Pagina Anterior</a>
       </li>
       <li>
-        <a href="#">Prox Página</a>
+        <a ng-click="quantidadeElementosPagina < 3 || buscarSolicitacoes('proxima')">Prox Página</a>
       </li>
     </ul>
   </div>
 </div>
 
 
-<div class="row" id = "news">
+<div class="containerNotificacao">
 
-  <div class="col-md-2">
+ <!-- <div class="col-md-2">
     <div id='cssmenu'>
       <ul>
-        <li> <a class="button hvr-bounce-to-bottom" href='#' ><span>CARONAS BEM-SUCEDIDAS</span></a> </li>
-        <li> <a class="button hvr-sweep-to-top" href='#' ><span>CARONAS MAL-SUCEDIDAS</span></a> </li>
-        <li> <a class="button hvr-bounce-to-left" href='#' ><span>CARONAS PENDENTES</span></a> </li>
+        <li> <a class="button hvr-bounce-to-bottom" ng-click="solicitacoesAceitas()" ><span>CARONAS BEM-SUCEDIDAS</span></a> </li>
+        <li> <a class="button hvr-bounce-to-left" ng-click="solicitacoesPendentes()" ><span>CARONAS PENDENTES</span></a> </li>
       </ul>
     </div>
-  </div>
+  </div>-->
+  <div class="row" id = "news">
+    <div ng-repeat="solicitacao in solicitacoes">
+      <div class="col-md-4">
+        <div class="panel panel-primary"  id = "panelNotification">
+          <div class="panel-heading">
+            <b>Carona-me</b>
+          </div>
+          <div class="panel-body">
+            <a href="../html-link.htm">
+              <div align="middle">
+                <img src="http://lorempixel.com/140/140/" class= "img-circle" class="img-responsive"
+                     height="70" width="70" >
+              </div>
+            </a>
+            <p></p>
+            <p id="fonteNotification">
+              <b>Nome</b>: {{solicitacao.passageiro.nome}} &nbsp &nbsp<br>
+              <b>Aul. Prop.</b>: {{solicitacao.carona.horario.dia}}: {{solicitacao.carona.horario.aula}} <br>
+              <b>Tipo</b>: {{solicitacao.carona.tipo}}<br>
+              <b>Bairro</b>: {{solicitacao.carona.endereco.bairro}}<br>
+              <b>Rua</b>: {{solicitacao.carona.endereco.rua}}<br>
+              <b>Vagas</b>: {{solicitacao.carona.vagas}}<br>
+              <b>Status</b>: Pendente<br>
 
-  <div ng-repeat="solicitacao in solicitacoes">
-    <div class="col-md-3">
-      <div class="panel panel-primary"  id = "panelNotification">
-        <div class="panel-heading">
-          <b>Carona-me</b>
-        </div>
-        <div class="panel-body">
-          <a href="../html-link.htm">
-            <div align="middle">
-              <img src="http://lorempixel.com/140/140/" class= "img-circle" class="img-responsive"
-                   height="70" width="70" >
+            </p>
+            <br>
+            <div style="text-align: center;">
+
+              <button type="button" data-ng-click="aceitarSolicitacao(solicitacao)" data-toggle="modal" data-target="#myModal" id = "aceitarCarona" class="btn btn-default">
+                Aceitar
+              </button>
+              <button type="button" id = "rejeitarCarona" class="btn btn-default">
+                Rejeitar
+              </button>
             </div>
-          </a>
-          <p></p>
-          <p id="fonteNotification">
-            <b>Nome</b>: {{solicitacao.passageiro.nome}} &nbsp &nbsp<br>
-            <b>Aul. Prop.</b>: {{solicitacao.carona.horario.dia}}: {{solicitacao.carona.horario.aula}} <br>
-            <b>Tipo</b>: {{solicitacao.carona.tipo}}<br>
-            <b>Bairro</b>: {{solicitacao.carona.endereco.bairro}}<br>
-            <b>Bairro</b>: {{solicitacao.carona.endereco.rua}}<br>
-            <b>Status</b>: Pendente<br>
-
-          </p>
-          <br>
-          <div style="text-align: center;">
-
-            <button type="button" data-toggle="modal" data-target="#myModal" id = "aceitarCarona" class="btn btn-default;">
-              Aceitar
-            </button>
-            <button type="button" id = "rejeitarCarona" class="btn btn-default">
-              Rejeitar
-            </button>
           </div>
         </div>
       </div>
     </div>
   </div>
-
 </div>
 
 <div class="container" >
@@ -85,7 +85,7 @@
           <h4 class="modal-title">Você aceitou a carona!</h4>
         </div>
         <div class="modal-body notificationPopText">
-          <p id="alignText">>O telefone do passageiro é :<br> (083) 99999-3333></p>
+          <p id="alignText">>O telefone do passageiro é :<br> (083) {{telefone}}></p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>

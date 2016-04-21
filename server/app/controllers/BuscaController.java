@@ -38,8 +38,6 @@ public class BuscaController extends Controller {
             return badRequest("Horário já preenchido");
         }
 
-
-
         int numeroItens = Math.toIntExact(id-1) * NUM_ITENS_PAGINA;
         int count = numeroItens;
         boolean fimDaLista = false;

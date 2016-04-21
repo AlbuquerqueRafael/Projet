@@ -43,14 +43,15 @@ public class CaronaController extends Controller {
     public Result rejeitarCarona(){                       
         JsonNode json = request().body().asJson();
         Solicitacao solicitacao = Json.fromJson(json, Solicitacao.class);
-
+/*
         if (solicitacao.setStatus(Status.REJEITADO)){ 
             Logger.info(solicitacao.getCarona().getMotorista().getEmail() + " recusou o pedido de carona de " + solicitacao.getPassageiro().getEmail());                    // so pode recusar se a carona estiver pendente
             return ok(Json.toJson(solicitacao));
         } else {
             return badRequest("Você já tomou uma decisão sobre esse pedido");
-        }
-        
+        }*/
+
+        return ok("Carona cadastrada com sucesso!");
     }
 
 

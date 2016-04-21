@@ -13,7 +13,7 @@ POST    /app/buscarCaronas/:id     controllers.BuscaController.buscarCarona(id :
 
 GET     /app/getUsers              controllers.UsuarioController.getAllCadastro()
 
-GET     /app/pedidosCaronas/:id    controllers.MotoristaController.getPedidosCaronas(id : Long)
+GET     /app/solicitacoesCarona/:id    controllers.SolicitacaoController.getSolicitacoesCaronas(id : Long)
 
 POST    /app/logout                controllers.UsuarioController.logout()
 
@@ -22,6 +22,8 @@ POST    /app/caronas               controllers.MotoristaController.getCaronasMot
 POST    /app/salvarCarona          controllers.CaronaController.postCaronas()
 
 POST    /app/solicitarCarona        controllers.SolicitacaoController.solicitarCarona()
+
+POST    /app/aceitarCarona          controllers.SolicitacaoController.aceitarCarona()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file              controllers.Assets.versioned(path="/public", file: Asset)

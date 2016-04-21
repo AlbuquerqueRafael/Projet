@@ -19,7 +19,7 @@ public class Carona {
     @JsonSerialize
     private Usuario motorista;
     private Endereco endereco;
-    private List<Usuario> listaPassageiros;    
+    private List<Usuario> listaPassageiros;
     private int vagas;
     private List<String> rota;    
     private TipoCarona tipo;
@@ -41,6 +41,10 @@ public class Carona {
 
     public int getVagas() {
         return vagas;
+    }
+
+    public void setVagas(int vagas){
+        this.vagas = vagas;
     }
 
     public void novoPassageiro(Usuario usr){

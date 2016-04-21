@@ -39,8 +39,8 @@ public class AutenticacaoController extends Controller {
             }
         }
 
-        Logger.info(user.getEmail() + " tentou logar, mas não está cadastrado");
-        return badRequest("Usuario ou senha inválidos!");
+        Logger.info(user.getEmail() + " tentou logar, mas possui email ou senha inválidos!");
+        return badRequest("Email ou senha inválidos!");
     }
 
     private void autenticar(Usuario usuario){
