@@ -2,9 +2,10 @@ package sistemasInfo;
 
 import models.*;
 import models.enums.TipoCarona;
-
+import exception.*;
 import java.util.ArrayList;
 import java.util.List;
+import util.Util;
 
 /**
  * Created by Mafra on 15/04/16.
@@ -115,7 +116,34 @@ public class SistemaUsuarios{
 		return usuarios;
 	}
 
-	public void adicionarUsuario(Usuario usr){
+	public void adicionarUsuario(Usuario usr) throws DadosInvalidosException{
+		
+		
+		if(!Util.isValidEmailAddress(usr.getEmail())){
+            throw new EmailInvalidoException("Email inválido");
+        }
+        
+        if(!Util.isValidMatricula(usr.getMatricula())){
+            throw new MatriculaInvalidaException("Matricula inválida");
+        }
+
+        if(!Util.isValidPassword(usr.getSenha())){
+            throw new SenhaInvalidaException("Senha inválida");
+        }
+        
+        if(!Util.isValidTelefone(usr.getTelefone())){
+            throw new TelefoneInvalidoException("Telefone inválido");
+        }
+        
+
+        if (isMatriculaRepetida(usr)){
+        	throw new MatriculaRepetidaException("Matrícula repetida");
+        }
+
+        if (isEmailRepetido(usr)){
+        	throw new EmailRepetidoException("E-mail repetido");
+        }
+
 		usuarios.add(usr);
 	}
 
@@ -129,6 +157,37 @@ public class SistemaUsuarios{
 
 	public int recuperarPosicaoDoUsuario(Usuario usuario){
 		return getUsuarios().indexOf(usuario);
+	}
+
+	private boolean isEmailRepetido(Usuario usuario){
+		for (Usuario usr: usuarios){
+			try {
+				if (usr.getEmail().equals(usuario.getEmail())) {
+					return true;
+				}	
+			} catch (NullPointerException e){
+				return true;
+			}
+			
+		}
+
+		return false;
+
+	}
+
+	private boolean isMatriculaRepetida(Usuario usuario){
+		for (Usuario usr: usuarios){
+			try {
+				if (usr.getMatricula().equals(usuario.getMatricula())) {
+					return true;
+				}	
+			} catch (NullPointerException e){
+				return true;
+			}
+			
+		}
+
+		return false;
 	}
 
 

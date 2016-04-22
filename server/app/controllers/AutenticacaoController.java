@@ -3,11 +3,12 @@ package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import models.*;
+import exception.*;
 import play.libs.Json;
 import play.mvc.*;
 import sistemasInfo.SistemaLog;
 import sistemasInfo.SistemaUsuarios;
-import util.Util;
+
 
 import java.util.List;
 
@@ -48,23 +49,13 @@ public class AutenticacaoController extends Controller {
         JsonNode json = request().body().asJson();
         Usuario usuario = Json.fromJson(json, Usuario.class);
 
-        if(!Util.isValidEmailAddress(usuario.getEmail())){
-            return badRequest("Email inválido");
+        try{
+           sistemaUsuarios.adicionarUsuario(usuario);
+        } catch (DadosInvalidosException exception){
+            System.out.println(exception.getMessage());
+            return badRequest(exception.getMessage());
         }
 
-        if(!Util.isValidMatricula(usuario.getMatricula())){
-            return badRequest("Matricula inválida");
-        }
-
-        if(!Util.isValidPassword(usuario.getSenha())){
-            return badRequest("Senha inválida");
-        }
-
-        if(!Util.isValidTelefone(usuario.getTelefone())){
-            return badRequest("Telefone inválido");
-        }
-
-        sistemaUsuarios.adicionarUsuario(usuario);
 
         SistemaLog.novaMensagemLog(usuario.getEmail() + " acabou de se cadastrar no sistema");
 

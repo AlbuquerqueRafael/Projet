@@ -7,7 +7,7 @@ import play.mvc.Controller;
 /**
  * Classe utilitaria para validar as informacoes
  */
-public class Util extends Controller {
+public class Util {
     	private static final char CAMPUSCAMPINA = '1';
     	private static final char PRIMEIROPERIODO = '1' , SEGUNDOPERIODO = '2';
     	private static final char CODIGOEXATAS = '1', CODIGOBIOLOGICAS= '2', CODIGOHUMANAS= '4', CODIGOCIENCIASAGRARIAS= '3';
@@ -19,30 +19,50 @@ public class Util extends Controller {
         return validator.isValid(email);
     }
 
+    
     public static boolean isValidTelefone(String phone) {
         boolean result = false;
         String regexStr = "^[0-9]*$";
-        if (phone.matches(regexStr)){
-            result = true;
+
+        try {
+            if (phone.matches(regexStr)){
+                result = true;
+            }
+        } catch (NullPointerException e) {
+            return false;
         }
+        
         return result;
     }
+    
 
     public static boolean isValidPassword(String password) {
         boolean result = false;
         int minimumSizePassword = 8;
-        if (password.length() >= minimumSizePassword){
-            result = true;
+
+        try {
+            if (password.length() >= minimumSizePassword){
+                result = true;
+            } 
+        } catch (NullPointerException e){
+            return false;
         }
+       
         return result;
     }
 
     public static boolean isValidMatricula(String matricula) {
         boolean result = false;
         String regexStr = "[1-7,9][0-1][0-6][0-1][1-4][0-9]{4}";
-        if (matricula.matches(regexStr)){
+
+        try {
+            if (matricula.matches(regexStr)){
             result = true;
+            } 
+        } catch (NullPointerException e){
+            return false;
         }
+       
         return result;
     }
 
