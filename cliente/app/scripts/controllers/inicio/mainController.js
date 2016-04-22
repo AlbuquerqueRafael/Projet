@@ -37,13 +37,20 @@ angular.module('clienteApp')
     }
 
     $scope.cadastrar = function(usuario){
-      mainService.cadastrar(usuario).success(function(info){
-        $location.path("/");
-      }).error(function(error){
+      if(usuario.endereco.bairro.value === undefined){
         $scope.error = true;
-        $scope.errorMessage = error;
+        $scope.errorMessage = "Selecione um bairro";
+      }else {
+        usuario.endereco.bairro = usuario.endereco.bairro.value;
 
-      });
+        mainService.cadastrar(usuario).success(function (info) {
+          $location.path("/");
+        }).error(function (error) {
+          $scope.error = true;
+          $scope.errorMessage = error;
+
+        });
+      }
     }
 
     $scope.trocar = function(){

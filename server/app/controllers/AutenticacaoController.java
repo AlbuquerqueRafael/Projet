@@ -47,8 +47,8 @@ public class AutenticacaoController extends Controller {
 
      public Result postCadastro() {
         JsonNode json = request().body().asJson();
+         System.out.println(json.toString());
         Usuario usuario = Json.fromJson(json, Usuario.class);
-
         try{
            sistemaUsuarios.adicionarUsuario(usuario);
         } catch (DadosInvalidosException exception){
