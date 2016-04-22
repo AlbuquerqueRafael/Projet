@@ -2,9 +2,13 @@ package controllers;
 
 
 import models.*;
+import play.libs.Json;
 import play.mvc.*;
+import sistemasInfo.SistemaCaronas;
 import sistemasInfo.SistemaLog;
 import sistemasInfo.SistemaUsuarios;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import static play.libs.Json.*;
@@ -14,10 +18,11 @@ import static play.data.Form.form;
 
 public class UsuarioController extends Controller {
 
-    private static SistemaUsuarios sistemaUsuarios = SistemaUsuarios.getInstance();
+    private SistemaUsuarios sistemaUsuarios = SistemaUsuarios.getInstance();
+    private SistemaCaronas sistemaCaronas = SistemaCaronas.getInstance();
 
     public Result getAllCadastro(){
-        List<Usuario> usuarios = sistemaUsuarios.getUsuarios();
+        List<Usuario> usuarios = SistemaUsuarios.getInstance().getUsuarios();
         return ok(toJson(usuarios));
     }
 
@@ -34,16 +39,46 @@ public class UsuarioController extends Controller {
         } else {
             Usuario templateUsuario = new Usuario();
             templateUsuario.setEmail(session().get("logado"));
-            int index = sistemaUsuarios.recuperarPosicaoDoUsuario(templateUsuario);
-            Usuario usuario = sistemaUsuarios.recuperarUsuarioPelaPosicao(index);
+            int index = SistemaUsuarios.getInstance().recuperarPosicaoDoUsuario(templateUsuario);
+            Usuario usuario = SistemaUsuarios.getInstance().recuperarUsuarioPelaPosicao(index);
             return usuario;
         }
     }
 
+    public Result getCaronasComoPassageiro(){
+        List<Carona> caronasComoPassageiro = new ArrayList<Carona>();
+        Usuario usuarioAtual = UsuarioController.usuarioAutenticado();
+        List<Carona> allCaronas = SistemaCaronas.getInstance().getCaronas();
 
+        for(Carona carona : allCaronas){
+            for(Usuario passageiro: carona.getListaPassageiros()){
+                if(usuarioAtual.equals(passageiro)){
+                    Endereco endereco = carona.getEndereco();
 
-    
+                    Carona newCarona = new Carona(carona.getHorario(),carona.getVagas(),
+                            carona.getEndereco(), carona.getTipo());
+                    caronasComoPassageiro.add(newCarona);
+                }
+            }
+        }
+        return ok(Json.toJson(caronasComoPassageiro));
+    }
+
+    public Result getCaronasComoMotoristas(){
+        List<Carona> caronasComoMotorista = new ArrayList<Carona>();
+        for(Carona carona : sistemaCaronas.getCaronas()){
+            if(UsuarioController.usuarioAutenticado().equals(carona.getMotorista())){
+                caronasComoMotorista.add(carona);
+            }
+        }
+        return ok(Json.toJson(caronasComoMotorista));
+    }
+
 
 
 
 }
+
+
+
+    

@@ -36,6 +36,12 @@ public class Carona {
         this.listaPassageiros = new ArrayList<Usuario>();
     }
 
+    public Carona(Horario horario, int vagas, Endereco endereco, TipoCarona tipo){
+        this.vagas = vagas;
+        this.endereco = endereco;
+        this.tipo = tipo;
+        this.horario = horario;
+    }
 
     public int getVagas() {
         return vagas;

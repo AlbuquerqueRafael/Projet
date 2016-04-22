@@ -17,7 +17,9 @@ angular
     'ngRoute',
     'ngSanitize',
     'ui.bootstrap',
-    'angularUtils.directives.dirPagination'
+    'angularUtils.directives.dirPagination',
+    'ngFileUpload'
+
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -41,6 +43,12 @@ angular
       .when('/cadastro', {
         templateUrl: 'views/inicio/cadastro.html',
         controller: 'MainCtrl',
+        requireLogin : false
+
+      })
+      .when('/home', {
+        templateUrl: 'views/usuario/home.html',
+        controller: 'homeCtrl',
         requireLogin : false
 
       })

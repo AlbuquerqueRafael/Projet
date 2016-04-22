@@ -35,21 +35,6 @@ body{
   width: 350px;
 }
 
-.almostJumbotron{
-  background-color: transparent;
-  background:transparent;
-  width: 400px;
-  text-align: center;
-  margin-top: 60px;
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-  padding-top: 60px;
-  font-size: 18px;
-  text-align: justify;
-
-}
-
 #panelLogin {
   top:120px;
 }

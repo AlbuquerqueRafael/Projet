@@ -5,7 +5,7 @@
 GET     /                          controllers.Application.main(any = "none")
 
 POST    /app/logar                 controllers.AutenticacaoController.postLogin()
-
+POST    /app/testaFoto              controllers.Application.testaFoto()
 
 POST    /app/cadastrar             controllers.AutenticacaoController.postCadastro()
 

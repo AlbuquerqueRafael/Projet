@@ -1,0 +1,39 @@
+<div class = telaHome>
+  <div class="panel panel-primary" id="panelHome">>
+  <div class="panel-body">
+    <div>
+      <br><br>
+      <div class="col-md-12">
+        <img id="minhaImagem" ngf-thumbnail="teste" class= "img-circle" class="img-responsive"
+             height="200" width="200">
+      </div>
+      <div class="col-md-12">
+        <br>
+        <br>
+      </div>
+      <div class="col-md-12">
+        <form name="form">
+          <div class="button" ngf-select="upload($file)" ng-model="file" name="file" ngf-pattern="'image/*'"
+               ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"
+               ngf-resize="{width: 200, height: 200}">
+            <span class="file-input btn btn-primary btn-file">
+                Mudar Foto
+            </span></div>
+        </form>
+        <br>
+        <br>
+      </div>
+
+    </div>
+
+    <div>
+
+    </div>
+    <div id="alinharInfo">
+      <p> Notificacoes Pendentes : 10 </p>
+      <p> Caronas como Passageiro : 10 </p>
+      <p> Caronas como Motorista : 10 </p>
+    </div>
+  </div>
+  </div>
+</div>
