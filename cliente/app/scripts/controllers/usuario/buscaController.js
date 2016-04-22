@@ -74,7 +74,7 @@ angular.module("clienteApp").controller("buscaCtrl", function($scope, caronaServ
     var horario = {};
     var horarioSolicitacao = $scope.horario;
 
-
+    console.log(carona);
     caronaSolicitada.motorista = carona.motorista;
 
     horario.aula = horarioSolicitacao.aula.value;
@@ -82,7 +82,8 @@ angular.module("clienteApp").controller("buscaCtrl", function($scope, caronaServ
 
     caronaSolicitada.horario = horario;
     caronaSolicitada.tipo = $scope.opcaoCarona;
-
+    console.log("teste");
+    console.log(caronaSolicitada);
 
     caronaService.solicitarCarona(caronaSolicitada).success(function(info){
         $scope.infoCaronas = $scope.infoCaronas.filter(function(e1){

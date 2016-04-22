@@ -21,8 +21,14 @@ public class SolicitacaoController extends Controller{
 
     public Result solicitarCarona(){
         JsonNode json = request().body().asJson();
-
         Carona caronaSolicitada = Json.fromJson(json, Carona.class);
+
+        for(Carona c : SistemaCaronas.getInstance().getCaronas()){
+            if(caronaSolicitada.equals(c)){
+                caronaSolicitada = c;
+            }
+        }
+
         Solicitacao solicitacao = new Solicitacao(caronaSolicitada, UsuarioController.usuarioAutenticado());
 
         SistemaSolicitacao.getInstance().adicionarSolicitacao(solicitacao);

@@ -31,6 +31,7 @@ angular.module("clienteApp").factory("mainService", function($http, $cookieStore
 
   service.logout = function(){
     $cookieStore.remove('login');
+    $http.post('/app/logout');
   };
 
   service.trocar = function(texto){
