@@ -11,8 +11,8 @@ angular.module("clienteApp").factory("horarioService", function($http){
          return $http.get("/app/caronasMotorista");
     };
 
-    horarioService.salvarHorario = function(){
-          return $http.get("/app/salvarCarona");
+    horarioService.salvarHorario = function(carona){
+          return $http.post("/app/salvarCarona", carona);
     };
 
     horarioService.getHorariosPassageiro = function(){
