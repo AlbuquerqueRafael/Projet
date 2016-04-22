@@ -19,6 +19,8 @@ angular.module("clienteApp")
         $scope.vagas = $scope.NumVagas[2];
         $scope.rota = $scope.bairros[0];
         $scope.opcaoCarona = "0";
+        $scope.bairro = $scope.usuario.endereco.bairro;
+        $scope.rua = $scope.usuario.endereco.rua;
         $scope.usuario = mainService.getUserAtual();
 
 
@@ -36,7 +38,6 @@ angular.module("clienteApp")
 
 
         $scope.adicionarRotas = function(bairro){
-            console.log(bairro);
             if(!bairro.add){
                 bairro.add = true;
                 $scope.routes.push(bairro);
@@ -85,7 +86,7 @@ angular.module("clienteApp")
             horarioService.salvarHorario(carona).success(function(info){
                $location.path("/horario");
             }).error(function(erro){
-                console.log(erro);
+              alert(erro);
             });
 
 

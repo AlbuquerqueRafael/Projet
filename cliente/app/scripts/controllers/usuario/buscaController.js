@@ -11,6 +11,7 @@ angular.module("clienteApp").controller("buscaCtrl", function($scope, caronaServ
   $scope.bairros = caronaService.getBairrosArray();
 
   $scope.usuario = mainService.getUserAtual();
+  console.log( $scope.usuario);
   $scope.tabs = true;
   $scope.infoCaronas = [];
   var id = 1;
@@ -24,9 +25,10 @@ angular.module("clienteApp").controller("buscaCtrl", function($scope, caronaServ
 
   $scope.inicia = function(){
     for(var i = 0; i < $scope.bairros.length; i++){
-      if($scope.bairros[i].value === $scope.usuario.endereco.bairro){
+      if($scope.bairros[i].value == $scope.usuario.endereco.bairro){
         $scope.bairro = $scope.bairros[i];
         $scope.rua = $scope.usuario.endereco.rua;
+        console.log($scope.rua);
         break;
       }
     }
@@ -74,7 +76,6 @@ angular.module("clienteApp").controller("buscaCtrl", function($scope, caronaServ
     var horario = {};
     var horarioSolicitacao = $scope.horario;
 
-    console.log(carona);
     caronaSolicitada.motorista = carona.motorista;
 
     horario.aula = horarioSolicitacao.aula.value;
@@ -82,8 +83,6 @@ angular.module("clienteApp").controller("buscaCtrl", function($scope, caronaServ
 
     caronaSolicitada.horario = horario;
     caronaSolicitada.tipo = $scope.opcaoCarona;
-    console.log("teste");
-    console.log(caronaSolicitada);
 
     caronaService.solicitarCarona(caronaSolicitada).success(function(info){
         $scope.infoCaronas = $scope.infoCaronas.filter(function(e1){

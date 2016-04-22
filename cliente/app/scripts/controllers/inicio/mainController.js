@@ -8,13 +8,13 @@
  * Controller of the clienteApp
  */
 angular.module('clienteApp')
-  .controller('MainCtrl', function ($scope, $http, $location, mainService, menuService) {
+  .controller('MainCtrl', function ($scope, $http, $location, mainService, menuService, caronaService) {
 
-
+    $scope.bairros = caronaService.getBairrosArray();
     $scope.error= false;
     $scope.users = function(){
       $http.get("/app/getUsers ").success(function(info){
-        console.log(info);
+        console.log("Sucesso!");
       }).error(function(error){
         console.log(error);
 
@@ -39,7 +39,6 @@ angular.module('clienteApp')
     $scope.cadastrar = function(usuario){
       mainService.cadastrar(usuario).success(function(info){
         $location.path("/");
-        console.log(info);
       }).error(function(error){
         $scope.error = true;
         $scope.errorMessage = error;
@@ -47,14 +46,9 @@ angular.module('clienteApp')
       });
     }
 
-
-
     $scope.trocar = function(){
       $location.path('/cadastro');
     }
 
 
-
-    $scope.options = [{value: 'Motorista'}, {value: 'Passageiro'}]
-    $scope.opcao = $scope.options[0];
   });

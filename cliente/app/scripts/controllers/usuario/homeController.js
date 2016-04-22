@@ -8,7 +8,7 @@ angular.module("clienteApp").controller("homeCtrl", function($scope, Upload, $ht
 
   $scope.getFoto = function (file) {
     Upload.upload({
-      url: '/app/getFoto',
+      url: 'images',
       data: {file: file}
     }).then(function (resp) {
       console.log(resp);
@@ -23,17 +23,12 @@ angular.module("clienteApp").controller("homeCtrl", function($scope, Upload, $ht
 
   // Function default do modullo ng-file
   $scope.upload = function (file) {
-    Upload.upload({
-      url: 'app/updateFoto',
-      data: {file: file, 'name': "picture"}
-    }).then(function (resp) {
-      console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
-    }, function (resp) {
-      console.log('Error status: ' + resp.status);
-    }, function (evt) {
-      var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-      console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-    });
+     $http.post("/app/updateFoto").success(function(info){
+       console.log(info);
+     }).error(function(erro){
+       console.log(erro);
+      });
+
   };
-  //
+
 });

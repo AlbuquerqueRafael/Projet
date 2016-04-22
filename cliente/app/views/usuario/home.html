@@ -13,12 +13,9 @@
       </div>
       <div class="col-md-12">
         <form name="form">
-          <div class="button" ngf-select="upload($file)" ng-model="file" name="file" ngf-pattern="'image/*'"
-               ngf-accept="'image/*'" ngf-max-size="20MB"
-               ngf-resize="{width: 200, height: 200}">
             <span class="file-input btn btn-primary btn-file">
-                Mudar Foto
-            </span></div>
+                <input type="file" data-ng-model="file" data-ng-click="upload(file)">Mudar Foto
+            </span>
         </form>
         <br>
         <br>
