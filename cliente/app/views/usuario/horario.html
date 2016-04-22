@@ -4,7 +4,7 @@
   <div class="col-md-12">
     <div id="bemVindo">
       <h3>
-        Bem-vindo , [Nome do usuário]!
+        Bem-vindo , {{usuario.nome}}!
       </h3>
       <br>
       <h4>Aqui você encontra informações, bem como pode pedir ou criar uma carona</h4>
@@ -55,16 +55,16 @@
                       <th class="item" >Rua</th>
                   </tr>
                   </thead>
-                  <tbody>
-                  <tr ng-repeat="caro in caronas">
-                    <td class="item">{{caro.horario.dia}}</td>
-                    <td class="item">{{caro.horario.aula}}</td>
-                      <td class="item">{{caro.tipo}}</td>
-                    <td class="item">{{caro.vagas}}</td>
-                      <td class="item">{{caro.endereco.bairro}}</td>
-                      <td class="item">{{caro.endereco.rua}}</td>
-                  </tr>
-                  </tbody>
+                    <tbody>
+                    <tr ng-repeat="caro in caronas">
+                        <td class="item">{{caro.horario.dia}}</td>
+                        <td class="item">{{caro.horario.aula}}</td>
+                        <td class="item">{{caro.tipo}}</td>
+                        <td class="item">{{caro.vagas}}</td>
+                        <td class="item">{{caro.endereco.bairro}}</td>
+                        <td class="item">{{caro.endereco.rua}}</td>'
+                    </tr>
+                    </tbody>
                 </table>
               </div>
           </div>
@@ -77,7 +77,7 @@
                 <th class="item" >Aula</th>
                 <th class="item" >Tipo</th>
                 <th class="item" >Vagas</th>
-                <th class="item" >Rua</th>
+                <th class="item"> Telefone Motorista</th>
               </tr>
               </thead>
               <tbody>
@@ -86,7 +86,7 @@
                 <td class="item">{{caro.horario.aula}}</td>
                 <td class="item">{{caro.tipo}}</td>
                 <td class="item">{{caro.vagas}}</td>
-                <td class="item">{{caro.endereco.rua}}</td>
+                <td class="item">{{caro.motorista.telefone}}</td>
               </tr>
               </tbody>
             </table>

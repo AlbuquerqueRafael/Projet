@@ -11,4 +11,8 @@ public class SistemaLog {
 	 public static void novaMensagemLog(String message){
 	 	logger.info(message);
 	 }
+
+	 public static void error(Exception e, String message){
+		 logger.error("falha! " + message, e);
+	 }
 }

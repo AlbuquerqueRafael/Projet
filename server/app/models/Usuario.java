@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.persistence.Lob;
+import java.io.*;
+import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +17,8 @@ public class Usuario{
     private String nome;
     private String matricula;
     private String telefone;
+    @Lob
+    public File foto;
     private String email;
     private String senha;
     @JsonProperty
@@ -22,16 +27,32 @@ public class Usuario{
 
 
 
-    public Usuario(String nome, String matricula, String telefone, String email, String senha, Endereco endereco) {
+    public Usuario(String nome, String matricula, String telefone, String email, String senha, Endereco endereco, File foto) {
         this.nome = nome;
         this.matricula = matricula;
         this.telefone = telefone;
         this.email = email;
         this.senha = senha;
         this.endereco = endereco;
+        this.foto = foto;
     }
 
+    //necessário para mapeação JSON
     public Usuario(){
+    }
+
+    public Usuario(String email, String telefone){
+        this.telefone = telefone;
+        this.email = email;
+    }
+
+    public File getFoto(){
+        return this.foto;
+    }
+
+    public void setFoto(File foto){
+
+        this.foto = foto;
     }
 
     public String getNome() {

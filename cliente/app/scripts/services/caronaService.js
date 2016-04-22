@@ -1,6 +1,7 @@
 /**
  * Created by rafael on 17/04/16.
  */
+'use strict';
 
 angular.module("clienteApp").factory("caronaService", function($http){
 
@@ -11,11 +12,11 @@ angular.module("clienteApp").factory("caronaService", function($http){
         numPagina = 1;
       }
       return $http.post('/app/buscarCaronas/' + numPagina, carona);
-    }
+    };
 
     caronaService.solicitarCarona = function(caronaSoliciatada){
       return $http.post('/app/solicitarCarona', caronaSoliciatada);
-    }
+    };
 
     caronaService.getAulaArray = function(){
         var aula =[{value: "8-10"},
@@ -25,7 +26,7 @@ angular.module("clienteApp").factory("caronaService", function($http){
             {value:"18-20"}];
 
         return aula;
-    }
+    };
 
     caronaService.getNumVagasArray = function() {
         var vagas =  [{value: 1},
@@ -35,7 +36,7 @@ angular.module("clienteApp").factory("caronaService", function($http){
             {value: 5}];
 
         return vagas;
-    }
+    };
 
     caronaService.getDiaSemanasArray = function() {
         var diaSemana = [{Id: 0, value: "Segunda"},
@@ -45,7 +46,7 @@ angular.module("clienteApp").factory("caronaService", function($http){
             {Id: 4, value:"Sexta"}];
 
         return diaSemana;
-    }
+    };
 
     caronaService.getBairrosArray = function(){
         var bairros = [{Id: 1, value:"Malvinas", add: false},
@@ -63,10 +64,10 @@ angular.module("clienteApp").factory("caronaService", function($http){
             {Id: 13, value:"Ramadinha", add: false},
             {Id: 14, value:"Dinamérica", add: false},
             {Id: 15, value:"São José", add: false},
-        ]
+        ];
 
         return bairros;
-    }
+    };
 
     return caronaService;
 

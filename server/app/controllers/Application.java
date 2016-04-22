@@ -32,11 +32,8 @@ public class Application extends Controller {
 
     public Result testaFoto()
     {
-        final String DIRECTORY = "/app";
-        System.out.println("ss");
         Http.MultipartFormData request = request().body().asMultipartFormData();
         List<Http.MultipartFormData.FilePart> targetFiles = request.getFiles();
-        System.out.println("ss");
         byte[] data;
         File file = null;
         for (int i = 0; i < targetFiles.size(); i++)
@@ -49,7 +46,7 @@ public class Application extends Controller {
             return ok(data).as("image");
         }
 
-        return ok("gg");
+        return ok("Imagem inválida");
     }
 
 }

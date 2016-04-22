@@ -36,11 +36,11 @@ public class SolicitacaoController extends Controller{
     public Result aceitarCarona(){
         JsonNode json = request().body().asJson();
         Solicitacao solicitacao = Json.fromJson(json, Solicitacao.class);
-        System.out.println(json);
         List<Solicitacao> solicitacoes = SistemaSolicitacao.getInstance().getSolicitacao();
         solicitacao.getCarona().setMotorista(UsuarioController.usuarioAutenticado());
         String telefone = null;
 
+        System.out.println(Json.toJson(solicitacao));
         for(Solicitacao s: solicitacoes){
             Carona carona = s.getCarona();
             if(s.equals(solicitacao) && solicitacao.getCarona().equals(carona)){
@@ -55,8 +55,8 @@ public class SolicitacaoController extends Controller{
             }
         }
 
-        for(Carona c : SistemaCaronas.getInstance().getCaronas()){
-            System.out.println(Json.toJson(c));
+        for(Solicitacao s : solicitacoes){
+            System.out.println(Json.toJson(s));
         }
 
 
@@ -91,7 +91,7 @@ public class SolicitacaoController extends Controller{
         }
 
         while(solicitacao != null && quantElementosLista < NUM_ITENS_PAGINA && !fimDaLista){
-            if(!solicitacao.getStatus().equals(Status.ACEITO)){
+            if(!solicitacao.getStatus().equals(Status.REJEITADO)){
                 Solicitacao sol = new Solicitacao();
                 Carona carona = new Carona();
                 Endereco end = new Endereco();

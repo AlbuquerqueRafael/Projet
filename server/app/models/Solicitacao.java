@@ -23,6 +23,7 @@ public class Solicitacao {
 
     }
 
+    //necessário para mapeação JSON
     public Solicitacao(){
 
     }

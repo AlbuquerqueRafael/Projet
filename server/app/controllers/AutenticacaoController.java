@@ -30,6 +30,7 @@ public class AutenticacaoController extends Controller {
                 SistemaLog.novaMensagemLog(usuario.getEmail() + " acabou de logar");
                 Usuario newUsuario = new Usuario();
                 newUsuario.setEmail(usuario.getEmail());
+                newUsuario.setNome(usuario.getNome());
                 newUsuario.setEndereco(usuario.getEndereco());
                 return ok(Json.toJson(newUsuario));
             }

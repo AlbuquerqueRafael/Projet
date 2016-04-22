@@ -15,6 +15,7 @@ public class Endereco {
         this.bairro = bairro;
     }
 
+    //necessário para mapeação JSON
     public Endereco(){
 
     }

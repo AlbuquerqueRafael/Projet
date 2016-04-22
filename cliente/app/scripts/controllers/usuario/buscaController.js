@@ -61,8 +61,6 @@ angular.module("clienteApp").controller("buscaCtrl", function($scope, caronaServ
       $scope.infoCaronas = info;
       $scope.error = false;
       $scope.quantidadeElementosPagina =  $scope.infoCaronas.length;
-      console.log(info);
-
     }).error(function(erro){
       $scope.error = true;
       $scope.errorMessage = erro;

@@ -91,6 +91,10 @@ angular.module("clienteApp")
 
         }
 
+        $scope.cancelar = function(){
+          $location.path('/horario');
+        }
+
 
 
 

@@ -32,13 +32,15 @@ public class Carona {
         this.motorista = motorista;
     }
 
+    //necessário para mapeação JSON
     public Carona(){
         this.listaPassageiros = new ArrayList<Usuario>();
     }
 
-    public Carona(Horario horario, int vagas, Endereco endereco, TipoCarona tipo){
+    //necessário para limitar as informações que o cliente deve receber
+    public Carona(Horario horario, int vagas, Usuario motorista, TipoCarona tipo){
         this.vagas = vagas;
-        this.endereco = endereco;
+        this.motorista = motorista;
         this.tipo = tipo;
         this.horario = horario;
     }

@@ -1,13 +1,17 @@
 package controllers;
 
 
+import exception.FotoInvalidaException;
 import models.*;
 import play.libs.Json;
 import play.mvc.*;
 import sistemasInfo.SistemaCaronas;
 import sistemasInfo.SistemaLog;
 import sistemasInfo.SistemaUsuarios;
+import play.mvc.Http.*;
+import play.mvc.Http.MultipartFormData.FilePart;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,10 +57,8 @@ public class UsuarioController extends Controller {
         for(Carona carona : allCaronas){
             for(Usuario passageiro: carona.getListaPassageiros()){
                 if(usuarioAtual.equals(passageiro)){
-                    Endereco endereco = carona.getEndereco();
-
-                    Carona newCarona = new Carona(carona.getHorario(),carona.getVagas(),
-                            carona.getEndereco(), carona.getTipo());
+                    Usuario newMotorista = new Usuario(carona.getMotorista().getEmail(), carona.getMotorista().getTelefone());
+                    Carona newCarona = new Carona(carona.getHorario(),carona.getVagas(), newMotorista, carona.getTipo());
                     caronasComoPassageiro.add(newCarona);
                 }
             }
@@ -66,14 +68,48 @@ public class UsuarioController extends Controller {
 
     public Result getCaronasComoMotoristas(){
         List<Carona> caronasComoMotorista = new ArrayList<Carona>();
-        for(Carona carona : sistemaCaronas.getCaronas()){
-            if(UsuarioController.usuarioAutenticado().equals(carona.getMotorista())){
+        for (Carona carona : sistemaCaronas.getCaronas()) {
+            if (UsuarioController.usuarioAutenticado().equals(carona.getMotorista())) {
                 caronasComoMotorista.add(carona);
             }
         }
         return ok(Json.toJson(caronasComoMotorista));
     }
 
+
+    public Result updateFoto() {
+        play.mvc.Http.MultipartFormData<File> body = request().body().asMultipartFormData();
+        play.mvc.Http.MultipartFormData.FilePart<File> picture = body.getFile("picture");
+        if (picture != null) {
+            String fileName = picture.getFilename();
+            String contentType = picture.getContentType();
+            java.io.File file = picture.getFile();
+            return ok("File uploaded");
+        } else {
+            flash("error", "Missing file");
+            return badRequest();
+        }
+    }
+
+    public static play.mvc.Result setFo() {
+        play.mvc.Http.MultipartFormData<File> body = request().body().asMultipartFormData();
+        play.mvc.Http.MultipartFormData.FilePart<File> picture = body.getFile("picture");
+        if (picture != null) {
+            String fileName = picture.getFilename();
+            String contentType = picture.getContentType();
+            java.io.File file = picture.getFile();
+            return ok("File uploaded");
+        } else {
+            flash("error", "Missing file");
+            return badRequest();
+        }
+    }
+
+    public Result getFoto() {
+        byte[] data;
+        data = new byte[(int) usuarioAutenticado().getFoto().length()];
+        return ok(data).as("image");
+    }
 
 
 

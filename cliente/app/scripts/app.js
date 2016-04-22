@@ -58,7 +58,7 @@ angular
         requireLogin : false
       })
       .when('/cadastroHome', {
-        templateUrl: 'views/usuario/cadastro.html',
+        templateUrl: 'views/inicio/cadastro.html',
         controller: 'MainCtrl',
         requireLogin : true
       })

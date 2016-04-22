@@ -7,6 +7,8 @@
 angular.module("clienteApp").controller("horarioCtrl", function($scope, horarioService, mainService, $filter, $location) {
     $scope.tab = 1;
     $scope.error = false;
+    $scope.usuario = mainService.getUserAtual();
+    console.log($scope.usuario)
 
     $scope.horariosMotoristas = function() {
       horarioService.getHorariosMotorista().success(function (caronas) {

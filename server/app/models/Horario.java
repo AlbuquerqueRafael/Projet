@@ -17,6 +17,7 @@ public class Horario{
         this.dia = dia;
     }
 
+    //necessário para mapeação JSON
     public Horario(){
 
     }

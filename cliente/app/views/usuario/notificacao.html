@@ -24,19 +24,18 @@
 </div>
 
 
+<div class="col-md-2">
+  <div id='cssmenu'>
+    <ul>
+      <li> <a class="button hvr-bounce-to-bottom" ng-click="solicitacoesRejeitadas()" ><span>CARONAS REJEITADAS</span></a> </li>
+      <li> <a class="button hvr-bounce-to-left"  ng-click="tabs=1"><span>CARONAS PENDENTES</span></a> </li>
+    </ul>
+  </div>
+</div>
 <div class="containerNotificacao">
-
- <!-- <div class="col-md-2">
-    <div id='cssmenu'>
-      <ul>
-        <li> <a class="button hvr-bounce-to-bottom" ng-click="solicitacoesAceitas()" ><span>CARONAS BEM-SUCEDIDAS</span></a> </li>
-        <li> <a class="button hvr-bounce-to-left" ng-click="solicitacoesPendentes()" ><span>CARONAS PENDENTES</span></a> </li>
-      </ul>
-    </div>
-  </div>-->
-  <div class="row" id = "news">
+  <div class="row" id = "news" ng-if="tabs==1">
     <div ng-repeat="solicitacao in solicitacoes">
-      <div class="col-md-4">
+      <div class="col-md-2 col-md-offset-1">
         <div class="panel panel-primary"  id = "panelNotification">
           <div class="panel-heading">
             <b>Carona-me</b>
@@ -62,10 +61,10 @@
             <br>
             <div id = "alignText">
 
-              <button type="button" data-ng-click="aceitarSolicitacao(solicitacao)" data-toggle="modal" data-target="#myModal" id = "aceitarCarona" class="btn btn-default">
+              <button type="button" ng-click="aceitarSolicitacao(solicitacao)" data-toggle="modal" data-target="#myModal" id = "aceitarCarona" class="btn btn-default">
                 Aceitar
               </button>
-              <button type="button" id = "rejeitarCarona" class="btn btn-default">
+              <button type="button" id = "rejeitarCarona" ng-click="rejeitarPedido(solicitacao)" class="btn btn-default">
                 Rejeitar
               </button>
             </div>
@@ -74,9 +73,23 @@
       </div>
     </div>
   </div>
+  <div class="col-md-4 col-md-offset-3" ng-if="tabs==2">
+    <table class="table table-striped tabelaHorario">
+      <thead>
+      <tr class = "colorHorario">
+        <th>Notificacoes</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="mensagem in mensagens">
+        <td>{{mensagem}}</td>
+      </tr>
+      </tbody>
+    </table>
+   </div>
 </div>
 
-<div class="container" >
+<div class="container">
   <div class="modal fade" id="myModal" role="dialog" >
     <div class="modal-dialog modal-sm notificationPop">
       <div class="modal-content notificationPop">
@@ -85,7 +98,7 @@
           <h4 class="modal-title">Você aceitou a carona!</h4>
         </div>
         <div class="modal-body notificationPopText">
-          <p id="alignText">>O telefone do passageiro é :<br> (083) {{telefone}}></p>
+          <p id="alignText">O telefone do passageiro é :<br> (083) {{telefone}}></p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
