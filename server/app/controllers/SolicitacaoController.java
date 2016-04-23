@@ -55,7 +55,7 @@ public class SolicitacaoController extends Controller{
                 carona.novoPassageiro(solicitacao.getPassageiro());
                 carona.setVagas(--vagas);
                 telefone = sol.getPassageiro().getTelefone();
-                SistemaSolicitacao.getInstance().removerSolicitacao(s);
+                SistemaSolicitacao.getInstance().removerSolicitacao(sol);
                 SistemaLog.novaMensagemLog(carona.getMotorista().getEmail() + " aceitou o pedido de carona de " + sol.getPassageiro().getEmail());
                 break;
             }
