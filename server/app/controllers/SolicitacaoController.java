@@ -55,6 +55,9 @@ public class SolicitacaoController extends Controller{
                 carona.novoPassageiro(solicitacao.getPassageiro());
                 carona.setVagas(--vagas);
                 telefone = sol.getPassageiro().getTelefone();
+                if(vagas == 1) {
+                    limpaSolicitacoesSemVagas(sol.getCarona());
+                }
                 SistemaSolicitacao.getInstance().removerSolicitacao(sol);
                 SistemaLog.novaMensagemLog(carona.getMotorista().getEmail() + " aceitou o pedido de carona de " + sol.getPassageiro().getEmail());
                 break;
@@ -119,5 +122,13 @@ public class SolicitacaoController extends Controller{
         }
 
         return ok(Json.toJson(filterPassageiros));
+    }
+
+    private void limpaSolicitacoesSemVagas(Carona carona){
+        for(Solicitacao s : SistemaSolicitacao.getInstance().getSolicitacao()){
+            if(s.getCarona().equals(carona) && carona.getVagas() == 0){
+                s.setStatus(Status.REJEITADO);
+            }
+        }
     }
 }
