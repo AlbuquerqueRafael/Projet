@@ -76,7 +76,7 @@ public class Util {
     }
 
     public static boolean isEnderecoCompativel(Carona carona, Carona comparada){
-        if(carona.getEndereco().equals(comparada.getEndereco()) || carona.getRota().contains(comparada) ){
+        if(carona.getEndereco().equals(comparada.getEndereco()) || carona.getRota().contains(comparada.getEndereco().getBairro()) ){
             return true;
         }
 
