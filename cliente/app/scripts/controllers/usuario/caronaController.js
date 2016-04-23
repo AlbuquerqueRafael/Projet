@@ -9,8 +9,6 @@ angular.module("clienteApp")
         $scope.horarios = caronaService.getAulaArray();
         $scope.diaSemanas = caronaService.getDiaSemanasArray();
         $scope.NumVagas = caronaService.getNumVagasArray();
-
-
         $scope.tabs = true;
         $scope.routes = [];
         $scope.horario = {};
@@ -19,9 +17,10 @@ angular.module("clienteApp")
         $scope.vagas = $scope.NumVagas[2];
         $scope.rota = $scope.bairros[0];
         $scope.opcaoCarona = "0";
+      $scope.usuario = mainService.getUserAtual();
         $scope.bairro = $scope.usuario.endereco.bairro;
         $scope.rua = $scope.usuario.endereco.rua;
-        $scope.usuario = mainService.getUserAtual();
+
 
 
         $scope.inicia = function(){
