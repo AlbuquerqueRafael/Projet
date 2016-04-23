@@ -145,11 +145,12 @@ public class SistemaUsuarios{
         }
 
 		if(usr.getEmail() == null){
-			throw new EmailRepetidoException("Informe um bairro");
+			throw new EmailRepetidoException("Informe um email valido");
 		}
 
-		usuarios.add(usr);
-
+		if(usr.getEndereco().getBairro() == null){
+			throw new BairroInvalidoException("Informe um bairro válido");
+		}
 	}
 
 	public void removerUsuario(Usuario usr) {

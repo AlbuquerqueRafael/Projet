@@ -95,5 +95,9 @@ angular.module("clienteApp").run(function($rootScope, $location, menuService, ma
           $location.path("/inicio");
     }
 
+    //Algoritmo para mudar a pagina inicial após logar.
+    if("/home" === menuService.getRoute() && $location.path() === "/"){
+      $location.path("/horario");
+    }
   });
 });

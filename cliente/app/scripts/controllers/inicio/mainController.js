@@ -33,6 +33,7 @@ angular.module('clienteApp')
     $scope.cadastrar = function(usuario) {
 
       mainService.cadastrar(usuario).success(function (info) {
+        $location.path("/");
       }).error(function (error) {
         $scope.error = true;
         $scope.errorMessage = error;

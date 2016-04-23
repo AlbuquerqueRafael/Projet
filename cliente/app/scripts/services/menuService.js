@@ -18,7 +18,7 @@ angular.module("clienteApp").factory("menuService", function($location, $cookieS
 
   service.getMenuInicial = function(){
     var menus = [{path : "/", href : "#/", nome: "Inicio", class:"home", slide:1},
-      {path : "/sobre", href : "http://bit.ly/1VIe2p0", nome: "Sobre", class: "star", slide:2},
+      {path : "/sobre", href : "http://bit.ly/1SCfvMC", nome: "Sobre", class: "star", slide:2},
       {path : "/team", href : "#/team", nome: "Team", class: "glass", slide:3}
     ];
 
