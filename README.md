@@ -1,6 +1,9 @@
-# Projeto para disciplina de Sistemas de Informação I - 2015.2
+# Projeto para disciplina de Sistemas de Informação I (2015.2) - Carona-me
 
-O projeto em tela trata de um sistema de caronas universitárias para a UFCG.
+O projeto em tela visa oferecer a possibilidade de um sistema de caronas solidárias para a UFCG. A nossa equipe é composta por : Jobson Lucas, Rafael Albuquerque, João Victor Mafra e Gileade Kelvin. 
+
+Link para o 
+  <a href = "https://docs.google.com/document/d/1ssz063ME3spiFODu3CDAIzaU5S8Ody05DdcUnM95z2Y/edit?usp=sharing">Drive</a>
 
 Tutorial de como proceder para fazer a aplicação funcionar:
 - Clonar o repositório;
