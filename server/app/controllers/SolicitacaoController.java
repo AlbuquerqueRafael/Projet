@@ -55,7 +55,7 @@ public class SolicitacaoController extends Controller{
                 carona.novoPassageiro(solicitacao.getPassageiro());
                 carona.setVagas(--vagas);
                 telefone = sol.getPassageiro().getTelefone();
-                if(vagas == 1) {
+                if(vagas == 0) {
                     limpaSolicitacoesSemVagas(sol.getCarona());
                 }
                 SistemaSolicitacao.getInstance().removerSolicitacao(sol);
