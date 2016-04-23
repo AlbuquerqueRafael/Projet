@@ -51,10 +51,6 @@ public class AutenticacaoController extends Controller {
             return badRequest(exception.getMessage());
         }
 
-
-
-
-
         SistemaLog.novaMensagemLog(usuario.getEmail() + " acabou de se cadastrar no sistema");
 
         return ok(Json.toJson(usuario));

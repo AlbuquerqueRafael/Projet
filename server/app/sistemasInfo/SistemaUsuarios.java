@@ -151,6 +151,7 @@ public class SistemaUsuarios{
 		if(usr.getEndereco().getBairro() == null){
 			throw new BairroInvalidoException("Informe um bairro válido");
 		}
+		usuarios.add(usr);
 	}
 
 	public void removerUsuario(Usuario usr) {
