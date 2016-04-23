@@ -49,34 +49,29 @@ angular
       .when('/home', {
         templateUrl: 'views/usuario/home.html',
         controller: 'homeCtrl',
-        requireLogin : false
+        requireLogin : true
 
       })
       .when('/horario', {
         templateUrl: 'views/usuario/horario.html',
         controller: 'horarioCtrl',
-        requireLogin : false
-      })
-      .when('/cadastroHome', {
-        templateUrl: 'views/inicio/cadastro.html',
-        controller: 'MainCtrl',
         requireLogin : true
       })
       .when('/carona', {
         templateUrl: 'views/usuario/carona.html',
         controller: 'caronaCtrl',
 
-        requireLogin : false
+        requireLogin : true
       })
       .when('/buscar', {
         templateUrl: 'views/usuario/busca.html',
         controller: 'buscaCtrl',
-        requireLogin : false
+        requireLogin : true
       })
       .when('/notificacao', {
         templateUrl: 'views/usuario/notificacao.html',
         controller: 'notifyCtrl',
-        requireLogin : false
+        requireLogin : true
       })
       .otherwise({
         redirectTo: '/'

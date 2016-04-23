@@ -1,12 +1,6 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name clienteApp.controller:MainCtrl
- * @description
- * # MainCtrl
- * Controller of the clienteApp
- */
+
 angular.module('clienteApp')
   .controller('MainCtrl', function ($scope, $http, $location, mainService, menuService, caronaService) {
 
@@ -36,22 +30,16 @@ angular.module('clienteApp')
       });
     }
 
-    $scope.cadastrar = function(usuario){
-      if(usuario.endereco.bairro.value === undefined){
+    $scope.cadastrar = function(usuario) {
+
+      mainService.cadastrar(usuario).success(function (info) {
+      }).error(function (error) {
         $scope.error = true;
-        $scope.errorMessage = "Selecione um bairro";
-      }else {
-        usuario.endereco.bairro = usuario.endereco.bairro.value;
+        $scope.errorMessage = error;
 
-        mainService.cadastrar(usuario).success(function (info) {
-          $location.path("/");
-        }).error(function (error) {
-          $scope.error = true;
-          $scope.errorMessage = error;
+      });
+    };
 
-        });
-      }
-    }
 
     $scope.trocar = function(){
       $location.path('/cadastro');

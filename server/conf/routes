@@ -10,10 +10,8 @@ POST    /app/cadastrar             controllers.AutenticacaoController.postCadast
 POST    /app/buscarCaronas/:id     controllers.BuscaController.buscarCarona(id : Long)
 
 GET     /app/getUsers              controllers.UsuarioController.getAllCadastro()
-POST     /app/getFoto               controllers.UsuarioController.getFoto()
 GET    /app/caronasMotorista       controllers.UsuarioController.getCaronasComoMotoristas()
 GET    /app/caronasPassageiro      controllers.UsuarioController.getCaronasComoPassageiro()
-POST    /app/updateFoto            controllers.UsuarioController.updateFoto()
 POST    /app/logout                controllers.UsuarioController.logout()
 
 GET     /app/caronasRejeitadas       controllers.CaronaController.caronasRejeitadas()

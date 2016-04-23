@@ -44,8 +44,8 @@ public class AutenticacaoController extends Controller {
 
      public Result postCadastro() {
         JsonNode json = request().body().asJson();
-         System.out.println(json.toString());
         Usuario usuario = Json.fromJson(json, Usuario.class);
+
         try{
            sistemaUsuarios.adicionarUsuario(usuario);
         } catch (DadosInvalidosException exception){
@@ -53,10 +53,14 @@ public class AutenticacaoController extends Controller {
         }
 
 
+
+
+
         SistemaLog.novaMensagemLog(usuario.getEmail() + " acabou de se cadastrar no sistema");
 
         return ok(Json.toJson(usuario));
     }
+
 
 
 }

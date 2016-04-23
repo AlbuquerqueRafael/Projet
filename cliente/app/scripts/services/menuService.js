@@ -27,9 +27,8 @@ angular.module("clienteApp").factory("menuService", function($location, $cookieS
 
 
   service.getMenuUsuario = function(){
-    var menus = [{path : "/home", href : "#/home", nome: "Home", class:"home"},
+    var menus = [
       {path : "/horario", href : "#/horario", nome: "Horario", class:"time"},
-      {path : "/cadastroHome", href : "#/cadastroHome", nome: "Cadastrar", class: "user"},
       {path : "/buscar", href : "#/buscar", nome: "Pedir Carona", class: "map-marker"},
       {path : "/notificacao", href: "#/notificacao", nome: "Notificação", class : "alert"},
       {path : "/sair", href: "#/sair", nome: "Sair", class: "leaf"}

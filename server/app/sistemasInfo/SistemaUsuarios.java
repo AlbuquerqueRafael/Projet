@@ -147,7 +147,9 @@ public class SistemaUsuarios{
 		if(usr.getEmail() == null){
 			throw new EmailRepetidoException("Informe um bairro");
 		}
+
 		usuarios.add(usr);
+
 	}
 
 	public void removerUsuario(Usuario usr) {
