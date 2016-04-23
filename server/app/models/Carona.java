@@ -44,6 +44,20 @@ public class Carona {
         this.tipo = tipo;
         this.horario = horario;
     }
+    //necessário para limitar as informações que o cliente deve receber
+    public Carona(Horario horario, TipoCarona tipo, Endereco endereco, int vagas){
+        this.horario = horario;
+        this.tipo = tipo;
+        this.endereco = endereco;
+        this.vagas = vagas;
+    }
+
+    public Carona(Horario horario, Usuario motorista){
+        this.horario = horario;
+        this.motorista = motorista;
+    }
+
+
 
     public int getVagas() {
         return vagas;

@@ -20,6 +20,9 @@ public class BuscaController extends Controller {
 
     public static final int NUM_ITENS_PAGINA = 6;
 
+    /* Realiza a busca baseada nos criterios recebidos. Retorna apenas
+    alguns resultados com o objetivo de otimizar a busca. Outros resultados sao mostrados em outras paginas
+    */
     public Result buscarCarona(Long id){
         JsonNode json = request().body().asJson();
         Carona carona = Json.fromJson(json, Carona.class);
@@ -49,25 +52,15 @@ public class BuscaController extends Controller {
             return badRequest("Carona não encontrada");
         }
 
-        while(caroItera != null && quantElementosLista < 6 && !fimDaLista){
+        while(caroItera != null && quantElementosLista < NUM_ITENS_PAGINA && !fimDaLista){
             if(!Util.isValidHorarioCarona(caroItera, carona) && Util.isEnderecoCompativel(caroItera, carona)
                       && caroItera.getTipo().equals(carona.getTipo()) && caroItera.getVagas() > 0){
 
-                  Carona templateCarona = new Carona();
-                  Usuario templateMotorista = new Usuario();
-
                   Usuario motoristaCarona = caroItera.getMotorista();
-
-                  templateMotorista.setNome(motoristaCarona.getNome());
-                  templateMotorista.setEmail(motoristaCarona.getEmail());
-                  templateMotorista.setTelefone(motoristaCarona.getTelefone());
                   Horario horarioCarona = caroItera.getHorario();
 
-
-                  templateCarona.setHorario(horarioCarona);
-                  templateCarona.setMotorista(templateMotorista);
-
-
+                  Usuario templateMotorista = new Usuario(motoristaCarona.getNome(), motoristaCarona.getEmail(), motoristaCarona.getTelefone());
+                  Carona templateCarona = new Carona(horarioCarona, templateMotorista);
 
                   infoCaronas.add(templateCarona);
 
@@ -94,25 +87,25 @@ public class BuscaController extends Controller {
         List<Carona> caronasGerais = SistemaCaronas.getInstance().getCaronas();
         boolean UserAutPertenceCarona= false;
         boolean solicitacaoJaFeita = false;
-        for(Carona c : caronasGerais){
-            if(UsuarioController.usuarioAutenticado().equals(c.getMotorista())){
-                caronasUsuario.add(c);
+        for(Carona carona : caronasGerais){
+            if(UsuarioController.usuarioAutenticado().equals(carona.getMotorista())){
+                caronasUsuario.add(carona);
                 UserAutPertenceCarona = true;
             }else{
-                for(Usuario passageiro :c.getListaPassageiros()){
+                for(Usuario passageiro :carona.getListaPassageiros()){
                     if(UsuarioController.usuarioAutenticado().equals(passageiro)){
-                        caronasUsuario.add(c);
+                        caronasUsuario.add(carona);
                         UserAutPertenceCarona = true;
                     }
                 }
             }
 
-            if(isRequestAlreadyMade(c)){
+            if(isRequestAlreadyMade(carona)){
                 solicitacaoJaFeita = true;
             }
 
             if(!UserAutPertenceCarona && !solicitacaoJaFeita){
-                caronasFiltradas.add(c);
+                caronasFiltradas.add(carona);
             }
 
             UserAutPertenceCarona = false;

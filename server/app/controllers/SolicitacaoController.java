@@ -23,9 +23,9 @@ public class SolicitacaoController extends Controller{
         JsonNode json = request().body().asJson();
         Carona caronaSolicitada = Json.fromJson(json, Carona.class);
 
-        for(Carona c : SistemaCaronas.getInstance().getCaronas()){
-            if(caronaSolicitada.equals(c)){
-                caronaSolicitada = c;
+        for(Carona carona : SistemaCaronas.getInstance().getCaronas()){
+            if(caronaSolicitada.equals(carona)){
+                caronaSolicitada = carona;
             }
         }
 
@@ -47,22 +47,18 @@ public class SolicitacaoController extends Controller{
         String telefone = null;
 
         System.out.println(Json.toJson(solicitacao));
-        for(Solicitacao s: solicitacoes){
-            Carona carona = s.getCarona();
-            if(s.equals(solicitacao) && solicitacao.getCarona().equals(carona)){
+        for(Solicitacao sol: solicitacoes){
+            Carona carona = sol.getCarona();
+            if(sol.equals(solicitacao) && solicitacao.getCarona().equals(carona)){
                 int vagas = solicitacao.getCarona().getVagas();
 
                 carona.novoPassageiro(solicitacao.getPassageiro());
                 carona.setVagas(--vagas);
-                telefone = s.getPassageiro().getTelefone();
+                telefone = sol.getPassageiro().getTelefone();
                 SistemaSolicitacao.getInstance().removerSolicitacao(s);
-                SistemaLog.novaMensagemLog(carona.getMotorista().getEmail() + " aceitou o pedido de carona de " + s.getPassageiro().getEmail());
+                SistemaLog.novaMensagemLog(carona.getMotorista().getEmail() + " aceitou o pedido de carona de " + sol.getPassageiro().getEmail());
                 break;
             }
-        }
-
-        for(Solicitacao s : solicitacoes){
-            System.out.println(Json.toJson(s));
         }
 
 
@@ -70,11 +66,14 @@ public class SolicitacaoController extends Controller{
 
     }
 
+
+    /* Assim como o metodo de busca, pega apenas parte das solicitacoes, usando paginacao para passar por todas as solicitacoes
+    */
     public Result getSolicitacoesCaronas(Long id){
         List<Solicitacao> solicitacoes = new ArrayList<Solicitacao>();
-        for(Solicitacao c : SistemaSolicitacao.getInstance().getSolicitacao()){
-            if(UsuarioController.usuarioAutenticado().equals(c.getCarona().getMotorista())){
-                solicitacoes.add(c);
+        for(Solicitacao pedido : SistemaSolicitacao.getInstance().getSolicitacao()){
+            if(UsuarioController.usuarioAutenticado().equals(pedido.getCarona().getMotorista())){
+                solicitacoes.add(pedido);
             }
         }
 
@@ -92,37 +91,19 @@ public class SolicitacaoController extends Controller{
             return badRequest("Sem solicitacoes");
         }
 
-        for(Solicitacao s : solicitacoes){
-            System.out.println(Json.toJson(s));
-        }
-
         while(solicitacao != null && quantElementosLista < NUM_ITENS_PAGINA && !fimDaLista){
             if(!solicitacao.getStatus().equals(Status.REJEITADO)){
-                Solicitacao sol = new Solicitacao();
-                Carona carona = new Carona();
-                Endereco end = new Endereco();
-                Usuario usuario = new Usuario();
-                carona.setEndereco(end);
+               
+                Usuario usuario = new Usuario(solicitacao.getPassageiro().getNome(), solicitacao.getPassageiro().getEmail(), solicitacao.getPassageiro().getTelefone());
 
                 Horario horarioSolicitacao = solicitacao.getCarona().getHorario();
                 TipoCarona tipo = solicitacao.getCarona().getTipo();
-                String nomePassageiro = solicitacao.getPassageiro().getNome();
-                String emailPassageiro = solicitacao.getPassageiro().getEmail();
-                String telefonePassageiro = solicitacao.getPassageiro().getTelefone();
                 Endereco endereco = solicitacao.getCarona().getEndereco();
                 int vagas = solicitacao.getCarona().getVagas();
 
-                usuario.setNome(nomePassageiro);
-                usuario.setEmail(emailPassageiro);
-                usuario.setTelefone(telefonePassageiro);
+                Carona carona = new Carona(horarioSolicitacao, tipo, endereco, vagas);
 
-                carona.setHorario(horarioSolicitacao);
-                carona.setTipo(tipo);
-                carona.setEndereco(endereco);
-                carona.setVagas(vagas);
-
-                sol.setCarona(carona);
-                sol.setPassageiro(usuario);
+                Solicitacao sol = new Solicitacao(carona, usuario);
 
                 filterPassageiros.add(sol);
             }

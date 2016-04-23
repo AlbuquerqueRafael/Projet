@@ -46,6 +46,18 @@ public class Usuario{
         this.email = email;
     }
 
+    public Usuario(String nome, Endereco endereco, String email){
+        this.nome = nome;
+        this.endereco = endereco;
+        this.email = email;
+    }
+
+    public Usuario(String nome, String email, String telefone){
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
+    }
+
     public File getFoto(){
         return this.foto;
     }

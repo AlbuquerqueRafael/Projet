@@ -29,10 +29,7 @@ public class AutenticacaoController extends Controller {
             if(usuario.getEmail().equals(user.getEmail()) && usuario.getSenha().equals(user.getSenha())){
                 autenticar(usuario);
                 SistemaLog.novaMensagemLog(usuario.getEmail() + " acabou de logar");
-                Usuario newUsuario = new Usuario();
-                newUsuario.setEmail(usuario.getEmail());
-                newUsuario.setNome(usuario.getNome());
-                newUsuario.setEndereco(usuario.getEndereco());
+                Usuario newUsuario = new Usuario(usuario.getNome(), usuario.getEndereco(), usuario.getEmail());
                 return ok(Json.toJson(newUsuario));
             }
         }
@@ -52,7 +49,6 @@ public class AutenticacaoController extends Controller {
         try{
            sistemaUsuarios.adicionarUsuario(usuario);
         } catch (DadosInvalidosException exception){
-            System.out.println(exception.getMessage());
             return badRequest(exception.getMessage());
         }
 
