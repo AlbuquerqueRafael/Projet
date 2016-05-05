@@ -2,12 +2,11 @@ package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import models.*;
-import models.enums.Status;
 import models.enums.TipoCarona;
 import play.libs.Json;
 import play.mvc.*;
 import sistemasInfo.SistemaCaronas;
-import sistemasInfo.SistemaLog;
+import services.*;
 import sistemasInfo.SistemaSolicitacao;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +32,8 @@ public class SolicitacaoController extends Controller{
 
         SistemaSolicitacao.getInstance().adicionarSolicitacao(solicitacao);
 
-        SistemaLog.novaMensagemLog(solicitacao.getPassageiro().getEmail() + " solicitou uma carona a " + solicitacao.getCarona().getMotorista().getEmail());
+        ServiceLog.novaMensagemLog(solicitacao.getPassageiro().getEmail() + " solicitou uma carona a " + solicitacao.getCarona().getMotorista().getEmail());
+        ServiceNotificacao.notificaMotoristaPedido(solicitacao);
 
         return ok(Json.toJson("Solicitação concluida!"));
 
@@ -59,7 +59,9 @@ public class SolicitacaoController extends Controller{
                     limpaSolicitacoesSemVagas(sol.getCarona());
                 }
                 SistemaSolicitacao.getInstance().removerSolicitacao(sol);
-                SistemaLog.novaMensagemLog(carona.getMotorista().getEmail() + " aceitou o pedido de carona de " + sol.getPassageiro().getEmail());
+                ServiceLog.novaMensagemLog(carona.getMotorista().getEmail() + " aceitou o pedido de carona de " + sol.getPassageiro().getEmail());
+                ServiceNotificacao.notificaPassageiroAceito(sol);
+
                 break;
             }
         }
@@ -95,7 +97,6 @@ public class SolicitacaoController extends Controller{
         }
 
         while(solicitacao != null && quantElementosLista < NUM_ITENS_PAGINA && !fimDaLista){
-            if(!solicitacao.getStatus().equals(Status.REJEITADO)){
                
                 Usuario usuario = new Usuario(solicitacao.getPassageiro().getNome(), solicitacao.getPassageiro().getEmail(), solicitacao.getPassageiro().getTelefone());
 
@@ -109,7 +110,7 @@ public class SolicitacaoController extends Controller{
                 Solicitacao sol = new Solicitacao(carona, usuario);
 
                 filterPassageiros.add(sol);
-            }
+            
 
             quantElementosLista = filterPassageiros.size();
             if (++count < limite) {
@@ -127,7 +128,9 @@ public class SolicitacaoController extends Controller{
     private void limpaSolicitacoesSemVagas(Carona carona){
         for(Solicitacao s : SistemaSolicitacao.getInstance().getSolicitacao()){
             if(s.getCarona().equals(carona) && carona.getVagas() == 0){
-                s.setStatus(Status.REJEITADO);
+                ServiceNotificacao.notificaPassageiroRecusado(s);
+                SistemaSolicitacao.getInstance().removerSolicitacao(s);
+
             }
         }
     }

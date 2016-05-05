@@ -1,7 +1,6 @@
 package models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import models.enums.Status;
 
 
 /**
@@ -10,7 +9,6 @@ import models.enums.Status;
 
 public class Solicitacao {
 
-    private Status status;
     private Usuario passageiro;
     @JsonProperty
     private Carona carona;
@@ -19,7 +17,6 @@ public class Solicitacao {
         
         this.carona = c;
         this.passageiro = passageiro;
-        this.status = Status.PENDENTE;
 
     }
 
@@ -35,10 +32,6 @@ public class Solicitacao {
     public Usuario getPassageiro() {
         return passageiro;
     }
-    
-    public Status getStatus() {
-        return status;
-    }
 
     public void setCarona(Carona carona){
         this.carona = carona;
@@ -46,15 +39,6 @@ public class Solicitacao {
 
     public void setPassageiro(Usuario passageiro){
         this.passageiro = passageiro;
-    }
-
-    public boolean setStatus(Status status) {
-        if (this.status == Status.PENDENTE){
-            this.status = status;
-            return true;
-        }
-
-        return false;
     }
 
 

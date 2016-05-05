@@ -6,7 +6,7 @@ import models.*;
 import play.libs.Json;
 import play.mvc.*;
 import sistemasInfo.SistemaCaronas;
-import sistemasInfo.SistemaLog;
+import services.ServiceLog;
 import sistemasInfo.SistemaUsuarios;
 import play.mvc.Http.*;
 import play.mvc.Http.MultipartFormData.FilePart;
@@ -33,7 +33,7 @@ public class UsuarioController extends Controller {
     public Result logout() {
         Usuario usuarioAtual = usuarioAutenticado();
         session().clear();
-        SistemaLog.novaMensagemLog(usuarioAtual.getEmail() + " saiu do sistema");
+        ServiceLog.novaMensagemLog(usuarioAtual.getEmail() + " saiu do sistema");
         return ok("Logged out successfully");
     }
 

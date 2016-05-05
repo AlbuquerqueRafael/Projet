@@ -1,8 +1,0 @@
-Decisões de projeto:
-- Como passageiros e motoristas são papeis assumidos por uma pessoa, faz mais sentido que as entidades motorista e passageiro sejam interfaces, tendo em vista, caso
-fossem herança, o relacionamento estaria amarrado em tempo de compilação, sendo que uma pessoa hoje pode ser passageira, mas amanhã comprar um carro e mudar para motorista.
-O sistema deve ser flexível para permitir isso.
-
-- teste commit
-
-- testando novo commit3

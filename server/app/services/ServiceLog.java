@@ -1,12 +1,12 @@
-package sistemasInfo;
+package services;
 
 
 import org.apache.log4j.Logger;
 
 
-public class SistemaLog {
+public class ServiceLog {
 
-	 final static Logger logger = Logger.getLogger(SistemaLog.class);
+	 final static Logger logger = Logger.getLogger(ServiceLog.class);
 
 	 public static void novaMensagemLog(String message){
 	 	logger.info(message);

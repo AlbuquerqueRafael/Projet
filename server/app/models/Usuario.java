@@ -24,6 +24,8 @@ public class Usuario{
     @JsonProperty
     private Endereco endereco;
 
+    private List<String> novasNotificacoes;
+
 
 
 
@@ -35,6 +37,7 @@ public class Usuario{
         this.senha = senha;
         this.endereco = endereco;
         this.foto = foto;
+        this.novasNotificacoes = new ArrayList<String>();
     }
 
     //necessário para mapeação JSON
@@ -113,6 +116,14 @@ public class Usuario{
 
     public void setEndereco(Endereco endereco){
         this.endereco = endereco;
+    }
+
+    public void adicionaNotificacao(String message){
+        this.novasNotificacoes.add(message);
+    }
+
+    public void removeNotificacao(String message){
+        this.novasNotificacoes.remove(message);
     }
 
     @Override

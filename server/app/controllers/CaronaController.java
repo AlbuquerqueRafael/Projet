@@ -3,11 +3,10 @@ package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import models.*;
-import models.enums.Status;
 import play.libs.Json;
 import play.mvc.*;
 import sistemasInfo.SistemaCaronas;
-import sistemasInfo.SistemaLog;
+import services.*;
 import sistemasInfo.SistemaSolicitacao;
 
 import java.util.ArrayList;
@@ -29,7 +28,7 @@ public class CaronaController extends Controller {
 
         SistemaCaronas.getInstance().adicionarCarona(carona);
 
-        SistemaLog.novaMensagemLog(motorista.getEmail() + " acabou de cadastrar uma nova carona");
+        ServiceLog.novaMensagemLog(motorista.getEmail() + " acabou de cadastrar uma nova carona");
 
 
         return ok("Carona cadastrada com sucesso!");
@@ -45,8 +44,9 @@ public class CaronaController extends Controller {
         for(Solicitacao s: solicitacoes){
             Carona carona = s.getCarona();
             if(s.equals(solicitacao) && solicitacao.getCarona().equals(carona)){
-                s.setStatus(Status.REJEITADO);
-                SistemaLog.novaMensagemLog(carona.getMotorista().getEmail() + " rejeitou pedido de carona de " + s.getPassageiro().getEmail());
+                ServiceLog.novaMensagemLog(carona.getMotorista().getEmail() + " rejeitou pedido de carona de " + s.getPassageiro().getEmail());
+                ServiceNotificacao.notificaPassageiroRecusado(s);
+                SistemaSolicitacao.getInstance().removerSolicitacao(s);
                 break;
             }
         }
@@ -76,6 +76,8 @@ public class CaronaController extends Controller {
 
         return ok(Json.toJson(mensagens));
     }
+
+
 
 
 
