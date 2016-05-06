@@ -119,11 +119,17 @@ public class Usuario{
     }
 
     public void adicionaNotificacao(String message){
+        System.out.println(this.novasNotificacoes);
         this.novasNotificacoes.add(message);
+        System.out.println("Notificou");
     }
 
     public void removeNotificacao(String message){
         this.novasNotificacoes.remove(message);
+    }
+
+    public void setListaNotificacoes(List<String> lista){
+        this.novasNotificacoes = lista;
     }
 
     @Override

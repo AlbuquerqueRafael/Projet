@@ -8,6 +8,7 @@ import play.libs.Json;
 import play.mvc.*;
 import services.*;
 import sistemasInfo.SistemaUsuarios;
+import java.util.ArrayList;
 
 
 import java.util.List;
@@ -45,6 +46,7 @@ public class AutenticacaoController extends Controller {
      public Result postCadastro() {
         JsonNode json = request().body().asJson();
         Usuario usuario = Json.fromJson(json, Usuario.class);
+        usuario.setListaNotificacoes(new ArrayList<String>());
         try{
            sistemaUsuarios.adicionarUsuario(usuario);
         } catch (DadosInvalidosException exception){
