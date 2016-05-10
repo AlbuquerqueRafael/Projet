@@ -73,6 +73,11 @@ angular
         controller: 'notifyCtrl',
         requireLogin : true
       })
+      .when('/solicitacao', {
+        templateUrl: 'views/usuario/solicitacao.html',
+        controller: 'notifyCtrl',
+        requireLogin : true
+      })
       .otherwise({
         redirectTo: '/'
       });
