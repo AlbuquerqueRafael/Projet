@@ -20,15 +20,6 @@
   </div>
 </div>
 
-
-<div class="col-md-2">
-  <div id='cssmenu'>
-    <ul>
-   <!--   <li> <a class="button hvr-bounce-to-bottom" ng-click="solicitacoesRejeitadas()" ><span>CARONAS REJEITADAS</span></a> </li> -->
-      <li> <a class="button hvr-bounce-to-left"  ng-click="tabs=1"><span>CARONAS PENDENTES</span></a> </li>
-    </ul>
-  </div>
-</div>
 <div class="containerNotificacao">
   <div class="row" id = "news" ng-if="tabs==1">
     <div ng-repeat="solicitacao in solicitacoes">
@@ -95,7 +86,7 @@
           <h4 class="modal-title">Você aceitou a carona!</h4>
         </div>
         <div class="modal-body notificationPopText">
-          <p id="alignText">O telefone do passageiro é :<br> (083) {{telefone}}></p>
+          <p id="alignText">O telefone do passageiro é :<br> (083) {{telefone}}</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
