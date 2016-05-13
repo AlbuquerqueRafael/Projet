@@ -86,8 +86,7 @@ angular
   });
 
 angular.module("clienteApp").config(function($translateProvider) {
-  $translateProvider.translations('en', {
-      'label.question.movie': "What is your favorite movie?",      
+  $translateProvider.translations('en', {        
       'cadastro.title': "Sign up!",
       'cadastro.nome': "Name",
       'cadastro.email': "Email",
@@ -100,11 +99,17 @@ angular.module("clienteApp").config(function($translateProvider) {
       'cadastro.telefone': "Phone number",
       'cadastro.telefone.ddd': "Phone number without DDD",
       'cadastro.telefone.check': "Type your phone number", 
+
+      'main.email': "Email",
+      'main.email.type': "Type your email",
+      'main.senha': "Password",
+      'main.senha.type': "Type your password",
+      'main.cadastro': "Sign up",
+
       'label.title': "Vote in Movie?"
   });
   $translateProvider.translations('pt', {      
-      'cadastro.title': "Cadastro!",
-      'label.question.movie': "Qual filme você gosta mais?",
+      'cadastro.title': "Cadastro!",      
       'cadastro.nome': "Nome",
       'cadastro.email': "Email",
       'cadastro.email.check': "Preencha com um email válido. Exemplo caroname@caroname.com",
@@ -116,6 +121,13 @@ angular.module("clienteApp").config(function($translateProvider) {
       'cadastro.telefone': "Telefone",
       'cadastro.telefone.ddd': "Telefone sem DDD",
       'cadastro.telefone.check': "Digite os números do seu telefone",
+
+      'main.email': "Email",
+      'main.email.type': "Digite seu email",
+      'main.senha': "Senha",
+      'main.senha.type': "Digite a senha",
+      'main.cadastro': "Cadastrar",
+
       'label.title': "Vote no Filme"
   });
 

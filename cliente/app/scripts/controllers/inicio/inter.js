@@ -15,11 +15,11 @@ $app.config([‘$translateProvider’, function ($translateProvider) {
     'cadastro.telefone.ddd': "Phone number without DDD",
     'cadastro.telefone.check': "Type your phone number",    
 
-    ‘main.email’: ‘Email’,
-    ‘main.email.type’: ‘Type your email’,
-    ‘main.senha’: ‘Password’,
-    ‘main.senha.type’: ‘Type your password’,
-    ‘main.cadastro’: ‘Sign up’,
+    'main.email': "Email",
+    'main.email.type': "Type your email",
+    'main.senha': "Password",
+    'main.senha.type': "Type your password",
+    'main.cadastro': "Sign up",
 
     ‘home.mudarFoto’: ‘Change your profile picture’,
 
@@ -63,11 +63,11 @@ $app.config([‘$translateProvider’, function ($translateProvider) {
 	'cadastro.telefone.ddd': "Telefone sem DDD",
 	'cadastro.telefone.check': "Digite os números do seu telefone",
 
-    ‘main.email’: ‘Email’,
-    ‘main.email.type’: ‘Digite seu email’,
-    ‘main.senha’: ‘Senha’,
-    ‘main.senha.type’: ‘Digite a senha’,
-    ‘main.cadastro’: ‘Cadastrar’,
+    'main.email': "Email",
+    'main.email.type': "Digite seu email",
+    'main.senha': "Senha",
+    'main.senha.type': "Digite a senha",
+    'main.cadastro': "Cadastrar",
 
     ‘home.mudarFoto’: ‘Mudar foto de perfil’,
 
