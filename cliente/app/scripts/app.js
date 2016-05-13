@@ -18,7 +18,8 @@ angular
     'ngSanitize',
     'ui.bootstrap',
     'angularUtils.directives.dirPagination',
-    'ngFileUpload'
+    'ngFileUpload',
+    'pascalprecht.translate'
 
   ])
   .config(function ($routeProvider) {
@@ -81,7 +82,23 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+
   });
+
+angular.module("clienteApp").config(function($translateProvider) {
+  $translateProvider.translations('en', {
+      'label.question.movie': "What is your favorite movie?",
+      'label.title': "Vote in Movie?"
+  });
+  $translateProvider.translations('pt', {
+      'label.question.movie': "Qual filme você gosta mais?",
+      'label.title': "Vote no Filme"
+  });
+
+  $translateProvider.preferredLanguage('en'); //temos que dizer qual é a default.
+});
+
+
 
 
 angular.module("clienteApp").run(function($rootScope, $location, menuService, mainService){
