@@ -9,6 +9,28 @@ body {
     margin: auto;
 }
 
+#bemVindo:hover{
+  background-color: rgb(0,121,140);
+}
+
+#oferecerCarona{
+  background-color: rgb(0,121,192);
+}
+
+#oferecerCarona:hover{
+  background-color: rgb(0,121,140);
+}
+
+#buscarCarona{
+  background-color: rgb(0,121,192);
+
+}
+
+#buscarCarona:hover{
+  background-color: rgb(0,121,140);
+
+}
+
 .tabs-container {
     position:relative;
     right: -20px;
@@ -30,12 +52,18 @@ body {
     border-radius: 3px 3px 0 0;
     font-size: 12px;
     color: #fff;
-    background: rgba(20, 144, 64, 0.7);
+    background: rgb(0,121,192);
 }
 
+.tabs-nav a:hover {
+  color: #fff;
+}
+
+
+
 .tabs-nav .active {
-    background: #fff;
-    color: rgba(20, 144, 64, 0.7);
+    background: rgb(0,121,140);
+    color: #fff;
     border-bottom: 1px solid #fff;
     margin-bottom: -1px;
 }
@@ -77,5 +105,4 @@ p {
   position:relative;
   right: -50px;
   text-align: center;
-
 }
