@@ -99,3 +99,13 @@ $app.config([‘$translateProvider’, function ($translateProvider) {
   $translateProvider.preferredLanguage(‘pt’); //linguagem padrao
 
 }]);
+
+
+
+//só pra lembrar.
+/*<div class="almostJumbotron"
+ ng-controller="Ctrl">
+      <button ng-click="changeLanguage('pt')" translate="BUTTON_TEXT_PT"></button>
+      <button ng-click="changeLanguage('en')" translate="BUTTON_TEXT_EN"></button>
+    </div>*/
+
