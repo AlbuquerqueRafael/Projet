@@ -16,14 +16,17 @@
   </div>
 
   <div class="col-md-2"  id="fixaPanel">
-    <div class="panel panel-info">
-        <div class="form-group">
-          <button name="salvar" class="btn btn-info center-block" data-toggle="modal" data-target="#modalCarona" ng-click="trocarRota('OferecerCarona')">
+    <div class="panel panel-info" id = "tab1">
+        <div class="form-group" >
+          <button id ="oferecerCarona" name="salvar"
+                  class="btn btn-default center-block" data-toggle="modal"
+                  data-target="#modalCarona" ng-click="trocarRota('OferecerCarona')">
             Oferecer Carona
           </button>
           <br>
           <br>
-          <button name="salvar" class="btn btn-warning center-block" ng-click="trocarRota('gg')">
+          <button id = "buscarCarona"
+                  name="salvar" class="btn btn-default center-block" ng-click="trocarRota('gg')">
             Buscar Carona
           </button>
         </div>
@@ -39,7 +42,7 @@
       </ul>
 
       <div class="tabs-container">
-          <div class="tab-content" ng-show="tab == 1">
+          <div class="tab-content" ng-show="tab == 1" id = "tab1">
               <div class="panel-body">
                 <table class="table table-striped tabelaHorario">
                   <thead>
@@ -65,7 +68,7 @@
                 </table>
               </div>
           </div>
-        <div class="tab-content" ng-show="tab == 2">
+        <div class="tab-content" ng-show="tab == 2" id = "tab1">
           <div class="panel-body">
             <table class="table table-striped tabelaHorario">
               <thead>

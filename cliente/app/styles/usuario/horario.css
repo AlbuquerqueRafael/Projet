@@ -9,6 +9,32 @@ body {
     margin: auto;
 }
 
+#bemVindo:hover{
+  background-color: rgb(0,121,140);
+}
+
+#tab1{
+  background-color: rgba(0,121,192,0.3);
+}
+
+#oferecerCarona{
+  background-color: rgb(0,121,192);
+}
+
+#oferecerCarona:hover{
+  background-color: rgb(0,121,140);
+}
+
+#buscarCarona{
+  background-color: rgb(0,121,192);
+
+}
+
+#buscarCarona:hover{
+  background-color: rgb(0,121,140);
+
+}
+
 .tabs-container {
     position:relative;
     right: -20px;
@@ -83,5 +109,4 @@ p {
   position:relative;
   right: -50px;
   text-align: center;
-
 }
