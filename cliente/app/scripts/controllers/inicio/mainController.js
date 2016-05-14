@@ -31,6 +31,7 @@ angular.module('clienteApp')
     }
 
     $scope.cadastrar = function(usuario) {
+      console.log(usuario);
       if($scope.usuario.endereco.bairro !== undefined) {
         usuario.endereco.bairro = $scope.usuario.endereco.bairro.value;
       }

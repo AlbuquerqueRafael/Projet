@@ -1,3 +1,4 @@
+
 package controllers;
 
 
@@ -30,9 +31,6 @@ public class AutenticacaoController extends Controller {
         JsonNode json = request().body().asJson();
         List<Usuario> usuarios = Usuario.find.findList();
         Usuario user = Json.fromJson(json, Usuario.class);
-        System.out.println(user.getEmail());
-        System.out.println(usuarios.size());
-
 
         for(Usuario usuario: usuarios){
             if(usuario.getEmail().equals(user.getEmail()) && usuario.getSenha().equals(user.getSenha())){
@@ -55,10 +53,9 @@ public class AutenticacaoController extends Controller {
      @Transactional
     public Result postCadastro() {
         JsonNode json = request().body().asJson();
+         System.out.println(json);
         Usuario usuario = Json.fromJson(json, Usuario.class);
         usuario.setListaNotificacoes(new ArrayList<String>());
-
-        System.out.println(usuario);
 
         /*
         try{
@@ -66,10 +63,8 @@ public class AutenticacaoController extends Controller {
         } catch (DadosInvalidosException exception){
             return badRequest(exception.getMessage());
         }
-
         */
-        
-
+        System.out.println(Json.toJson(usuario));
         usuario.save();
 
         ServiceLog.novaMensagemLog(usuario.getEmail() + " acabou de se cadastrar no sistema");
