@@ -3,23 +3,21 @@
 
 # --- !Ups
 
-create table user (
+create table usuario (
   id                            bigint not null,
   nome                          varchar(255),
   matricula                     varchar(255),
   telefone                      varchar(255),
-  bairro                        varchar(255),
   email                         varchar(255),
-  rua                           varchar(255),
   senha                         varchar(255),
-  vagas                         varchar(255),
-  constraint pk_user primary key (id)
+  foto                          longvarbinary,
+  constraint pk_usuario primary key (id)
 );
-create sequence user_seq;
+create sequence usuario_seq;
 
 
 # --- !Downs
 
-drop table if exists user;
-drop sequence if exists user_seq;
+drop table if exists usuario;
+drop sequence if exists usuario_seq;
 

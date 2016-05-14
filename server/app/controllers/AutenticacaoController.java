@@ -52,6 +52,7 @@ public class AutenticacaoController extends Controller {
      @Transactional
     public Result postCadastro() {
         JsonNode json = request().body().asJson();
+         System.out.println(json);
         Usuario usuario = Json.fromJson(json, Usuario.class);
         usuario.setListaNotificacoes(new ArrayList<String>());
 
@@ -62,7 +63,7 @@ public class AutenticacaoController extends Controller {
             return badRequest(exception.getMessage());
         }
         */
-
+        System.out.println(Json.toJson(usuario));
         usuario.save();
 
         ServiceLog.novaMensagemLog(usuario.getEmail() + " acabou de se cadastrar no sistema");

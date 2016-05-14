@@ -10,9 +10,9 @@ public class Horario{
 
 
     private String aula; // 8-10, 10-12, 14-16, 16-18
-    private DiaDaSemana dia;
+    private models.DiaDaSemana dia;
 
-    public Horario(String aula, DiaDaSemana dia) {
+    public Horario(String aula, models.DiaDaSemana dia) {
         this.aula = aula;
         this.dia = dia;
     }
@@ -22,7 +22,7 @@ public class Horario{
 
     }
 
-   public DiaDaSemana getDia(){
+   public models.DiaDaSemana getDia(){
         return dia;
    }
 
@@ -30,7 +30,7 @@ public class Horario{
         return aula;
    }
 
-   public void setDia(DiaDaSemana dia){
+   public void setDia(models.DiaDaSemana dia){
         this.dia = dia;
    }
 

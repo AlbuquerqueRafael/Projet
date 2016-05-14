@@ -31,11 +31,12 @@ angular.module('clienteApp')
     }
 
     $scope.cadastrar = function(usuario) {
+      console.log(usuario);
       if($scope.usuario.endereco.bairro !== undefined) {
         usuario.endereco.bairro = $scope.usuario.endereco.bairro.value;
       }
       mainService.cadastrar(usuario).success(function (info) {
-        $location.path("/");
+        //$location.path("/");
       }).error(function (error) {
         $scope.error = true;
         $scope.errorMessage = error;
