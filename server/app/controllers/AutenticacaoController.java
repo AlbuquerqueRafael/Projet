@@ -30,6 +30,9 @@ public class AutenticacaoController extends Controller {
         JsonNode json = request().body().asJson();
         List<Usuario> usuarios = Usuario.find.findList();
         Usuario user = Json.fromJson(json, Usuario.class);
+        System.out.println(user.getEmail());
+        System.out.println(usuarios.size());
+
 
         for(Usuario usuario: usuarios){
             if(usuario.getEmail().equals(user.getEmail()) && usuario.getSenha().equals(user.getSenha())){
@@ -55,13 +58,17 @@ public class AutenticacaoController extends Controller {
         Usuario usuario = Json.fromJson(json, Usuario.class);
         usuario.setListaNotificacoes(new ArrayList<String>());
 
+        System.out.println(usuario);
+
         /*
         try{
            sistemaUsuarios.adicionarUsuario(usuario);
         } catch (DadosInvalidosException exception){
             return badRequest(exception.getMessage());
         }
+
         */
+        
 
         usuario.save();
 

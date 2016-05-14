@@ -27,6 +27,9 @@ public class Application extends Controller {
 
     public Result main(String any) {
     	PropertyConfigurator.configure("conf/log4j.properties");
+        Endereco endereco = new Endereco("Rua da Flores", "Centro");
+        Usuario usuario = new Usuario("Pedro", "123", "99621653", "pedro@hotmail.com", "123", endereco, null);
+        usuario.save();
         return ok(main.render());
     }
 
