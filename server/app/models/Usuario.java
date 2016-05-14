@@ -5,26 +5,46 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.Lob;
+import javax.persistence.*;
+import play.data.validation.Constraints;
+import play.db.ebean.*;
+import com.avaje.ebean.Model;
 import java.io.*;
 import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Usuario{
+@Entity
+public class Usuario extends Model{
 
+    private static final long serialVersionUID = 1L;
 
+    @Id
+    public Long id;
+
+    @Constraints.Required
     private String nome;
+
+    @Constraints.Required
     private String matricula;
+
+    @Constraints.Required
     private String telefone;
-    @Lob
-    public File foto;
+
+    @Constraints.Required
     private String email;
+
+    @Constraints.Required
     private String senha;
+
+    @Constraints.Required
     @JsonProperty
     private Endereco endereco;
 
+    @Constraints.Required
     private List<String> novasNotificacoes;
+
+    private File foto;
 
 
 
@@ -36,8 +56,8 @@ public class Usuario{
         this.email = email;
         this.senha = senha;
         this.endereco = endereco;
-        this.foto = foto;
         this.novasNotificacoes = new ArrayList<String>();
+        this.foto = foto;
     }
 
     //necessário para mapeação JSON
@@ -61,14 +81,9 @@ public class Usuario{
         this.telefone = telefone;
     }
 
-    public File getFoto(){
-        return this.foto;
-    }
 
-    public void setFoto(File foto){
+    public static Model.Finder<Long,Usuario> find = new Model.Finder<Long,Usuario>(Long.class, Usuario.class);
 
-        this.foto = foto;
-    }
 
     public String getNome() {
         return nome;

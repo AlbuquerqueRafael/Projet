@@ -10,6 +10,11 @@ import services.*;
 import sistemasInfo.SistemaUsuarios;
 import java.util.ArrayList;
 
+import javax.persistence.*;
+import play.data.validation.Constraints;
+import play.db.ebean.*;
+import com.avaje.ebean.Model;
+
 
 import java.util.List;
 
@@ -23,7 +28,7 @@ public class AutenticacaoController extends Controller {
 
     public  Result postLogin() {
         JsonNode json = request().body().asJson();
-        List<Usuario> usuarios = sistemaUsuarios.getUsuarios();
+        List<Usuario> usuarios = Usuario.find.findList();
         Usuario user = Json.fromJson(json, Usuario.class);
 
         for(Usuario usuario: usuarios){
@@ -43,15 +48,22 @@ public class AutenticacaoController extends Controller {
         session().put("logado", usuario.getEmail());
     }
 
-     public Result postCadastro() {
+
+     @Transactional
+    public Result postCadastro() {
         JsonNode json = request().body().asJson();
         Usuario usuario = Json.fromJson(json, Usuario.class);
         usuario.setListaNotificacoes(new ArrayList<String>());
+
+        /*
         try{
            sistemaUsuarios.adicionarUsuario(usuario);
         } catch (DadosInvalidosException exception){
             return badRequest(exception.getMessage());
         }
+        */
+
+        usuario.save();
 
         ServiceLog.novaMensagemLog(usuario.getEmail() + " acabou de se cadastrar no sistema");
 
