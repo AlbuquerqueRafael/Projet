@@ -36,7 +36,7 @@ angular.module('clienteApp')
         usuario.endereco.bairro = $scope.usuario.endereco.bairro.value;
       }
       mainService.cadastrar(usuario).success(function (info) {
-        //$location.path("/");
+        $location.path("/");
       }).error(function (error) {
         $scope.error = true;
         $scope.errorMessage = error;
