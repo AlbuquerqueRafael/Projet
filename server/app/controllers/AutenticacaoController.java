@@ -1,3 +1,4 @@
+
 package controllers;
 
 
@@ -9,6 +10,11 @@ import play.mvc.*;
 import services.*;
 import sistemasInfo.SistemaUsuarios;
 import java.util.ArrayList;
+
+import javax.persistence.*;
+import play.data.validation.Constraints;
+import play.db.ebean.*;
+import com.avaje.ebean.Model;
 
 
 import java.util.List;
@@ -23,8 +29,13 @@ public class AutenticacaoController extends Controller {
 
     public  Result postLogin() {
         JsonNode json = request().body().asJson();
-        List<Usuario> usuarios = sistemaUsuarios.getUsuarios();
+        List<Usuario> usuarios = Usuario.find.findList();
         Usuario user = Json.fromJson(json, Usuario.class);
+
+        for (Usuario usr: usuarios) {
+            System.out.println(usr.getEmail());
+            System.out.println(usr.getSenha());
+        }
 
         for(Usuario usuario: usuarios){
             if(usuario.getEmail().equals(user.getEmail()) && usuario.getSenha().equals(user.getSenha())){
@@ -43,15 +54,23 @@ public class AutenticacaoController extends Controller {
         session().put("logado", usuario.getEmail());
     }
 
-     public Result postCadastro() {
+
+     @Transactional
+    public Result postCadastro() {
         JsonNode json = request().body().asJson();
+         System.out.println(json);
         Usuario usuario = Json.fromJson(json, Usuario.class);
         usuario.setListaNotificacoes(new ArrayList<String>());
+
+        /*
         try{
            sistemaUsuarios.adicionarUsuario(usuario);
         } catch (DadosInvalidosException exception){
             return badRequest(exception.getMessage());
         }
+        */
+        System.out.println(Json.toJson(usuario));
+        usuario.save();
 
         ServiceLog.novaMensagemLog(usuario.getEmail() + " acabou de se cadastrar no sistema");
 

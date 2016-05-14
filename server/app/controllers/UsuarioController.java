@@ -26,7 +26,7 @@ public class UsuarioController extends Controller {
     private SistemaCaronas sistemaCaronas = SistemaCaronas.getInstance();
 
     public Result getAllCadastro(){
-        List<Usuario> usuarios = SistemaUsuarios.getInstance().getUsuarios();
+        List<Usuario> usuarios = Usuario.find.findList();
         return ok(toJson(usuarios));
     }
 
