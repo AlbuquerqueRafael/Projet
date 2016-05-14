@@ -32,6 +32,11 @@ public class AutenticacaoController extends Controller {
         List<Usuario> usuarios = Usuario.find.findList();
         Usuario user = Json.fromJson(json, Usuario.class);
 
+        for (Usuario usr: usuarios) {
+            System.out.println(usr.getEmail());
+            System.out.println(usr.getSenha());
+        }
+
         for(Usuario usuario: usuarios){
             if(usuario.getEmail().equals(user.getEmail()) && usuario.getSenha().equals(user.getSenha())){
                 autenticar(usuario);
