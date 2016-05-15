@@ -10,7 +10,8 @@ public class ServiceNotificacao {
 	 	Usuario motorista = solicitacaoEnviada.getCarona().getMotorista();
 	 	Usuario passageiro = solicitacaoEnviada.getPassageiro();
 	 	String message = passageiro.getNome() + " solicitou carona a você. Acesse SOLICITAÇÕES para aceitar ou recusar";
-	 	motorista.adicionaNotificacao(message);
+	 	Notificacao n = new Notificacao(message);
+	 	motorista.adicionaNotificacao(n);
 	 }
 
 	 public static void excluiNotificacaoLida(Usuario user, String message){
@@ -21,8 +22,8 @@ public class ServiceNotificacao {
 	 	Usuario motorista = solicitacaoAceita.getCarona().getMotorista();
 	 	Usuario passageiro = solicitacaoAceita.getPassageiro();
 	 	String message = motorista.getNome() + " aceitou seu pedido de carona. Acesse HORÁRIO na aba Passageiro e saiba mais";
-	 	System.out.println(passageiro);
-	 	passageiro.adicionaNotificacao(message);
+	 	Notificacao n = new Notificacao(message);
+	 	passageiro.adicionaNotificacao(n);
 	 }
 
 	 public static void notificaPassageiroRecusado(Solicitacao solicitacaoRecusada){
@@ -33,7 +34,9 @@ public class ServiceNotificacao {
 
 	 	String message = motorista.getNome() + " recusou seu pedido de carona para " + horario.getDia() + " AULA: " + horario.getAula() + " TIPO: " + carona.getTipo();
 
-	 	passageiro.adicionaNotificacao(message);
+	 	Notificacao n = new Notificacao(message);
+
+	 	passageiro.adicionaNotificacao(n);
 
 	 }
 

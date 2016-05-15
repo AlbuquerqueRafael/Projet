@@ -2,15 +2,35 @@ package models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.persistence.*;
+import play.data.validation.Constraints;
+import play.db.ebean.*;
+import com.avaje.ebean.Model;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 
 /**
  * Created by Mafra on 11/04/2016
  */
 
-public class Solicitacao {
+@Entity
+public class Solicitacao extends Model{
 
+     private static final long serialVersionUID = 1L;
+
+
+    @Id
+    public long id;
+
+    @Constraints.Required
+    @JsonSerialize
+    @ManyToOne(cascade = CascadeType.ALL)
     private Usuario passageiro;
+
+
+    @Constraints.Required
     @JsonProperty
+    @ManyToOne(cascade = CascadeType.ALL)
     private Carona carona;
 
     public Solicitacao (Carona c, Usuario passageiro){

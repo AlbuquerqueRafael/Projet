@@ -49,7 +49,7 @@ public class AutenticacaoController extends Controller {
         JsonNode json = request().body().asJson();
          System.out.println(json);
         Usuario usuario = Json.fromJson(json, Usuario.class);
-        usuario.setListaNotificacoes(new ArrayList<String>());
+        usuario.setListaNotificacoes(new ArrayList<Notificacao>());
 
         
         try{

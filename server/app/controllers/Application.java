@@ -54,6 +54,13 @@ public class Application extends Controller {
 
         carona.save();
 
+        int vagas = carona.getVagas();
+        carona.novoPassageiro(usuario);
+        carona.setVagas(--vagas);  
+
+        SistemaCaronas.getInstance().atualizarCarona(carona);
+
+       
         return ok(main.render());
     }
 

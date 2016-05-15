@@ -39,11 +39,12 @@ public class Usuario extends Model{
 
     @Constraints.Required
     @JsonProperty
+    @OneToOne(cascade = CascadeType.ALL)
     private Endereco endereco;
 
     @Constraints.Required
-    @ElementCollection(targetClass = String.class)
-    private List<String> novasNotificacoes;
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Notificacao> novasNotificacoes;
 
     private File foto;
 
@@ -57,7 +58,7 @@ public class Usuario extends Model{
         this.email = email;
         this.senha = senha;
         this.endereco = endereco;
-        this.novasNotificacoes = new ArrayList<String>();
+        this.novasNotificacoes = new ArrayList<Notificacao>();
         this.foto = foto;
     }
 
@@ -134,21 +135,26 @@ public class Usuario extends Model{
         this.endereco = endereco;
     }
 
-    public void adicionaNotificacao(String message){
+    public void adicionaNotificacao(Notificacao message){
         System.out.println(this.novasNotificacoes);
         this.novasNotificacoes.add(message);
         System.out.println("Notificou");
     }
 
     public void removeNotificacao(String message){
-        this.novasNotificacoes.remove(message);
+        for (Notificacao n: novasNotificacoes){
+            if (n.getMessage().equals(message)){
+                this.novasNotificacoes.remove(n);
+                break;
+            }
+        }
     }
 
-    public void setListaNotificacoes(List<String> lista){
+    public void setListaNotificacoes(List<Notificacao> lista){
         this.novasNotificacoes = lista;
     }
 
-    public List<String> getListaNotificacoes(){
+    public List<Notificacao> getListaNotificacoes(){
         return novasNotificacoes;
     }
 

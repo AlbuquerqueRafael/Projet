@@ -53,7 +53,9 @@ public class SolicitacaoController extends Controller{
                 int vagas = solicitacao.getCarona().getVagas();
 
                 carona.novoPassageiro(solicitacao.getPassageiro());
-                carona.setVagas(--vagas);
+                carona.setVagas(--vagas);                                 //ATUALIZA CARONA
+                SistemaCaronas.getInstance().atualizarCarona(carona);
+
                 telefone = sol.getPassageiro().getTelefone();
                 if(vagas == 0) {
                     limpaSolicitacoesSemVagas(sol.getCarona());

@@ -1,16 +1,28 @@
 package models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.*;
+import play.data.validation.Constraints;
+import play.db.ebean.*;
+import com.avaje.ebean.Model;
 
 /**
  * Created by Mafra on 27/03/16.
  */
 
-public class Horario{
+@Entity
+public class Horario extends Model{
 
+    private static final long serialVersionUID = 1L;
 
+    @Id
+    public Long id;
+
+    @Constraints.Required
     private String aula; // 8-10, 10-12, 14-16, 16-18
-    private models.DiaDaSemana dia;
+
+    @Constraints.Required
+    private DiaDaSemana dia;
 
     public Horario(String aula, models.DiaDaSemana dia) {
         this.aula = aula;

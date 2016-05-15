@@ -1,12 +1,27 @@
 package models;
 
+import javax.persistence.*;
+import play.data.validation.Constraints;
+import play.db.ebean.*;
+import com.avaje.ebean.Model;
+
 /**
  * Created by rafael on 10/04/16.
  */
 
-public class Endereco {
+@Entity
+public class Endereco extends Model{
 
+
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    public Long id;
+
+    @Constraints.Required
     private String rua;
+
+    @Constraints.Required
     private String bairro;
 
 

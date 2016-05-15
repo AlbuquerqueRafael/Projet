@@ -23,6 +23,7 @@ public class Carona extends Model{
     @Id
     public long id;
 
+    @ManyToOne(cascade = CascadeType.ALL)
     @Constraints.Required
     private Horario horario;
 
@@ -40,6 +41,7 @@ public class Carona extends Model{
 
     @Constraints.Required
     private int vagas;
+
 
     @Constraints.Required
     private List<String> rota;    

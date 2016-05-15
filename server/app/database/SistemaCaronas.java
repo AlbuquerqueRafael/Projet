@@ -40,5 +40,9 @@ public class SistemaCaronas{
 		carona.delete();
 	}
 
+	public void atualizarCarona(Carona carona) {
+		carona.update();
+	}
+
 
 }
