@@ -6,6 +6,10 @@ import exception.*;
 import java.util.ArrayList;
 import java.util.List;
 import util.Util;
+import javax.persistence.*;
+import play.data.validation.Constraints;
+import play.db.ebean.*;
+import com.avaje.ebean.Model;
 
 /**
  * Created by Mafra on 15/04/16.
@@ -19,7 +23,7 @@ public class SistemaUsuarios{
 
 	private SistemaUsuarios (){
 		usuarios = new ArrayList<Usuario>();
-		testeExemplos();	
+		//testeExemplos();	
 	}
 
 	private void testeExemplos() {
@@ -113,7 +117,7 @@ public class SistemaUsuarios{
 	}
 
 	public List<Usuario> getUsuarios(){
-		return usuarios;
+		return Usuario.find.findList();
 	}
 
 	public void adicionarUsuario(Usuario usr) throws DadosInvalidosException{
@@ -151,11 +155,16 @@ public class SistemaUsuarios{
 		if(usr.getEndereco().getBairro() == null){
 			throw new BairroInvalidoException("Informe um bairro válido");
 		}
-		usuarios.add(usr);
+
+		usr.save();
 	}
 
 	public void removerUsuario(Usuario usr) {
-		usuarios.remove(usr);
+		usr.delete();
+	}
+
+	public void atualizarUsuario(Usuario usr) {
+		usr.update();
 	}
 
 	public Usuario recuperarUsuarioPelaPosicao(int index){
@@ -167,7 +176,7 @@ public class SistemaUsuarios{
 	}
 
 	private boolean isEmailRepetido(Usuario usuario){
-		for (Usuario usr: usuarios){
+		for (Usuario usr: getUsuarios()){
 			try {
 				if (usr.getEmail().equals(usuario.getEmail())) {
 					return true;
@@ -183,7 +192,7 @@ public class SistemaUsuarios{
 	}
 
 	private boolean isMatriculaRepetida(Usuario usuario){
-		for (Usuario usr: usuarios){
+		for (Usuario usr: getUsuarios()){
 			try {
 				if (usr.getMatricula().equals(usuario.getMatricula())) {
 					return true;

@@ -6,21 +6,48 @@ import models.enums.TipoCarona;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.*;
+import play.data.validation.Constraints;
+import play.db.ebean.*;
+import com.avaje.ebean.Model;
+
 /**
  * Created by Mafra on 27/03/16.
  */
 
-public class Carona {
+@Entity
+public class Carona extends Model{
 
+    private static final long serialVersionUID = 1L;
 
+    @Id
+    public long id;
+
+    @Constraints.Required
     private Horario horario;
+
+    @Constraints.Required
     @JsonSerialize
+    @ManyToOne(cascade = CascadeType.ALL)
     private Usuario motorista;
+
+    @Constraints.Required
     private Endereco endereco;
+
+    @Constraints.Required
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Usuario> listaPassageiros;
+
+    @Constraints.Required
     private int vagas;
+
+    @Constraints.Required
     private List<String> rota;    
+
+    @Constraints.Required
     private TipoCarona tipo;
+
+    public static Model.Finder<Long,Carona> find = new Model.Finder<Long,Carona>(Long.class, Carona.class);
 
     public Carona (Usuario motorista, Horario horario, int vagas, List<String> rota, Endereco endereco, TipoCarona tipo){
         this.horario = horario;

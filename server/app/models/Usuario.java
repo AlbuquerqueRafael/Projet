@@ -42,6 +42,7 @@ public class Usuario extends Model{
     private Endereco endereco;
 
     @Constraints.Required
+    @ElementCollection(targetClass = String.class)
     private List<String> novasNotificacoes;
 
     private File foto;
@@ -145,6 +146,10 @@ public class Usuario extends Model{
 
     public void setListaNotificacoes(List<String> lista){
         this.novasNotificacoes = lista;
+    }
+
+    public List<String> getListaNotificacoes(){
+        return novasNotificacoes;
     }
 
     @Override

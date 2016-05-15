@@ -29,15 +29,15 @@ public class SistemaCaronas{
 	}
 
 	public List<Carona> getCaronas(){
-		return caronas;
+		return Carona.find.findList();
 	}
 
-	public void adicionarCarona(Carona c){
-		caronas.add(c);
+	public void adicionarCarona(Carona carona){
+		carona.save();
 	}
 
-	public void removerCarona(Carona c) {
-		caronas.remove(c);
+	public void removerCarona(Carona carona) {
+		carona.delete();
 	}
 
 

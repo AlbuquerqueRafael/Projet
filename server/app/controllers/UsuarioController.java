@@ -53,8 +53,10 @@ public class UsuarioController extends Controller {
         List<Carona> caronasComoPassageiro = new ArrayList<Carona>();
         Usuario usuarioAtual = UsuarioController.usuarioAutenticado();
         List<Carona> allCaronas = SistemaCaronas.getInstance().getCaronas();
+        System.out.println(allCaronas);
 
         for(Carona carona : allCaronas){
+            System.out.println(carona.getListaPassageiros());
             for(Usuario passageiro: carona.getListaPassageiros()){
                 if(usuarioAtual.equals(passageiro)){
                     Usuario newMotorista = new Usuario(carona.getMotorista().getEmail(), carona.getMotorista().getTelefone());
@@ -68,11 +70,19 @@ public class UsuarioController extends Controller {
 
     public Result getCaronasComoMotoristas(){
         List<Carona> caronasComoMotorista = new ArrayList<Carona>();
-        for (Carona carona : sistemaCaronas.getCaronas()) {
+        List<Carona> allCaronas = SistemaCaronas.getInstance().getCaronas();
+
+        System.out.println(allCaronas);
+
+        for (Carona carona : allCaronas) {
+            System.out.println("Nome motorista: " + carona.getMotorista().getNome());
             if (UsuarioController.usuarioAutenticado().equals(carona.getMotorista())) {
+                System.out.println("Adicionei carona");
                 caronasComoMotorista.add(carona);
             }
         }
+        System.out.println(caronasComoMotorista.get(0).getTipo());
+        
         return ok(Json.toJson(caronasComoMotorista));
     }
 

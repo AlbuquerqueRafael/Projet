@@ -16,45 +16,25 @@
       <input type="text" name = "nome" class="form-control" placeholder="Nome" required ng-model="usuario.nome">
     </div>
     <div class="form-group">
-      <input type="email" name = "email" class="form-control" placeholder="Email"
-<<<<<<< HEAD
- -           title="Preencha com um email válido. Exemplo caroname@caroname.com"             
+      <input type="email" name = "email" class="form-control" placeholder="Email" title="Preencha com um email válido. Exemplo caroname@caroname.com"             
              required ng-model="usuario.email">             
-=======
-             -           title="Preencha com um email válido. Exemplo caroname@caroname.com"
-             required ng-model="usuario.email">
->>>>>>> database
     </div>
 
     <div class="form-group">
-      <input type="password" name = "senha" class="form-control" placeholder="Senha"
-<<<<<<< HEAD
- -             title="Pelo menos 8 characteres" pattern=".{8,}" required ng-model="usuario.senha">
-=======
-             -             title="Pelo menos 8 characteres" pattern=".{8,}" required ng-model="usuario.senha">
->>>>>>> database
+      <input type="password" name = "senha" class="form-control" placeholder="Senha" title="Pelo menos 8 characteres" pattern=".{8,}" required ng-model="usuario.senha">
     </div>
 
     <div class="form-group">
       <input type="text" name = "numeroMatricula" class="form-control" placeholder="Nº Matricula"
-<<<<<<< HEAD
- -            title="Digite os 9 números da sua matrícula da UFCG" pattern="[1-7,9][0-1][0-6][0-1][1-4][0-9]{4}"              
-=======
-             -            title="Digite os 9 números da sua matrícula da UFCG" pattern="[1-7,9][0-1][0-6][0-1][1-4][0-9]{4}"
->>>>>>> database
-             maxlength="9"  required ng-model="usuario.matricula">
+           title="Digite os 9 números da sua matrícula da UFCG" pattern="[1-7,9][0-1][0-6][0-1][1-4][0-9]{4}" maxlength="9"  required ng-model="usuario.matricula">
     </div>
 
     <div class="form-group">
-<<<<<<< HEAD
      <input type="text" name = "rua" class="form-control" placeholder="Rua" required ng-model="usuario.endereco.rua">
-=======
-      <input type="text" name = "rua" class="form-control" placeholder="Rua" required ng-model="usuario.endereco.rua">
->>>>>>> database
     </div>
 
     <div class="form-group">
-      <select class="form-control" ng-model="usuario.endereco.bairro" ng-options="opt.value for opt in bairros">
+      <select class="form-control" ng-init="usuario.endereco.bairro = bairros[0]"  ng-model="usuario.endereco.bairro" ng-options="opt.value for opt in bairros">
       </select>
     </div>
 
