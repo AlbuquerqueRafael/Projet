@@ -21,37 +21,32 @@ public class Carona extends Model{
     private static final long serialVersionUID = 1L;
 
     @Id
-    public long id;
+    protected long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @Constraints.Required
+    @OneToOne(cascade = CascadeType.ALL)
     private Horario horario;
 
-    @Constraints.Required
-    @JsonSerialize
-    @ManyToOne(cascade = CascadeType.ALL)
+   /* @JsonSerialize
+    //@OneToMany*/
     private Usuario motorista;
 
-    @Constraints.Required
+    @OneToOne(cascade = CascadeType.ALL)
     private Endereco endereco;
 
-    @Constraints.Required
-    @ManyToMany(cascade = CascadeType.ALL)
+
+    @OneToMany
     private List<Usuario> listaPassageiros;
 
-    @Constraints.Required
     private int vagas;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Rota> rota;
 
-    @Constraints.Required
-    private List<String> rota;    
-
-    @Constraints.Required
     private TipoCarona tipo;
 
     public static Model.Finder<Long,Carona> find = new Model.Finder<Long,Carona>(Long.class, Carona.class);
 
-    public Carona (Usuario motorista, Horario horario, int vagas, List<String> rota, Endereco endereco, TipoCarona tipo){
+    public Carona (Usuario motorista, Horario horario, int vagas, List<Rota> rota, Endereco endereco, TipoCarona tipo){
         this.horario = horario;
         this.listaPassageiros = new ArrayList<Usuario>();
         this.rota = rota;
@@ -72,6 +67,7 @@ public class Carona extends Model{
         this.motorista = motorista;
         this.tipo = tipo;
         this.horario = horario;
+        this.listaPassageiros = new ArrayList<Usuario>();
     }
     //necessário para limitar as informações que o cliente deve receber
     public Carona(Horario horario, TipoCarona tipo, Endereco endereco, int vagas){
@@ -79,11 +75,13 @@ public class Carona extends Model{
         this.tipo = tipo;
         this.endereco = endereco;
         this.vagas = vagas;
+        this.listaPassageiros = new ArrayList<Usuario>();
     }
 
     public Carona(Horario horario, Usuario motorista){
         this.horario = horario;
         this.motorista = motorista;
+        this.listaPassageiros = new ArrayList<Usuario>();
     }
 
 
@@ -124,11 +122,11 @@ public class Carona extends Model{
         this.horario = horario;
     }
 
-    public List<String> getRota(){
+    public List<Rota> getRota(){
         return rota;
     }
 
-    public void setRota(List<String> novaRota){
+    public void setRota(List<Rota> novaRota){
         this.rota = novaRota;
     }
 

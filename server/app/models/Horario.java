@@ -5,6 +5,7 @@ import javax.persistence.*;
 import play.data.validation.Constraints;
 import play.db.ebean.*;
 import com.avaje.ebean.Model;
+import models.enums.DiaDaSemana;
 
 /**
  * Created by Mafra on 27/03/16.
@@ -16,15 +17,15 @@ public class Horario extends Model{
     private static final long serialVersionUID = 1L;
 
     @Id
-    public Long id;
+    protected Long id;
 
-    @Constraints.Required
     private String aula; // 8-10, 10-12, 14-16, 16-18
 
-    @Constraints.Required
     private DiaDaSemana dia;
 
-    public Horario(String aula, models.DiaDaSemana dia) {
+    public static Model.Finder<Long,Horario> find = new Model.Finder<Long,Horario>(Long.class, Horario.class);
+
+    public Horario(String aula, DiaDaSemana dia) {
         this.aula = aula;
         this.dia = dia;
     }
@@ -34,7 +35,7 @@ public class Horario extends Model{
 
     }
 
-   public models.DiaDaSemana getDia(){
+   public DiaDaSemana getDia(){
         return dia;
    }
 
@@ -42,7 +43,7 @@ public class Horario extends Model{
         return aula;
    }
 
-   public void setDia(models.DiaDaSemana dia){
+   public void setDia(DiaDaSemana dia){
         this.dia = dia;
    }
 

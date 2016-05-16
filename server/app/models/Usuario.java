@@ -20,50 +20,41 @@ public class Usuario extends Model{
     private static final long serialVersionUID = 1L;
 
     @Id
-    public Long id;
+    protected Long id;
 
-    @Constraints.Required
     private String nome;
 
-    @Constraints.Required
     private String matricula;
 
-    @Constraints.Required
     private String telefone;
 
-    @Constraints.Required
     private String email;
 
-    @Constraints.Required
     private String senha;
 
-    @Constraints.Required
     @JsonProperty
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToMany
     private Endereco endereco;
 
-    @Constraints.Required
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<Notificacao> novasNotificacoes;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
+    public List<Notificacao> novasNotificacoes;
 
-    private File foto;
-
-
+    @ManyToOne
+    private Carona carona;
 
 
-    public Usuario(String nome, String matricula, String telefone, String email, String senha, Endereco endereco, File foto) {
+    public Usuario(String nome, String matricula, String telefone, String email, String senha, Endereco endereco) {
         this.nome = nome;
         this.matricula = matricula;
         this.telefone = telefone;
         this.email = email;
         this.senha = senha;
         this.endereco = endereco;
-        this.novasNotificacoes = new ArrayList<Notificacao>();
-        this.foto = foto;
     }
 
     //necessário para mapeação JSON
     public Usuario(){
+
     }
 
     public Usuario(String email, String telefone){
@@ -150,14 +141,21 @@ public class Usuario extends Model{
         }
     }
 
-    public void setListaNotificacoes(List<Notificacao> lista){
+    public void setNovasNotificacoes(List<Notificacao> lista){
         this.novasNotificacoes = lista;
     }
 
-    public List<Notificacao> getListaNotificacoes(){
+    public List<Notificacao> getNovasNotificacoes(){
         return novasNotificacoes;
     }
 
+    public void setCarona(Carona carona){
+        this.carona = carona;
+    }
+
+    public Carona getCarona(){
+        return this.carona;
+    }
     @Override
     public boolean equals(Object obj){
         if(!(obj instanceof Usuario)){

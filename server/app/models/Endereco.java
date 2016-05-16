@@ -16,12 +16,10 @@ public class Endereco extends Model{
     private static final long serialVersionUID = 1L;
 
     @Id
-    public Long id;
+    protected Long id;
 
-    @Constraints.Required
     private String rua;
 
-    @Constraints.Required
     private String bairro;
 
 

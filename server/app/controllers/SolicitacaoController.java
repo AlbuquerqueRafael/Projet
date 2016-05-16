@@ -5,12 +5,10 @@ import models.*;
 import models.enums.TipoCarona;
 import play.libs.Json;
 import play.mvc.*;
-import sistemasInfo.SistemaCaronas;
-import services.*;
-import sistemasInfo.SistemaSolicitacao;
+import database.*;
 import java.util.ArrayList;
 import java.util.List;
-
+import services.*;
 /**
  * Created by rafael on 21/04/16.
  */
@@ -62,7 +60,7 @@ public class SolicitacaoController extends Controller{
                 }
                 SistemaSolicitacao.getInstance().removerSolicitacao(sol);
                 ServiceLog.novaMensagemLog(carona.getMotorista().getEmail() + " aceitou o pedido de carona de " + sol.getPassageiro().getEmail());
-                ServiceNotificacao.notificaPassageiroAceito(sol);
+           //     ServiceNotificacao.notificaPassageiroAceito(sol);
 
                 break;
             }
@@ -130,7 +128,7 @@ public class SolicitacaoController extends Controller{
     private void limpaSolicitacoesSemVagas(Carona carona){
         for(Solicitacao s : SistemaSolicitacao.getInstance().getSolicitacao()){
             if(s.getCarona().equals(carona) && carona.getVagas() == 0){
-                ServiceNotificacao.notificaPassageiroRecusado(s);
+             //   ServiceNotificacao.notificaPassageiroRecusado(s);
                 SistemaSolicitacao.getInstance().removerSolicitacao(s);
 
             }

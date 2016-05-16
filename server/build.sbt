@@ -11,9 +11,12 @@ libraryDependencies += "commons-io" % "commons-io" % "2.3"
 libraryDependencies ++= Seq(
   javaJdbc,
   cache,
+  jdbc,
   javaWs,
   "commons-io" % "commons-io" % "2.3",
-  "postgresql" % "postgresql" % "9.1-901-1.jdbc4"
+  "org.postgresql" % "postgresql" % "9.4-1206-jdbc42",
+  "mysql" % "mysql-connector-java" % "5.1.18"
+
 
 )
 

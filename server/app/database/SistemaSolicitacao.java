@@ -1,4 +1,4 @@
-package sistemasInfo;
+package database;
 
 import models.Solicitacao;
 

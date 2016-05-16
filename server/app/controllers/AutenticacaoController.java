@@ -8,7 +8,7 @@ import exception.*;
 import play.libs.Json;
 import play.mvc.*;
 import services.*;
-import sistemasInfo.SistemaUsuarios;
+import database.*;
 import java.util.ArrayList;
 
 
@@ -49,7 +49,7 @@ public class AutenticacaoController extends Controller {
         JsonNode json = request().body().asJson();
          System.out.println(json);
         Usuario usuario = Json.fromJson(json, Usuario.class);
-        usuario.setListaNotificacoes(new ArrayList<Notificacao>());
+  //      usuario.setNovasNotificacoes(new ArrayList<Notificacao>());
 
         
         try{

@@ -8,19 +8,20 @@ import com.avaje.ebean.Model;
 
 
 
-
 @Entity
 public class Notificacao extends Model{
 
 	private static final long serialVersionUID = 1L;
 
     @Id
-    public long id;
+    protected long id;
 
-
-    @Constraints.Required
     private String message;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Usuario usuario;
+
+    public static Model.Finder<Long,Notificacao> find = new Model.Finder<Long,Notificacao>(Long.class, Notificacao.class);
 
     public Notificacao(){
 
@@ -37,6 +38,15 @@ public class Notificacao extends Model{
     public String getMessage(){
     	return message;
     }
+
+    public Usuario getUsuario(){
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario){
+        this.usuario = usuario;
+    }
+
 
 
 

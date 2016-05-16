@@ -3,6 +3,8 @@ package models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+
+import net.sf.ehcache.config.PersistenceConfiguration;
 import play.data.validation.Constraints;
 import play.db.ebean.*;
 import com.avaje.ebean.Model;
@@ -16,22 +18,22 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 @Entity
 public class Solicitacao extends Model{
 
-     private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
 
     @Id
-    public long id;
+    protected long id;
 
-    @Constraints.Required
     @JsonSerialize
-    @ManyToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private Usuario passageiro;
 
 
-    @Constraints.Required
     @JsonProperty
-    @ManyToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private Carona carona;
+
+    public static Model.Finder<Long,Solicitacao> find = new Model.Finder<Long,Solicitacao>(Long.class, Solicitacao.class);
 
     public Solicitacao (Carona c, Usuario passageiro){
         
