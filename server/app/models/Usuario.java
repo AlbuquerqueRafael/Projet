@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import play.data.validation.Constraints;
 import play.db.ebean.*;
 import com.avaje.ebean.Model;
@@ -36,7 +38,7 @@ public class Usuario extends Model{
     @ManyToMany
     private Endereco endereco;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
+    @OneToMany(cascade = CascadeType.ALL)
     public List<Notificacao> novasNotificacoes;
 
     @ManyToOne
@@ -50,28 +52,32 @@ public class Usuario extends Model{
         this.email = email;
         this.senha = senha;
         this.endereco = endereco;
+        this.novasNotificacoes = new ArrayList<Notificacao>();
     }
 
     //necessário para mapeação JSON
     public Usuario(){
-
+        this.novasNotificacoes = new ArrayList<Notificacao>();
     }
 
     public Usuario(String email, String telefone){
         this.telefone = telefone;
         this.email = email;
+        this.novasNotificacoes = new ArrayList<Notificacao>();
     }
 
     public Usuario(String nome, Endereco endereco, String email){
         this.nome = nome;
         this.endereco = endereco;
         this.email = email;
+        this.novasNotificacoes = new ArrayList<Notificacao>();
     }
 
     public Usuario(String nome, String email, String telefone){
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
+        this.novasNotificacoes = new ArrayList<Notificacao>();
     }
 
 
@@ -149,13 +155,6 @@ public class Usuario extends Model{
         return novasNotificacoes;
     }
 
-    public void setCarona(Carona carona){
-        this.carona = carona;
-    }
-
-    public Carona getCarona(){
-        return this.carona;
-    }
     @Override
     public boolean equals(Object obj){
         if(!(obj instanceof Usuario)){

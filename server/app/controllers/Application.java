@@ -46,6 +46,7 @@ public class Application extends Controller {
         Usuario usuario = new Usuario("Pedro", "123", "99621653", "pedro@hotmail.com", "123", endereco);
         List<Notificacao> notificacaos = new ArrayList<>();
         notificacaos.add(new Notificacao("nossa"));
+        notificacaos.add(new Notificacao("que isso novinha"));
         usuario.setNovasNotificacoes(notificacaos);
         usuario.save();
 
@@ -64,6 +65,10 @@ public class Application extends Controller {
         carona1.save();
         solicitacao.save();
 
+        List<Usuario> verifica = SistemaUsuarios.getInstance().getUsuarios();
+        for(Usuario s : verifica){
+            System.out.println(Json.toJson(s));
+        }
         int vagas = carona.getVagas();
         carona.novoPassageiro(usuario);
         carona.setVagas(--vagas);  

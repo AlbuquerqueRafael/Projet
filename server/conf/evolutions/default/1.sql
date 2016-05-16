@@ -32,8 +32,8 @@ create table horario (
 
 create table notificacao (
   id                            bigserial not null,
+  usuario_id                    bigint not null,
   message                       varchar(255),
-  usuario_id                    bigint,
   constraint pk_notificacao primary key (id)
 );
 
