@@ -25,15 +25,14 @@ public class SistemaSolicitacao {
     }
 
     public List<Solicitacao> getSolicitacao(){
-        return solicitacoes;
-    }
+        return Solicitacao.find.findList();    }
 
     public void adicionarSolicitacao(Solicitacao c){
-        solicitacoes.add(c);
+        c.save();
     }
 
     public void removerSolicitacao(Solicitacao c) {
-        solicitacoes.remove(c);
+        c.delete();
     }
 
 

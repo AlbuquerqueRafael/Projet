@@ -23,14 +23,13 @@ public class Carona extends Model{
     @Id
     protected long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Horario horario;
 
-    @JsonSerialize
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Usuario motorista;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Endereco endereco;
 
 

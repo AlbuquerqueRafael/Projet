@@ -24,13 +24,11 @@ public class Solicitacao extends Model{
     @Id
     protected long id;
 
-    @JsonSerialize
-    @OneToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Usuario passageiro;
 
 
-    @JsonProperty
-    @OneToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Carona carona;
 
     public static Model.Finder<Long,Solicitacao> find = new Model.Finder<Long,Solicitacao>(Long.class, Solicitacao.class);

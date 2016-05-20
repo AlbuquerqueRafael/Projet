@@ -30,16 +30,11 @@ public class Application extends Controller {
     public Result main(String any) {
     	PropertyConfigurator.configure("conf/log4j.properties");  // NAO EXCLUIR
 
+        
         List<Usuario> allusers = SistemaUsuarios.getInstance().getUsuarios();
         List<Carona> allCaronas = SistemaCaronas.getInstance().getCaronas();
-
-/*
-        List<Usuario> allusers = SistemaUsuarios.getInstance().getUsuarios();
-        for (Usuario c: allusers) {
-            c.delete();
-        }
-*/
-
+    
+        
         Endereco endereco = new Endereco("Rua da Flores", "Centro");
         Endereco endereco1 = new Endereco("Rua da Flores", "Centro");
         Notificacao notifica = new Notificacao("Voce foi notificado");
@@ -62,19 +57,21 @@ public class Application extends Controller {
         Solicitacao solicitacao = new Solicitacao(carona, usuario);
 
         carona.save();
+        System.out.println(carona.getEndereco());
         carona1.save();
         solicitacao.save();
-
+        
         List<Usuario> verifica = SistemaUsuarios.getInstance().getUsuarios();
         for(Usuario s : verifica){
             System.out.println(Json.toJson(s));
         }
+        
         int vagas = carona.getVagas();
         carona.novoPassageiro(usuario);
         carona.setVagas(--vagas);  
 
         SistemaCaronas.getInstance().atualizarCarona(carona);
-
+        
        
         return ok(main.render());
     }
