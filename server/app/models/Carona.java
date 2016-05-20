@@ -26,8 +26,8 @@ public class Carona extends Model{
     @OneToOne(cascade = CascadeType.ALL)
     private Horario horario;
 
-   /* @JsonSerialize
-    //@OneToMany*/
+    @JsonSerialize
+    @ManyToOne
     private Usuario motorista;
 
     @OneToOne(cascade = CascadeType.ALL)

@@ -6,6 +6,7 @@
 create table carona (
   id                            bigserial not null,
   horario_id                    bigint,
+  motorista_id                  bigint,
   endereco_id                   bigint,
   vagas                         integer,
   tipo                          integer,
@@ -66,6 +67,9 @@ create table usuario (
 
 alter table carona add constraint fk_carona_horario_id foreign key (horario_id) references horario (id) on delete restrict on update restrict;
 
+alter table carona add constraint fk_carona_motorista_id foreign key (motorista_id) references usuario (id) on delete restrict on update restrict;
+create index ix_carona_motorista_id on carona (motorista_id);
+
 alter table carona add constraint fk_carona_endereco_id foreign key (endereco_id) references endereco (id) on delete restrict on update restrict;
 
 alter table notificacao add constraint fk_notificacao_usuario_id foreign key (usuario_id) references usuario (id) on delete restrict on update restrict;
@@ -85,6 +89,9 @@ create index ix_usuario_carona_id on usuario (carona_id);
 # --- !Downs
 
 alter table if exists carona drop constraint if exists fk_carona_horario_id;
+
+alter table if exists carona drop constraint if exists fk_carona_motorista_id;
+drop index if exists ix_carona_motorista_id;
 
 alter table if exists carona drop constraint if exists fk_carona_endereco_id;
 

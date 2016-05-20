@@ -75,7 +75,13 @@ public class UsuarioController extends Controller {
 
 
         for (Carona carona : allCaronas) {
-            
+                System.out.println(carona.getMotorista());
+                /*
+                System.out.println(carona.getTipo());
+                System.out.println(carona.getHorario().getDia());
+                System.out.println(carona.getVagas());
+                */
+                System.out.println("----------------------------------------");
             if (UsuarioController.usuarioAutenticado().equals(carona.getMotorista())) {
                 System.out.println("Adicionei carona");
                 caronasComoMotorista.add(carona);
@@ -90,7 +96,6 @@ public class UsuarioController extends Controller {
             System.out.println(caronasComoMotorista.get(0).getVagas());
 
         }
-        
         
         return ok(Json.toJson(caronasComoMotorista));
     }
