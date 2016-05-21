@@ -28,7 +28,7 @@ public class SistemaSolicitacao {
         return Solicitacao.find.findList();    }
 
     public void adicionarSolicitacao(Solicitacao c){
-        solicitacoes.add(c);
+        c.save();
     }
 
     public void removerSolicitacao(Solicitacao c) {

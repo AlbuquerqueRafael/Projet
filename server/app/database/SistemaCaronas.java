@@ -37,7 +37,7 @@ public class SistemaCaronas{
 	}
 
 	public void adicionarCarona(Carona carona){
-		caronas.add(carona);
+		carona.save();
 	}
 
 	public void removerCarona(Carona carona) {

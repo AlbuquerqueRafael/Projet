@@ -34,7 +34,7 @@ public class Usuario extends Model{
 
     private String senha;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Endereco endereco;
 
     @OneToMany(cascade = CascadeType.ALL)

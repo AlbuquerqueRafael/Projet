@@ -60,7 +60,7 @@ public class SolicitacaoController extends Controller{
                 }
                 SistemaSolicitacao.getInstance().removerSolicitacao(sol);
                 ServiceLog.novaMensagemLog(carona.getMotorista().getEmail() + " aceitou o pedido de carona de " + sol.getPassageiro().getEmail());
-           //     ServiceNotificacao.notificaPassageiroAceito(sol);
+                ServiceNotificacao.notificaPassageiroAceito(sol);
 
                 break;
             }
@@ -78,6 +78,7 @@ public class SolicitacaoController extends Controller{
         List<Solicitacao> solicitacoes = new ArrayList<Solicitacao>();
         for(Solicitacao pedido : SistemaSolicitacao.getInstance().getSolicitacao()){
             if(UsuarioController.usuarioAutenticado().equals(pedido.getCarona().getMotorista())){
+                System.out.println("Adicionei pedido");
                 solicitacoes.add(pedido);
             }
         }
@@ -121,7 +122,7 @@ public class SolicitacaoController extends Controller{
 
 
         }
-
+        System.out.println(filterPassageiros);
         return ok(Json.toJson(filterPassageiros));
     }
 

@@ -30,7 +30,7 @@ public class Application extends Controller {
     public Result main(String any) {
     	PropertyConfigurator.configure("conf/log4j.properties");  // NAO EXCLUIR
 
-
+        /*
         List<Usuario> allusers = SistemaUsuarios.getInstance().getListaUsuarios();
         List<Carona> allCaronas = SistemaCaronas.getInstance().getListaCaronas();
 
@@ -44,7 +44,8 @@ public class Application extends Controller {
         }
 
 
-      /*  Endereco endereco = new Endereco("Rua da Flores", "Centro");
+
+        Endereco endereco = new Endereco("Rua da Flores", "Centro");
         Endereco endereco1 = new Endereco("Rua da Flores", "Centro");
         Notificacao notifica = new Notificacao("Voce foi notificado");
         Usuario usuario = new Usuario("Pedro", "123", "99621653", "pedro@hotmail.com", "123", endereco);

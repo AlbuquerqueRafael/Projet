@@ -63,6 +63,7 @@ create table usuario (
   telefone                      varchar(255),
   email                         varchar(255),
   senha                         varchar(255),
+  endereco_id                   bigint,
   constraint pk_usuario primary key (id)
 );
 
@@ -93,6 +94,9 @@ create index ix_solicitacao_passageiro_id on solicitacao (passageiro_id);
 alter table solicitacao add constraint fk_solicitacao_carona_id foreign key (carona_id) references carona (id) on delete restrict on update restrict;
 create index ix_solicitacao_carona_id on solicitacao (carona_id);
 
+alter table usuario add constraint fk_usuario_endereco_id foreign key (endereco_id) references endereco (id) on delete restrict on update restrict;
+create index ix_usuario_endereco_id on usuario (endereco_id);
+
 
 # --- !Downs
 
@@ -122,6 +126,9 @@ drop index if exists ix_solicitacao_passageiro_id;
 
 alter table if exists solicitacao drop constraint if exists fk_solicitacao_carona_id;
 drop index if exists ix_solicitacao_carona_id;
+
+alter table if exists usuario drop constraint if exists fk_usuario_endereco_id;
+drop index if exists ix_usuario_endereco_id;
 
 drop table if exists carona cascade;
 

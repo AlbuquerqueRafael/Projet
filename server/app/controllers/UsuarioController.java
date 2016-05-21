@@ -74,23 +74,10 @@ public class UsuarioController extends Controller {
         System.out.println(allCaronas);
 
 
-        for (Carona carona : allCaronas) {
-                System.out.println(carona.getMotorista().getEndereco());
-                
+        for (Carona carona : allCaronas) { 
             if (UsuarioController.usuarioAutenticado().equals(carona.getMotorista())) {
-                System.out.println("Adicionei carona");
                 caronasComoMotorista.add(carona);
             }
-        }
-
-        if (!caronasComoMotorista.isEmpty()) {
-            System.out.println(caronasComoMotorista.get(0).getTipo());
-            System.out.println(caronasComoMotorista.get(0).getHorario().getAula());
-            System.out.println(caronasComoMotorista.get(0).getHorario().getDia());
-            System.out.println(caronasComoMotorista.get(0).getListaPassageiros().size());
-            System.out.println(caronasComoMotorista.get(0).getVagas());
-            System.out.println(caronasComoMotorista.get(0).getEndereco());
-
         }
         
         return ok(Json.toJson(caronasComoMotorista));

@@ -48,15 +48,17 @@ public class SistemaUsuarios{
 		Usuario usuario8 = new Usuario("Jessica", "123", "99621658", "jessica@hotmail.com", "123", endereco);
 		Usuario usuario9 = new Usuario("Paula", "123", "99621623", "paula@hotmail.com", "123", endereco);
 		Usuario usuario10 = new Usuario("Paulo", "123", "99621343", "paulo@hotmail.com", "123", endereco);
-		usuarios.add(usuario);
-		usuarios.add(usuario2);
-		usuarios.add(usuario3);
-		usuarios.add(usuario5);
-		usuarios.add(usuario6);
-		usuarios.add(usuario7);
-		usuarios.add(usuario8);
-		usuarios.add(usuario9);
-		usuarios.add(usuario10);
+		
+		usuario.save();
+		usuario2.save();
+		usuario3.save();
+		usuario4.save();
+		usuario5.save();
+		usuario6.save();
+		usuario7.save();
+		usuario8.save();
+		usuario9.save();
+		usuario10.save();
 
 		Horario horario = new Horario("8-10", DiaDaSemana.SEGUNDA);
 		Horario horario2 = new Horario("10-12", DiaDaSemana.SEGUNDA);
@@ -86,11 +88,12 @@ public class SistemaUsuarios{
 		Carona carona9 = new Carona(usuario7, horario2, 3, rota0, endereco2, TipoCarona.IDA);
 		Carona carona10 = new Carona(usuario10, horario2, 3, rota0, endereco2, TipoCarona.IDA);
 
-
+		/*
 		List<Usuario> us = new ArrayList<>();
 		us.add(usuario2);
 		us.add(usuario3);
 		carona.setListaPassageiros(us);
+		*/
 		SistemaCaronas.getInstance().adicionarCarona(carona);
 		SistemaCaronas.getInstance().adicionarCarona(carona2);
 		SistemaCaronas.getInstance().adicionarCarona(carona3);
