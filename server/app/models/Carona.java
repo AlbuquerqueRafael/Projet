@@ -33,7 +33,7 @@ public class Carona extends Model{
     private Endereco endereco;
 
 
-    @OneToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Usuario> listaPassageiros;
 
     private int vagas;
@@ -45,7 +45,7 @@ public class Carona extends Model{
 
     public static Model.Finder<Long,Carona> find = new Model.Finder<Long,Carona>(Long.class, Carona.class);
 
-    public Carona (Usuario motorista, Horario horario, int vagas, List<Rota> rota, Endereco endereco, TipoCarona tipo){
+    public Carona (Usuario motorista, Horario horario, int vagas, List<Rota> rota,  Endereco endereco, TipoCarona tipo){
         this.horario = horario;
         this.listaPassageiros = new ArrayList<Usuario>();
         this.rota = rota;
@@ -65,6 +65,7 @@ public class Carona extends Model{
         this.vagas = vagas;
         this.motorista = motorista;
         this.tipo = tipo;
+        this.rota = new ArrayList<Rota>();
         this.horario = horario;
         this.listaPassageiros = new ArrayList<Usuario>();
     }
@@ -74,12 +75,14 @@ public class Carona extends Model{
         this.tipo = tipo;
         this.endereco = endereco;
         this.vagas = vagas;
+        this.rota = new ArrayList<Rota>();
         this.listaPassageiros = new ArrayList<Usuario>();
     }
 
     public Carona(Horario horario, Usuario motorista){
         this.horario = horario;
         this.motorista = motorista;
+        this.rota = new ArrayList<Rota>();
         this.listaPassageiros = new ArrayList<Usuario>();
     }
 

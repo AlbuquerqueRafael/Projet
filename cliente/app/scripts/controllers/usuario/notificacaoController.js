@@ -2,15 +2,18 @@
  * Created by rafael on 19/04/16.
  */
 
-angular.module("clienteApp").controller("notifyCtrl", function($scope){
+angular.module("clienteApp").controller("notifyCtrl", function($scope, notifyService){
 
-    $scope.notificacoes = ["Fulano Aceitou sua Carona", "Ciclano aceitou sua carona",
-      "Nossa, assim você me mata", "Batatinha quando nasce"
-
-    ];
-
+    var inicio = notifyService.getNotificacoes().success(function(data){
+        $scope.notificacoes = data;
+    });;
+    console.log($scope.notificacoes);
     $scope.descartaNotify = function(index){
-        $scope.notificacoes.splice(index, 1);
+        notifyService.removeNotificacoes(index).success(function(data){
+          $scope.notificacoes.splice(index, 1);
+        }).error(function(erro){
+          console.log(erro);
+        });
 
     }
 

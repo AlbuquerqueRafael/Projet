@@ -34,15 +34,15 @@ public class Usuario extends Model{
 
     private String senha;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
     private Endereco endereco;
 
     @OneToMany(cascade = CascadeType.ALL)
-    public List<Notificacao> novasNotificacoes;
+    private List<Notificacao> novasNotificacoes;
 
-    @ManyToOne
+
+    @ManyToMany
     private Carona carona;
-
 
     public Usuario(String nome, String matricula, String telefone, String email, String senha, Endereco endereco) {
         this.nome = nome;
@@ -152,6 +152,10 @@ public class Usuario extends Model{
 
     public List<Notificacao> getNovasNotificacoes(){
         return novasNotificacoes;
+    }
+
+    public Carona getCarona(){
+        return carona;
     }
 
     @Override

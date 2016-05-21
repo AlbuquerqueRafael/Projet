@@ -19,6 +19,8 @@ public class Rota extends Model {
 
     private String destino;
 
+    public static Model.Finder<Long,Rota> find = new Model.Finder<Long,Rota>(Long.class, Rota.class);
+
     public Rota() {
 
     }

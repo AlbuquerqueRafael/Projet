@@ -128,7 +128,7 @@ public class SolicitacaoController extends Controller{
     private void limpaSolicitacoesSemVagas(Carona carona){
         for(Solicitacao s : SistemaSolicitacao.getInstance().getSolicitacao()){
             if(s.getCarona().equals(carona) && carona.getVagas() == 0){
-             //   ServiceNotificacao.notificaPassageiroRecusado(s);
+                //ServiceNotificacao.notificaPassageiroRecusado(s);
                 SistemaSolicitacao.getInstance().removerSolicitacao(s);
 
             }

@@ -3,7 +3,7 @@
  */
 
 
-angular.module("clienteApp").controller("solicitacaoCtrl", function($scope){
+angular.module("clienteApp").controller("solicitacaoCtrl", function($scope, $solicitacaoService){
 
 
   var id = 1;
@@ -18,7 +18,7 @@ angular.module("clienteApp").controller("solicitacaoCtrl", function($scope){
       id -= 1;
     }
 
-    notifyService.getPedidosCaronas(id).success(function(info){
+    solicitacaoService.getPedidosCaronas(id).success(function(info){
       $scope.solicitacoes = info;
       $scope.quantidadeElementosPagina = info.length;
     }).error(function(erro){
@@ -29,7 +29,7 @@ angular.module("clienteApp").controller("solicitacaoCtrl", function($scope){
   $scope.buscarSolicitacoes(id);
 
   $scope.aceitarSolicitacao = function(solicitacao){
-    notifyService.aceitarCarona(solicitacao).success(function(info){
+    solicitacaoService.aceitarCarona(solicitacao).success(function(info){
       $scope.telefone = info;
       id = 1;
       $scope.buscarSolicitacoes(id);
@@ -39,7 +39,7 @@ angular.module("clienteApp").controller("solicitacaoCtrl", function($scope){
   };
 
   $scope.rejeitarPedido = function(solicitacao){
-    notifyService.rejeitarCarona(solicitacao).success(function(info){
+    solicitacaoService.rejeitarCarona(solicitacao).success(function(info){
       $scope.telefone = info;
       id = 1;
       $scope.buscarSolicitacoes(id);
@@ -49,7 +49,7 @@ angular.module("clienteApp").controller("solicitacaoCtrl", function($scope){
   };
 
   $scope.solicitacoesRejeitadas = function(){
-    notifyService.getCaronasRejeitadas().success(function(info){
+    solicitacaoService.getCaronasRejeitadas().success(function(info){
       $scope.tabs = 2;
       console.log(info);
       $scope.mensagens = info;

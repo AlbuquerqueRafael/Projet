@@ -14,6 +14,12 @@ create table carona (
   constraint pk_carona primary key (id)
 );
 
+create table carona_usuario (
+  carona_id                     bigint not null,
+  usuario_id                    bigint not null,
+  constraint pk_carona_usuario primary key (carona_id,usuario_id)
+);
+
 create table endereco (
   id                            bigserial not null,
   rua                           varchar(255),
@@ -57,8 +63,6 @@ create table usuario (
   telefone                      varchar(255),
   email                         varchar(255),
   senha                         varchar(255),
-  endereco_id                   bigint,
-  carona_id                     bigint,
   constraint pk_usuario primary key (id)
 );
 
@@ -70,6 +74,12 @@ create index ix_carona_motorista_id on carona (motorista_id);
 
 alter table carona add constraint fk_carona_endereco_id foreign key (endereco_id) references endereco (id) on delete restrict on update restrict;
 create index ix_carona_endereco_id on carona (endereco_id);
+
+alter table carona_usuario add constraint fk_carona_usuario_carona foreign key (carona_id) references carona (id) on delete restrict on update restrict;
+create index ix_carona_usuario_carona on carona_usuario (carona_id);
+
+alter table carona_usuario add constraint fk_carona_usuario_usuario foreign key (usuario_id) references usuario (id) on delete restrict on update restrict;
+create index ix_carona_usuario_usuario on carona_usuario (usuario_id);
 
 alter table notificacao add constraint fk_notificacao_usuario_id foreign key (usuario_id) references usuario (id) on delete restrict on update restrict;
 create index ix_notificacao_usuario_id on notificacao (usuario_id);
@@ -83,12 +93,6 @@ create index ix_solicitacao_passageiro_id on solicitacao (passageiro_id);
 alter table solicitacao add constraint fk_solicitacao_carona_id foreign key (carona_id) references carona (id) on delete restrict on update restrict;
 create index ix_solicitacao_carona_id on solicitacao (carona_id);
 
-alter table usuario add constraint fk_usuario_endereco_id foreign key (endereco_id) references endereco (id) on delete restrict on update restrict;
-create index ix_usuario_endereco_id on usuario (endereco_id);
-
-alter table usuario add constraint fk_usuario_carona_id foreign key (carona_id) references carona (id) on delete restrict on update restrict;
-create index ix_usuario_carona_id on usuario (carona_id);
-
 
 # --- !Downs
 
@@ -100,6 +104,12 @@ drop index if exists ix_carona_motorista_id;
 
 alter table if exists carona drop constraint if exists fk_carona_endereco_id;
 drop index if exists ix_carona_endereco_id;
+
+alter table if exists carona_usuario drop constraint if exists fk_carona_usuario_carona;
+drop index if exists ix_carona_usuario_carona;
+
+alter table if exists carona_usuario drop constraint if exists fk_carona_usuario_usuario;
+drop index if exists ix_carona_usuario_usuario;
 
 alter table if exists notificacao drop constraint if exists fk_notificacao_usuario_id;
 drop index if exists ix_notificacao_usuario_id;
@@ -113,13 +123,9 @@ drop index if exists ix_solicitacao_passageiro_id;
 alter table if exists solicitacao drop constraint if exists fk_solicitacao_carona_id;
 drop index if exists ix_solicitacao_carona_id;
 
-alter table if exists usuario drop constraint if exists fk_usuario_endereco_id;
-drop index if exists ix_usuario_endereco_id;
-
-alter table if exists usuario drop constraint if exists fk_usuario_carona_id;
-drop index if exists ix_usuario_carona_id;
-
 drop table if exists carona cascade;
+
+drop table if exists carona_usuario cascade;
 
 drop table if exists endereco cascade;
 

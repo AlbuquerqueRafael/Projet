@@ -32,8 +32,12 @@ public class SistemaCaronas{
 		return Carona.find.findList();
 	}
 
+	public List<Carona> getListaCaronas(){
+		return caronas;
+	}
+
 	public void adicionarCarona(Carona carona){
-		carona.save();
+		caronas.add(carona);
 	}
 
 	public void removerCarona(Carona carona) {

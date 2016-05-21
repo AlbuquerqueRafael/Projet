@@ -24,7 +24,7 @@ public class SistemaUsuarios{
 
 	private SistemaUsuarios (){
 		usuarios = new ArrayList<Usuario>();
-		//testeExemplos();	
+		testeExemplos();
 	}
 
 	private void testeExemplos() {
@@ -86,6 +86,11 @@ public class SistemaUsuarios{
 		Carona carona9 = new Carona(usuario7, horario2, 3, rota0, endereco2, TipoCarona.IDA);
 		Carona carona10 = new Carona(usuario10, horario2, 3, rota0, endereco2, TipoCarona.IDA);
 
+
+		List<Usuario> us = new ArrayList<>();
+		us.add(usuario2);
+		us.add(usuario3);
+		carona.setListaPassageiros(us);
 		SistemaCaronas.getInstance().adicionarCarona(carona);
 		SistemaCaronas.getInstance().adicionarCarona(carona2);
 		SistemaCaronas.getInstance().adicionarCarona(carona3);
@@ -119,6 +124,10 @@ public class SistemaUsuarios{
 
 	public List<Usuario> getUsuarios(){
 		return Usuario.find.findList();
+	}
+
+	public List<Usuario> getListaUsuarios(){
+		return usuarios;
 	}
 
 	public void adicionarUsuario(Usuario usr) throws DadosInvalidosException{
