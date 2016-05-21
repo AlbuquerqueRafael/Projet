@@ -72,12 +72,12 @@ angular
       .when('/notificacao', {
         templateUrl: 'views/usuario/notificacao.html',
         controller: 'notifyCtrl',
-        requireLogin : true
+        requireLogin : false
       })
       .when('/solicitacao', {
         templateUrl: 'views/usuario/solicitacao.html',
-        controller: 'notifyCtrl',
-        requireLogin : true
+        controller: 'solicitacaoCtrl',
+        requireLogin : false
       })
       .otherwise({
         redirectTo: '/'
@@ -86,7 +86,7 @@ angular
   });
 
 angular.module("clienteApp").config(function($translateProvider) {
-  $translateProvider.translations('en', {        
+  $translateProvider.translations('en', {
       'cadastro.title': "Sign up!",
       'cadastro.nome': "Name",
       'cadastro.email': "Email",
@@ -98,7 +98,7 @@ angular.module("clienteApp").config(function($translateProvider) {
       'cadastro.rua': "Address",
       'cadastro.telefone': "Phone number",
       'cadastro.telefone.ddd': "Phone number without DDD",
-      'cadastro.telefone.check': "Type your phone number", 
+      'cadastro.telefone.check': "Type your phone number",
 
       'main.email': "Email",
       'main.email.type': "Type your email",
@@ -108,8 +108,8 @@ angular.module("clienteApp").config(function($translateProvider) {
 
       'label.title': "Vote in Movie?"
   });
-  $translateProvider.translations('pt', {      
-      'cadastro.title': "Cadastro!",      
+  $translateProvider.translations('pt', {
+      'cadastro.title': "Cadastro!",
       'cadastro.nome': "Nome",
       'cadastro.email': "Email",
       'cadastro.email.check': "Preencha com um email válido. Exemplo caroname@caroname.com",
@@ -135,11 +135,11 @@ angular.module("clienteApp").config(function($translateProvider) {
 });
 
 angular.module('clienteApp').controller('Ctrl', ['$translate', '$scope', function ($translate, $scope) {
- 
+
   $scope.changeLanguage = function (langKey) {
     $translate.use(langKey);
   };
- 
+
 }]);
 
 

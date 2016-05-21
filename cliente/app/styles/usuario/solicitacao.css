@@ -1,0 +1,56 @@
+#aceitarCarona {
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+#rejeitarCarona {
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+#rejeitarCarona:hover {
+  background-color: #ff291c ;
+  color: white;
+}
+
+.align-right {
+  float: right;
+}
+
+.containerNotificacao {
+  background-color: transparent;
+  background:transparent;
+  width: 1100px;
+  text-align: center;
+  margin-top: 5px;
+  margin-left: 100px;
+  margin-right: auto;
+  position: relative;
+  padding-top: 30px;
+  padding-left: 30px;
+  font-size: 18px;
+  text-align: justify;
+
+}
+
+#panelNotification{
+  width: 250px;
+}
+
+#fonteNotification{
+  font-size: 12px;
+}
+
+.notificationPop{
+  position: relative;
+  right: 710px;
+}
+
+.notificationPopText{
+  position: relative;
+}
+
+#alignText{
+  text-align: center;
+}
+

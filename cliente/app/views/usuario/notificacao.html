@@ -22,18 +22,12 @@
 </div>
 <div class="container">
   <div class="list-group">
-    <div id = "mydiv" style = "width: 600px;">
-      <a class="list-group-item" style = "color: rgb(0,121,192); left: 200px;">The book is on the table.<span title = "Descartar Notificação" onclick="hide('mydiv')" class="badge">x</span></a>
+    <div class="divNotify" ng-repeat="notificacao in notificacoes">
+      <a class="list-group-item notify">{{notificacao}}<span title = "Descartar Notificação" ng-click="descartaNotify($index)"class="badge">sssx</span></a>
     </div>
   </div>
 </div>
 
-<script type="text/javascript">
-  function hide(target) {
-    document.getElementById(target).style.display = 'none';
-  }
-
-</script>
 
 </body>
 
