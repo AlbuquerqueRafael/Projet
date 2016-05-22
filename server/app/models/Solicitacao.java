@@ -24,11 +24,11 @@ public class Solicitacao extends Model{
     @Id
     protected long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Usuario passageiro;
 
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Carona carona;
 
     public static Model.Finder<Long,Solicitacao> find = new Model.Finder<Long,Solicitacao>(Long.class, Solicitacao.class);

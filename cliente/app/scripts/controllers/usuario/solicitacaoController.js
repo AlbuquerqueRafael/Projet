@@ -3,7 +3,7 @@
  */
 
 
-angular.module("clienteApp").controller("solicitacaoCtrl", function($scope, $solicitacaoService){
+angular.module("clienteApp").controller("solicitacaoCtrl", function($scope, solicitacaoService){
 
 
   var id = 1;
