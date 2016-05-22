@@ -49,7 +49,7 @@ public class UsuarioController extends Controller {
         List<Carona> caronasComoPassageiro = new ArrayList<Carona>();
         Usuario usuarioAtual = UsuarioController.usuarioAutenticado();
         List<Carona> allCaronas = SistemaCaronas.getInstance().getCaronas();
-        System.out.println(allCaronas);
+
 
         for(Carona carona : allCaronas){
             System.out.println(carona.getListaPassageiros());
@@ -67,8 +67,6 @@ public class UsuarioController extends Controller {
     public Result getCaronasComoMotoristas(){
         List<Carona> caronasComoMotorista = new ArrayList<Carona>();
         List<Carona> allCaronas = SistemaCaronas.getInstance().getCaronas();
-
-        System.out.println(allCaronas);
 
 
         for (Carona carona : allCaronas) { 

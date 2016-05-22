@@ -35,7 +35,7 @@ public class CaronaController extends Controller {
 
 
     public Result rejeitarCarona(Long id){
-        Solicitacao solicitacao = SistemaSolicitacao.getInstance().geSolitacaoById(id);
+        Solicitacao solicitacao = SistemaSolicitacao.getInstance().getSolitacaoById(id);
         List<Solicitacao> solicitacoes = SistemaSolicitacao.getInstance().getSolicitacao();
         solicitacao.getCarona().setMotorista(UsuarioController.usuarioAutenticado());
 

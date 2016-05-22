@@ -35,7 +35,7 @@ public class SistemaSolicitacao {
         c.delete();
     }
 
-    public Solicitacao geSolitacaoById(Long id) {
+    public Solicitacao getSolitacaoById(Long id) {
         return Solicitacao.find.byId(id);
     }
 

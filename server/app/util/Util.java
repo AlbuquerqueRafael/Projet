@@ -4,6 +4,7 @@ import models.*;
 import play.data.validation.Constraints.EmailValidator;
 import play.mvc.Controller;
 import models.enums.DiaDaSemana;
+import java.util.List;
 
 /**
  * Classe utilitaria para validar as informacoes
@@ -71,7 +72,6 @@ public class Util {
         System.out.println("Entrei no metodo");
         DiaDaSemana dia1 = carona.getHorario().getDia();
         DiaDaSemana dia2 = comparada.getHorario().getDia();
-        System.out.println("Peguei os dois dias");
         String aula1 = carona.getHorario().getAula();
         String aula2 = comparada.getHorario().getAula();
         if(dia1 == dia2 && aula1.equals(aula2)){
@@ -82,8 +82,15 @@ public class Util {
     }
 
     public static boolean isEnderecoCompativel(Carona carona, Carona comparada){
-        if(carona.getEndereco().equals(comparada.getEndereco()) || carona.getRota().contains(comparada.getEndereco().getBairro()) ){
+        List<Rota> rotas = carona.getRota();
+        String bairro_passageiro = comparada.getEndereco().getBairro();
+
+        if(carona.getEndereco().equals(comparada.getEndereco())){
             return true;
+        }
+
+        for (Rota rota: rotas){
+            if (rota.getDestino().equals(bairro_passageiro)) return true;
         }
 
 

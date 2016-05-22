@@ -21,7 +21,6 @@ public class SolicitacaoController extends Controller{
         Carona caronaSolicitada = SistemaCaronas.getInstance().getCaronaById(id);
 
         Solicitacao solicitacao = new Solicitacao(caronaSolicitada, UsuarioController.usuarioAutenticado());
-        System.out.println("Adicionei pedido");
         SistemaSolicitacao.getInstance().adicionarSolicitacao(solicitacao);
 
         ServiceLog.novaMensagemLog(solicitacao.getPassageiro().getEmail() + " solicitou uma carona a " + solicitacao.getCarona().getMotorista().getEmail());
@@ -36,7 +35,7 @@ public class SolicitacaoController extends Controller{
 
         String telefone = null;
         try {
-            Solicitacao sol = SistemaSolicitacao.getInstance().geSolitacaoById(id);
+            Solicitacao sol = SistemaSolicitacao.getInstance().getSolitacaoById(id);
             sol.getCarona().setMotorista(UsuarioController.usuarioAutenticado());
 
 
