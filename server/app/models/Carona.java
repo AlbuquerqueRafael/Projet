@@ -26,14 +26,14 @@ public class Carona extends Model{
     @ManyToOne(cascade = CascadeType.ALL)
     private Horario horario;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Usuario motorista;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Endereco endereco;
 
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     private List<Usuario> listaPassageiros;
 
     private int vagas;
@@ -148,6 +148,13 @@ public class Carona extends Model{
         this.tipo = tipo;
     }
 
+    public Long getId(){
+        return id;
+    }
+
+    public void setId(Long id){
+        this.id = id;
+    }
 
     @Override
     public boolean equals(Object obj){

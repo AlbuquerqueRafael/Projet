@@ -60,7 +60,7 @@ public class BuscaController extends Controller {
 
                   Usuario templateMotorista = new Usuario(motoristaCarona.getNome(), motoristaCarona.getEmail(), motoristaCarona.getTelefone());
                   Carona templateCarona = new Carona(horarioCarona, templateMotorista);
-
+                  templateCarona.setId(caroItera.getId());
                   infoCaronas.add(templateCarona);
 
            }

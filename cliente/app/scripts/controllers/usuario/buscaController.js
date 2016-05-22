@@ -4,7 +4,7 @@
 
 'use strict';
 
-angular.module("clienteApp").controller("buscaCtrl", function($scope, caronaService, mainService, $window) {
+angular.module("clienteApp").controller("buscaCtrl", function($scope, caronaService, mainService, $window, solicitacaoService) {
 
   $scope.horarios = caronaService.getAulaArray();
   $scope.diaSemanas = caronaService.getDiaSemanasArray();
@@ -64,6 +64,7 @@ angular.module("clienteApp").controller("buscaCtrl", function($scope, caronaServ
       $scope.error = false;
       $scope.quantidadeElementosPagina =  $scope.infoCaronas.length;
     }).error(function(erro){
+      $scope.infoCaronas.splice(0, 1);
       $scope.error = true;
       $scope.errorMessage = erro;
     });
@@ -71,22 +72,11 @@ angular.module("clienteApp").controller("buscaCtrl", function($scope, caronaServ
   };
 
 
-  $scope.solicitaCarona = function(carona){
-    var caronaSolicitada = {};
-    var horario = {};
-    var horarioSolicitacao = $scope.horario;
-
-    caronaSolicitada.motorista = carona.motorista;
-
-    horario.aula = horarioSolicitacao.aula.value;
-    horario.dia = horarioSolicitacao.DiaDaSemana.Id;
-
-    caronaSolicitada.horario = horario;
-    caronaSolicitada.tipo = $scope.opcaoCarona;
-
-    caronaService.solicitarCarona(caronaSolicitada).success(function(info){
+  $scope.solicitaCarona = function(caronaSolicitada){
+    console.log(caronaSolicitada)
+    solicitacaoService.solicitarCarona(caronaSolicitada.id).success(function(info){
         $scope.infoCaronas = $scope.infoCaronas.filter(function(e1){
-          return e1.motorista.nome !== carona.motorista.nome;
+          return e1.motorista.nome !== caronaSolicitada.motorista.nome;
         });
       $window.alert(info);
 

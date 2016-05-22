@@ -31,7 +31,7 @@ angular.module("clienteApp")
                     break;
                 }
             }
-        }
+        };
 
         $scope.inicia();
 
@@ -56,7 +56,7 @@ angular.module("clienteApp")
 
             $scope.routes = routes;
 
-        }
+        };
 
         var filtraRotaPorValor = function(routes){
             var rotas = [];
@@ -66,7 +66,7 @@ angular.module("clienteApp")
 
 
             return rotas;
-        }
+        };
 
 
         $scope.salvarCarona = function(){
@@ -89,7 +89,7 @@ angular.module("clienteApp")
             });
 
 
-        }
+        };
 
         $scope.cancelar = function(){
           $location.path('/horario');

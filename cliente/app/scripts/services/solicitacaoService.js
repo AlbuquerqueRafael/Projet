@@ -5,26 +5,29 @@
 
 angular.module("clienteApp").factory("solicitacaoService", function($http){
 
-  var notifyService = {};
+  var solicitacaoService = {};
 
-  notifyService.getPedidosCaronas = function(id){
+  solicitacaoService.getPedidosCaronas = function(id){
     return $http.get('/app/solicitacoesCarona/' + id);
   };
 
-  notifyService.aceitarCarona = function(solicitacao){
-    return $http.post('/app/aceitarCarona', solicitacao);
+  solicitacaoService.aceitarCarona = function(idSolicitacao){
+    return $http.post('/app/aceitarCarona/' + idSolicitacao);
   };
 
-  notifyService.rejeitarCarona = function(solicitacao){
-    return $http.post('/app/rejeitarCarona', solicitacao);
+  solicitacaoService.rejeitarCarona = function(idSolicitacao){
+    return $http.post('/app/rejeitarCarona/' + idSolicitacao);
   };
 
-  notifyService.getCaronasRejeitadas = function(){
+  solicitacaoService.getCaronasRejeitadas = function(){
     return $http.get('/app/caronasRejeitadas');
   };
 
+  solicitacaoService.solicitarCarona = function(IdCaronaSolicitada){
+    return $http.post('/app/solicitarCarona/' + IdCaronaSolicitada);
+  };
 
-  return notifyService;
+  return solicitacaoService;
 
 
 

@@ -14,10 +14,6 @@ angular.module("clienteApp").factory("caronaService", function($http){
       return $http.post('/app/buscarCaronas/' + numPagina, carona);
     };
 
-    caronaService.solicitarCarona = function(caronaSoliciatada){
-      return $http.post('/app/solicitarCarona', caronaSoliciatada);
-    };
-
     caronaService.getAulaArray = function(){
         var aula =[{value: "8-10"},
             {value: "10-12"},

@@ -34,28 +34,22 @@ public class CaronaController extends Controller {
     }
 
 
-    public Result rejeitarCarona(){                       
-        JsonNode json = request().body().asJson();
-        Solicitacao solicitacao = Json.fromJson(json, Solicitacao.class);
+    public Result rejeitarCarona(Long id){
+        Solicitacao solicitacao = SistemaSolicitacao.getInstance().geSolitacaoById(id);
         List<Solicitacao> solicitacoes = SistemaSolicitacao.getInstance().getSolicitacao();
         solicitacao.getCarona().setMotorista(UsuarioController.usuarioAutenticado());
 
-        for(Solicitacao s: solicitacoes){
-            Carona carona = s.getCarona();
-            if(s.equals(solicitacao) && solicitacao.getCarona().equals(carona)){
-                ServiceLog.novaMensagemLog(carona.getMotorista().getEmail() + " rejeitou pedido de carona de " + s.getPassageiro().getEmail());
-                ServiceNotificacao.notificaPassageiroRecusado(s);
-                SistemaUsuarios.getInstance().atualizarUsuario(s.getPassageiro());
-                SistemaSolicitacao.getInstance().removerSolicitacao(s);
-                break;
-            }
-        }
-
+        Carona carona = solicitacao.getCarona();
+        ServiceLog.novaMensagemLog(carona.getMotorista().getEmail() + " rejeitou pedido de carona de " + solicitacao.getPassageiro().getEmail());
+        ServiceNotificacao.notificaPassageiroRecusado(solicitacao);
+        SistemaUsuarios.getInstance().atualizarUsuario(solicitacao.getPassageiro());
+        SistemaSolicitacao.getInstance().removerSolicitacao(solicitacao);
 
         return ok("Carona rejeitada");
 
     }
 
+    /*
     public Result caronasRejeitadas(){
         Solicitacao solicitacao = new Solicitacao();
         solicitacao.setPassageiro(UsuarioController.usuarioAutenticado());
@@ -75,7 +69,7 @@ public class CaronaController extends Controller {
         }
 
         return ok(Json.toJson(mensagens));
-    }
+    }*/
 
 
 

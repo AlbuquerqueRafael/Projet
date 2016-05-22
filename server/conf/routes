@@ -14,11 +14,13 @@ GET    /app/caronasMotorista       controllers.UsuarioController.getCaronasComoM
 GET    /app/caronasPassageiro      controllers.UsuarioController.getCaronasComoPassageiro()
 POST    /app/logout                controllers.UsuarioController.logout()
 
-GET     /app/caronasRejeitadas       controllers.CaronaController.caronasRejeitadas()
-POST    /app/rejeitarCarona           controllers.CaronaController.rejeitarCarona
-GET     /app/solicitacoesCarona/:id controllers.SolicitacaoController.getSolicitacoesCaronas(id : Long)
-POST    /app/solicitarCarona        controllers.SolicitacaoController.solicitarCarona()
-POST    /app/aceitarCarona          controllers.SolicitacaoController.aceitarCarona()
+#GET     /app/caronasRejeitadas       controllers.CaronaController.caronasRejeitadas()
+POST    /app/rejeitarCarona/:id           controllers.CaronaController.rejeitarCarona(id : Long)
+
+
+GET     /app/solicitacoesCarona/:id     controllers.SolicitacaoController.getSolicitacoesCaronas(id : Long)
+POST    /app/solicitarCarona/:id        controllers.SolicitacaoController.solicitarCarona(id : Long)
+POST    /app/aceitarCarona/:id              controllers.SolicitacaoController.aceitarCarona(id : Long)
 
 
 POST    /app/salvarCarona          controllers.CaronaController.postCaronas()

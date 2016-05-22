@@ -41,8 +41,8 @@ public class Usuario extends Model{
     private List<Notificacao> novasNotificacoes;
 
 
-    @ManyToMany
-    private Carona carona;
+    //@ManyToMany
+   // private Carona carona;
 
     public Usuario(String nome, String matricula, String telefone, String email, String senha, Endereco endereco) {
         this.nome = nome;
@@ -132,7 +132,6 @@ public class Usuario extends Model{
     }
 
     public void adicionaNotificacao(Notificacao message){
-        System.out.println(this.novasNotificacoes);
         this.novasNotificacoes.add(message);
         System.out.println("Notificou");
     }
@@ -154,8 +153,12 @@ public class Usuario extends Model{
         return novasNotificacoes;
     }
 
-    public Carona getCarona(){
-        return carona;
+    public Long getId(){
+        return id;
+    }
+
+    public void setId(Long id){
+        this.id = id;
     }
 
     @Override

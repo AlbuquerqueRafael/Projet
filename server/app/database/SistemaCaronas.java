@@ -48,5 +48,8 @@ public class SistemaCaronas{
 		carona.update();
 	}
 
+	public Carona getCaronaById(Long id){
+		return Carona.find.byId(id);
+	}
 
 }

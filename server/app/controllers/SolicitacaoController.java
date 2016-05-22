@@ -1,6 +1,7 @@
 package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import exception.SolicitacaoIdInvalidoException;
 import models.*;
 import models.enums.TipoCarona;
 import play.libs.Json;
@@ -16,18 +17,11 @@ public class SolicitacaoController extends Controller{
 
     public static final int NUM_ITENS_PAGINA = 3;
 
-    public Result solicitarCarona(){
-        JsonNode json = request().body().asJson();
-        Carona caronaSolicitada = Json.fromJson(json, Carona.class);
-
-        for(Carona carona : SistemaCaronas.getInstance().getCaronas()){
-            if(caronaSolicitada.equals(carona)){
-                caronaSolicitada = carona;
-            }
-        }
+    public Result solicitarCarona(Long id){
+        Carona caronaSolicitada = SistemaCaronas.getInstance().getCaronaById(id);
 
         Solicitacao solicitacao = new Solicitacao(caronaSolicitada, UsuarioController.usuarioAutenticado());
-
+        System.out.println("Adicionei pedido");
         SistemaSolicitacao.getInstance().adicionarSolicitacao(solicitacao);
 
         ServiceLog.novaMensagemLog(solicitacao.getPassageiro().getEmail() + " solicitou uma carona a " + solicitacao.getCarona().getMotorista().getEmail());
@@ -38,35 +32,35 @@ public class SolicitacaoController extends Controller{
 
     }
 
-    public Result aceitarCarona(){
-        JsonNode json = request().body().asJson();
-        Solicitacao solicitacao = Json.fromJson(json, Solicitacao.class);
-        List<Solicitacao> solicitacoes = SistemaSolicitacao.getInstance().getSolicitacao();
-        solicitacao.getCarona().setMotorista(UsuarioController.usuarioAutenticado());
+    public Result aceitarCarona(Long id){
+
         String telefone = null;
+        try {
+            Solicitacao sol = SistemaSolicitacao.getInstance().geSolitacaoById(id);
+            sol.getCarona().setMotorista(UsuarioController.usuarioAutenticado());
 
-        System.out.println(Json.toJson(solicitacao));
-        for(Solicitacao sol: solicitacoes){
+
             Carona carona = sol.getCarona();
-            if(sol.equals(solicitacao) && solicitacao.getCarona().equals(carona)){
-                int vagas = solicitacao.getCarona().getVagas();
+            System.out.println(Json.toJson(carona));
 
-                carona.novoPassageiro(solicitacao.getPassageiro());
-                carona.setVagas(--vagas);                                 //ATUALIZA CARONA
-                SistemaCaronas.getInstance().atualizarCarona(carona);
+            int vagas = sol.getCarona().getVagas();
 
-                telefone = sol.getPassageiro().getTelefone();
-                if(vagas == 0) {
-                    limpaSolicitacoesSemVagas(sol.getCarona());
-                }
-                SistemaSolicitacao.getInstance().removerSolicitacao(sol);
-                ServiceLog.novaMensagemLog(carona.getMotorista().getEmail() + " aceitou o pedido de carona de " + sol.getPassageiro().getEmail());
-                ServiceNotificacao.notificaPassageiroAceito(sol);
-                SistemaUsuarios.getInstance().atualizarUsuario(sol.getPassageiro());
-
-                break;
+            carona.novoPassageiro(sol.getPassageiro());
+            carona.setVagas(--vagas);                                 //ATUALIZA CARONA
+            SistemaCaronas.getInstance().atualizarCarona(carona);
+            telefone = sol.getPassageiro().getTelefone();
+            if (vagas == 0) {
+                limpaSolicitacoesSemVagas(sol.getCarona());
             }
+            SistemaSolicitacao.getInstance().removerSolicitacao(sol);
+            ServiceLog.novaMensagemLog(carona.getMotorista().getEmail() + " aceitou o pedido de carona de " + sol.getPassageiro().getEmail());
+            ServiceNotificacao.notificaPassageiroAceito(sol);
+            SistemaUsuarios.getInstance().atualizarUsuario(sol.getPassageiro());
+        }catch(SolicitacaoIdInvalidoException exception){
+            return badRequest("Sem solicitacoes");
         }
+
+
 
 
         return ok(Json.toJson(telefone));
@@ -80,7 +74,6 @@ public class SolicitacaoController extends Controller{
         List<Solicitacao> solicitacoes = new ArrayList<Solicitacao>();
         for(Solicitacao pedido : SistemaSolicitacao.getInstance().getSolicitacao()){
             if(UsuarioController.usuarioAutenticado().equals(pedido.getCarona().getMotorista())){
-                System.out.println("Adicionei pedido");
                 solicitacoes.add(pedido);
             }
         }
@@ -111,7 +104,7 @@ public class SolicitacaoController extends Controller{
                 Carona carona = new Carona(horarioSolicitacao, tipo, endereco, vagas);
 
                 Solicitacao sol = new Solicitacao(carona, usuario);
-
+                sol.setId(solicitacao.getId());
                 filterPassageiros.add(sol);
             
 
@@ -124,14 +117,14 @@ public class SolicitacaoController extends Controller{
 
 
         }
-        System.out.println(filterPassageiros);
+
         return ok(Json.toJson(filterPassageiros));
     }
 
     private void limpaSolicitacoesSemVagas(Carona carona){
         for(Solicitacao s : SistemaSolicitacao.getInstance().getSolicitacao()){
             if(s.getCarona().equals(carona) && carona.getVagas() == 0){
-                //ServiceNotificacao.notificaPassageiroRecusado(s);
+                ServiceNotificacao.notificaPassageiroRecusado(s);
                 SistemaSolicitacao.getInstance().removerSolicitacao(s);
 
             }

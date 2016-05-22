@@ -9,9 +9,11 @@ public class ServiceNotificacao {
 	 public static void notificaMotoristaPedido(Solicitacao solicitacaoEnviada){
 	 	Usuario motorista = solicitacaoEnviada.getCarona().getMotorista();
 	 	Usuario passageiro = solicitacaoEnviada.getPassageiro();
+		System.out.println("Uno");
 	 	String message = passageiro.getNome() + " solicitou carona a você. Acesse SOLICITAÇÕES para aceitar ou recusar";
 	 	Notificacao n = new Notificacao(message);
-	 	motorista.adicionaNotificacao(n);
+		 System.out.println("Uno");
+		 motorista.adicionaNotificacao(n);
 	 }
 
 	 public static void excluiNotificacaoLida(Usuario user, String message){

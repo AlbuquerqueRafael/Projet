@@ -18,10 +18,14 @@ angular.module("clienteApp").controller("solicitacaoCtrl", function($scope, soli
       id -= 1;
     }
 
-    solicitacaoService.getPedidosCaronas(id).success(function(info){
-      $scope.solicitacoes = info;
-      $scope.quantidadeElementosPagina = info.length;
+    solicitacaoService.getPedidosCaronas(id).success(function(info) {
+      if (info !== "Sem solicitacoes"){
+          $scope.solicitacoes = info;
+          $scope.quantidadeElementosPagina = info.length;
+      };
+      console.log("caracas");
     }).error(function(erro){
+      $scope.notificacoes.splice(0, 1);
       console.log(erro);
     });
   }
@@ -29,7 +33,8 @@ angular.module("clienteApp").controller("solicitacaoCtrl", function($scope, soli
   $scope.buscarSolicitacoes(id);
 
   $scope.aceitarSolicitacao = function(solicitacao){
-    solicitacaoService.aceitarCarona(solicitacao).success(function(info){
+    var idSolicitacao = solicitacao.id;
+    solicitacaoService.aceitarCarona(idSolicitacao).success(function(info){
       $scope.telefone = info;
       id = 1;
       $scope.buscarSolicitacoes(id);
@@ -39,7 +44,8 @@ angular.module("clienteApp").controller("solicitacaoCtrl", function($scope, soli
   };
 
   $scope.rejeitarPedido = function(solicitacao){
-    solicitacaoService.rejeitarCarona(solicitacao).success(function(info){
+    var idSolicitacao = solicitacao.id
+    solicitacaoService.rejeitarCarona(idSolicitacao).success(function(info){
       $scope.telefone = info;
       id = 1;
       $scope.buscarSolicitacoes(id);

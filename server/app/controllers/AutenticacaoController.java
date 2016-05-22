@@ -29,9 +29,10 @@ public class AutenticacaoController extends Controller {
 
         for(Usuario usuario: usuarios){
             if(usuario.getEmail().equals(user.getEmail()) && usuario.getSenha().equals(user.getSenha())){
-                autenticar(usuario);
+                autenticar(usuario.getId());
                 ServiceLog.novaMensagemLog(usuario.getEmail() + " acabou de logar");
                 Usuario newUsuario = new Usuario(usuario.getNome(), usuario.getEndereco(), usuario.getEmail());
+                newUsuario.setId(usuario.getId());
                 return ok(Json.toJson(newUsuario));
             }
         }
@@ -40,8 +41,8 @@ public class AutenticacaoController extends Controller {
         return badRequest("Email ou senha inválidos!");
     }
 
-    private void autenticar(Usuario usuario){
-        session().put("logado", usuario.getEmail());
+    private void autenticar(Long idUsuario){
+        session().put("logado", idUsuario.toString());
     }
 
 

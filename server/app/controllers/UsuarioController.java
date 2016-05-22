@@ -40,11 +40,8 @@ public class UsuarioController extends Controller {
         if(session().get("logado") == null) {
             return null;
         } else {
-            Usuario templateUsuario = new Usuario();
-            templateUsuario.setEmail(session().get("logado"));
-            int index = SistemaUsuarios.getInstance().recuperarPosicaoDoUsuario(templateUsuario);
-            Usuario usuario = SistemaUsuarios.getInstance().recuperarUsuarioPelaPosicao(index);
-            return usuario;
+            Long idUsuario = Long.parseLong(session().get("logado"));
+            return Usuario.find.byId(idUsuario);
         }
     }
 
