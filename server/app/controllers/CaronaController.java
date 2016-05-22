@@ -45,6 +45,7 @@ public class CaronaController extends Controller {
             if(s.equals(solicitacao) && solicitacao.getCarona().equals(carona)){
                 ServiceLog.novaMensagemLog(carona.getMotorista().getEmail() + " rejeitou pedido de carona de " + s.getPassageiro().getEmail());
                 ServiceNotificacao.notificaPassageiroRecusado(s);
+                SistemaUsuarios.getInstance().atualizarUsuario(s.getPassageiro());
                 SistemaSolicitacao.getInstance().removerSolicitacao(s);
                 break;
             }

@@ -32,6 +32,7 @@ public class SolicitacaoController extends Controller{
 
         ServiceLog.novaMensagemLog(solicitacao.getPassageiro().getEmail() + " solicitou uma carona a " + solicitacao.getCarona().getMotorista().getEmail());
         ServiceNotificacao.notificaMotoristaPedido(solicitacao);
+        SistemaUsuarios.getInstance().atualizarUsuario(solicitacao.getCarona().getMotorista());
 
         return ok(Json.toJson("Solicitação concluida!"));
 
@@ -61,6 +62,7 @@ public class SolicitacaoController extends Controller{
                 SistemaSolicitacao.getInstance().removerSolicitacao(sol);
                 ServiceLog.novaMensagemLog(carona.getMotorista().getEmail() + " aceitou o pedido de carona de " + sol.getPassageiro().getEmail());
                 ServiceNotificacao.notificaPassageiroAceito(sol);
+                SistemaUsuarios.getInstance().atualizarUsuario(sol.getPassageiro());
 
                 break;
             }

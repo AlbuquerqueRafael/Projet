@@ -1,8 +1,9 @@
 package util;
 
-import models.Carona;
+import models.*;
 import play.data.validation.Constraints.EmailValidator;
 import play.mvc.Controller;
+import models.enums.DiaDaSemana;
 
 /**
  * Classe utilitaria para validar as informacoes
@@ -67,8 +68,13 @@ public class Util {
     }
 
     public static boolean isValidHorarioCarona(Carona carona, Carona comparada){
-        if(carona.getHorario().getDia().equals(comparada.getHorario().getDia()) &&
-                carona.getHorario().getAula().equals(comparada.getHorario().getAula())){
+        System.out.println("Entrei no metodo");
+        DiaDaSemana dia1 = carona.getHorario().getDia();
+        DiaDaSemana dia2 = comparada.getHorario().getDia();
+        System.out.println("Peguei os dois dias");
+        String aula1 = carona.getHorario().getAula();
+        String aula2 = comparada.getHorario().getAula();
+        if(dia1 == dia2 && aula1.equals(aula2)){
             return false;
         }
 
