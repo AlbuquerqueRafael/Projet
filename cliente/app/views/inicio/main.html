@@ -14,7 +14,7 @@
     </div>
     <div class="form-group-login">
         <label for="email"> <h5 ><b>
-          Email <span class="glyphicon glyphicon-user" aria-hidden="true"></span> </b></h5></label>
+          {{ 'email' | translate }} <span class="glyphicon glyphicon-user" aria-hidden="true"></span> </b></h5></label>
 <!--        <input type="email" class="form-control" name="email" placeholder="{{ 'main.email.type' | translate }}" autofocus required data-ng-model="usuario.email">
 -->
       <input type="email" class="form-control" name="email" placeholder="Placeholder" translate translate-attr-placeholder="main.email.type"
@@ -22,7 +22,7 @@
     </div>
     <div class="form-group-login">
         <label for="password"> <h5 ><b>
-          Senha <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> </b></h5></label>
+          {{ 'main.senha' | translate }} <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> </b></h5></label>
         <input type="password" class="form-control" name="senha" placeholder="{{ 'main.senha.type' | translate }}" autofocus required data-ng-model="usuario.senha">
     </div>
 
