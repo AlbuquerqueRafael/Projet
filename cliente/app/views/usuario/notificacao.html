@@ -3,19 +3,19 @@
 
   <div class="col-md-12">
     <div id="bemVindo">
-      <h3>Bem-vindo à página de Notificações!</h3>
+      <h3>{{ 'bemvindoNotificacoes' | translate }}</h3>
       <br>
-      <h4>Aqui você encontra os pedidos recebidos de caronas, aceitos e rejeitados.</h4>
+      <h4>{{ 'saudacaoNotificacoes' | translate }}</h4>
     </div>
   </div>
 
   <div class="col-md-12 text-center">
     <ul class="pagination">
       <li>
-        <a ng-click="buscarSolicitacoes('anterior')">Pagina Anterior</a>
+        <a ng-click="buscarSolicitacoes('anterior')">{{ 'antPag' | translate }}</a>
       </li>
       <li>
-        <a ng-click="quantidadeElementosPagina < 3 || buscarSolicitacoes('proxima')">Prox Página</a>
+        <a ng-click="quantidadeElementosPagina < 3 || buscarSolicitacoes('proxima')">{{ 'proxPag' | translate }}</a>
       </li>
     </ul>
   </div>

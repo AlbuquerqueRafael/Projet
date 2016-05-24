@@ -106,6 +106,48 @@ angular.module("clienteApp").config(function($translateProvider) {
       'main.senha.type': "Type your password",
       'main.cadastro': "Sign up",
 
+      'horario.bemvindo': "Welcome",
+      'horario.saudacao': "Here you will find informations and can ask a ride or create a ride",
+      'horario.oferecer': "Offer a ride",
+      'horario.buscar': "Search a ride",
+      'horario.motorista': "Driver",
+      'horario.passageiro': "Passenger",
+
+      'nome': "Name",
+      'diaDaSemana': "Day",
+      'diaDaSemanaComplete': "Day of the week",
+      'aula': "Class",
+      'tipoDeCarona': "Kind of ride",
+      'vagas': "Vacancies",
+      'bairro': "Neighborhood",
+      'rua': "Address",
+      'endereco': "Address",
+      'telefone': "Phone number",
+      'tipoDeCarona.ida': "One-way trip",
+      'tipoDeCarona.volta': "Back trip",
+      'rotas': "Routes",
+      'email': "Email",
+      'adicionar': "Add",
+      'remover': "Remove",
+      'salvar': "Save",
+      'cancelar': "Cancel",
+      'buscar': "Search",
+      'numero': "Number: ",
+      'dia.aula': "Day/Class",
+      'proxPag': "Next page",
+      'antPag': "Previous page",
+
+      'bemvindoSolicitacoes': "Welcome to Requests page!",
+      'saudacaoSolicitacoes': "Here you will find the requests received of the pending rides",
+      'aceitar': "Accept",
+      'rejeitar': "Reject",
+      'pedidoAceito': "You accepted the request!",
+      'numeroPassageiro': "The phone number of the passenger is: ",
+
+      'notificacoes': "Notifications",
+      'bemvindoNotificacoes': "Welcome to Notifications page!",
+      'saudacaoNotificacoes': "Here you will find the notifications of accepted or rejected requests.",
+
       'label.title': "Vote in Movie?"
   });
   $translateProvider.translations('pt', {
@@ -128,10 +170,53 @@ angular.module("clienteApp").config(function($translateProvider) {
       'main.senha.type': "Digite a senha",
       'main.cadastro': "Cadastrar",
 
+      'horario.bemvindo': "Bem vindo",
+      'horario.saudacao': "Aqui você encontra informações, bem como pode pedir ou criar uma carona",
+      'horario.oferecer': "Oferecer Carona",
+      'horario.buscar': "Buscar carona",
+      'horario.motorista': "Motorista",
+      'horario.passageiro': "Passageiro",
+
+      'nome': "Nome",
+      'diaDaSemana': "Dia da Semana",
+      'diaDaSemanaComplete': "Dia da Semana",
+      'aula': "Aula",
+      'tipoDeCarona': "Tipo",      
+      'vagas': "Vagas",
+      'bairro': "bairro",
+      'rua': "Rua",
+      'endereco': "Endereço",
+      'telefone': "Telefone",
+      'tipoDeCarona.ida': "Ida",
+      'tipoDeCarona.volta': "Volta",
+      'rotas': "Rotas",
+      'email': "E-mail",
+      'adicionar': "Adicionar",
+      'remover': "Remover",
+      'salvar': "Salvar",
+      'cancelar': "Cancelar",
+      'buscar': "Buscar",
+      'numero': "Tel:  ",
+      'dia.aula': "Dia/Aula",
+      'proxPag': "Próxima página",
+      'antPag': "Página anterior",
+
+      'bemvindoSolicitacoes': "Bem-vindo a página de Solicitações!",
+      'saudacaoSolicitacoes': "Aqui você encontra os pedidos recebidos de caronas que estão pendentes.",
+      'aceitar': "Aceitar",
+      'rejeitar': "Rejeitar",
+      'pedidoAceito': "Você aceitou o pedido!",
+      'numeroPassageiro': "O telefone do passageiro é : ",
+
+      'notificacoes': "Notificações",
+      'bemvindoNotificacoes': "Bem-vindo à página de Notificações!",
+      'saudacaoNotificacoes': "Aqui você encontrará os pedidos aceitos e rejeitados.",
+
+
       'label.title': "Vote no Filme"
   });
 
-  $translateProvider.preferredLanguage('pt'); //temos que dizer qual é a default.
+  $translateProvider.preferredLanguage('en'); //temos que dizer qual é a default.
 });
 
 angular.module('clienteApp').controller('Ctrl', ['$translate', '$scope', function ($translate, $scope) {

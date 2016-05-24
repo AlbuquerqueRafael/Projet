@@ -4,10 +4,10 @@
   <div class="col-md-12">
     <div id="bemVindo">
       <h3>
-        Bem-vindo , {{usuario.nome}}!
+        {{ 'horario.bemvindo' | translate }}, {{usuario.nome}}!
       </h3>
       <br>
-      <h4>Aqui você encontra informações, bem como pode pedir ou criar uma carona</h4>
+      <h4>{{ 'horario.saudacao' | translate }}</h4>
     </div>
   </div>
 
@@ -20,14 +20,12 @@
         <div class="form-group" >
           <button id ="oferecerCarona" name="salvar"
                   class="btn btn-default center-block" data-toggle="modal"
-                  data-target="#modalCarona" ng-click="trocarRota('OferecerCarona')">
-            Oferecer Carona
+                  data-target="#modalCarona" ng-click="trocarRota('OferecerCarona')" translate='horario.oferecer'>            
           </button>
           <br>
           <br>
           <button id = "buscarCarona"
-                  name="salvar" class="btn btn-default center-block" ng-click="trocarRota('gg')">
-            Buscar Carona
+                  name="salvar" class="btn btn-default center-block" ng-click="trocarRota('gg')" translate='horario.buscar'>          
           </button>
         </div>
     </div>
@@ -37,8 +35,8 @@
 
       <div class="container">
       <ul class="tabs-nav">
-          <li><a ng-click="horariosMotoristas()" ng-class="{'active' : tab==1}">Motorista</a></li>
-          <li><a ng-click="horariosPassageiro()" ng-class="{'active' : tab==2}">Passageiro</a></li>
+          <li><a ng-click="horariosMotoristas()" ng-class="{'active' : tab==1}" translate='horario.motorista'></a></li>
+          <li><a ng-click="horariosPassageiro()" ng-class="{'active' : tab==2}" translate='horario.passageiro'></a></li>
       </ul>
 
       <div class="tabs-container">
@@ -47,12 +45,12 @@
                 <table class="table table-striped tabelaHorario">
                   <thead>
                   <tr class = "colorHorario">
-                    <th class="item" >Dia Semana</th>
-                    <th class="item" >Aula</th>
-                    <th class="item" >Tipo</th>
-                    <th class="item" >Vagas</th>
-                      <th class="item" >Bairro</th>
-                      <th class="item" >Rua</th>
+                    <th class="item" translate='diaDaSemana'></th>
+                    <th class="item" translate='aula'></th>
+                    <th class="item" translate='tipoDeCarona'></th>
+                    <th class="item" translate='vagas'></th>
+                      <th class="item" translate='bairro'></th>
+                      <th class="item" translate='rua'></th>
                   </tr>
                   </thead>
                     <tbody>
@@ -73,11 +71,11 @@
             <table class="table table-striped tabelaHorario">
               <thead>
               <tr class = "colorHorario">
-                <th class="item" >Dia Semana</th>
-                <th class="item" >Aula</th>
-                <th class="item" >Tipo</th>
-                <th class="item" >Vagas</th>
-                <th class="item"> Telefone Motorista</th>
+                <th class="item" translate='diaDaSemana'>Dia Semana</th>
+                <th class="item" translate='aula'>Aula</th>
+                <th class="item" translate='tipoDeCarona'>Tipo</th>
+                <th class="item" translate='vagas'>Vagas</th>
+                <th class="item" translate='telefone'> Telefone Motorista</th>
               </tr>
               </thead>
               <tbody>

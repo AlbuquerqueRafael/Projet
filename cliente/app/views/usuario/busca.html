@@ -1,8 +1,8 @@
 <br xmlns:users><br><br><br><br>
 <body>
   <ul class="pagination positionBusca">
-    <li><a ng-click="buscar('voltar')">Página Anterior</a></li>
-    <li ng-click="quantidadeElementosPagina < 6 || buscar('proxima')"><a>Proxima Pagina</a></li>
+    <li><a ng-click="buscar('voltar')">{{ 'antPag' | translate }}</a></li>
+    <li ng-click="quantidadeElementosPagina < 6 || buscar('proxima')"><a>{{ 'proxPag' | translate }}</a></li>
   </ul>
 
   <div class="row">
@@ -14,32 +14,32 @@
           </div>
         <div class="form-group">
           <label for="diasSemana"> <h5><b>
-            Dia Da Semana</b></h5></label>
+            {{ 'diaDaSemanaComplete' | translate }}</b></h5></label>
           <select class="form-control" ng-model="horario.DiaDaSemana" ng-options="opt.value for opt in diaSemanas">
           </select>
         </div>
 
         <div class="form-group">
           <label for="horario"> <h5><b>
-            Aula </b></h5></label>
+            {{ 'aula' | translate }} </b></h5></label>
           <select class="form-control" ng-model="horario.aula" ng-options="opt.value for opt in horarios">
           </select>
         </div>
 
         <div class="form-group">
           <label for="tipoCarona"> <h5><b>
-            Tipo de Carona</b></h5></label>
+            {{ 'tipoDeCarona' | translate }}</b></h5></label>
           <div class="radio">
-            <label><input type="radio" name="optradio" ng-model="opcaoCarona" value=0>Ida</label>
+            <label><input type="radio" name="optradio" ng-model="opcaoCarona" value=0>{{ 'tipoDeCarona.ida' | translate }}</label>
           </div>
           <div class="radio" ng-model="opcaoCarona" value="volta">
-            <label><input type="radio" name="optradio" ng-model="opcaoCarona" value=1>Volta</label>
+            <label><input type="radio" name="optradio" ng-model="opcaoCarona" value=1>{{ 'tipoDeCarona.volta' | translate }}</label>
           </div>
         </div>
 
         <div class="form-group alinhaBotao">
           <button name="endereco" ng-show="opcaoCarona==1" class="btn btn-info center-block" ng-click="tabs=!tabs">
-            Endereco
+           {{ 'endereco' | translate }}
           </button>
           <br>
         </div>
@@ -56,7 +56,7 @@
 
         <div class="form-group alinhaBotao">
           <button name="salvar" data-ng-disabled="form.rua.$error.required" class="btn btn-success center-block" ng-click="buscar()">
-            Buscar
+            {{ 'buscar' | translate }}
           </button>
         </div>
 
@@ -80,9 +80,9 @@
               </div>
             </a>
             <p></p>
-            <p id = "fontSizeBusca"><b>Nome</b>: {{carona.motorista.nome}} &nbsp &nbsp<br> <b>Tel:</b>(083) {{carona.motorista.telefone}} <br>
-              <b>E-mail</b>: {{carona.motorista.email}}<br>
-              <b>Aul. Prop.</b>: {{carona.horario.dia}}: {{carona.horario.aula}} <br>
+            <p id = "fontSizeBusca"><b>{{ 'nome' | translate }}</b>: {{carona.motorista.nome}} &nbsp nbsp<br> <b>{{ 'numero' | translate }}</b>(083) {{carona.motorista.telefone}} <br>
+              <b>{{ 'email' | translate }}</b>: {{carona.motorista.email}}<br>
+              <b>{{ 'dia.aula' | translate }}</b>: {{carona.horario.dia}}: {{carona.horario.aula}} <br>
             </p>
 
             <div class="alinhaBotao">

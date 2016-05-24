@@ -7,21 +7,21 @@
                         <div class="form-group">
                             <div class="form-group">
                                 <label for="diasSemana"> <h5><b>
-                                    Dia Da Semana</b></h5></label>
+                                    {{ 'diaDaSemanaComplete' | translate }}</b></h5></label>
                                 <select class="form-control" ng-model="horario.DiaDaSemana" ng-options="opt.value for opt in diaSemanas">
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label for="horario"> <h5><b>
-                                    Aula </b></h5></label>
+                                    {{ 'aula' | translate }} </b></h5></label>
                                 <select class="form-control" ng-model="horario.aula" ng-options="opt.value for opt in horarios">
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label for="vagas"> <h5 ><b>
-                                    Vagas </b></h5></label>
+                                    {{ 'vagas' | translate }} </b></h5></label>
                                 <select class="form-control" ng-model="vagas" ng-options="opt.value for opt in NumVagas">
                                 </select>
                             </div>
@@ -29,17 +29,17 @@
 
                             <div class="form-group">
                                 <label for="tipoCarona"> <h5><b>
-                                    Tipo de Carona</b></h5></label>
+                                    {{ 'tipoDeCarona' | translate }}</b></h5></label>
                                 <div class="radio">
-                                    <label><input type="radio" name="optradio" ng-model="opcaoCarona" value=0>Ida</label>
+                                    <label><input type="radio" name="optradio" ng-model="opcaoCarona" value=0 >{{ 'tipoDeCarona.ida' | translate }}</label>
                                 </div>
                                 <div class="radio" ng-model="opcaoCarona" value="volta">
-                                    <label><input type="radio" name="optradio" ng-model="opcaoCarona" value=1>Volta</label>
+                                    <label><input type="radio" name="optradio" ng-model="opcaoCarona" value=1 >{{ 'tipoDeCarona.volta' | translate }}</label>
                                 </div>
                             </div>
 
                             <button name="salvar" ng-show="opcaoCarona==1" class="btn btn-info center-block" ng-click="tabs=!tabs">
-                                Endereco
+                                {{ 'endereco' | translate }}
                             </button>
 
                             <div class="form-group"  ng-show="!tabs">
@@ -54,17 +54,17 @@
 
                             <div class="form-group">
                                 <label for="tipoCarona"> <h5><b>
-                                    Rotas</b></h5></label>
+                                    {{ 'tipoDeCarona' | translate }}</b></h5></label>
 
                                 <select class="form-control" ng-model="rota" ng-options="opt.value for opt in bairros">
                                 </select>
 
                                 <br>
                                 <button name="Adicionar" class="btn btn-default" ng-click="adicionarRotas(rota)">
-                                    Add
+                                    {{ 'adicionar' | translate }}
                                 </button>
                                 <button name="Deletar" class="btn btn-default " ng-click="removerRota()">
-                                    Del
+                                    {{ 'remover' | translate }}
                                 </button>
                             </div>
 
@@ -79,10 +79,10 @@
                 </div>
 
                 <button name="salvar" data-ng-disabled="form.rua.$error.required" class="btn btn-success center-block" ng-click="salvarCarona()">
-                    Salvar
+                    {{ 'salvar' | translate }}
                 </button>
                 <button name="cancelar" class="btn btn-danger center-block" ng-click="cancelar()">
-                    Cancelar
+                    {{ 'cancelar' | translate }}
                 </button>
             </div>
 

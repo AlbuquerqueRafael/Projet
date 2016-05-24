@@ -2,7 +2,7 @@ $app.config([‘$translateProvider’, function ($translateProvider) {
 
   $translateProvider.translations(‘en’, {
   	//Signup
-    'cadastro.title': "Sign Up!",
+    /*'cadastro.title': "Sign Up!",
     'cadastro.nome': "Name",
     'cadastro.email': "Email",
     'cadastro.email.check': "You must enter a valid email address. Example caroname@caroname.com",
@@ -40,17 +40,24 @@ $app.config([‘$translateProvider’, function ($translateProvider) {
     ‘carona.tipoDeCarona.ida’: ‘One-way trip’,
     ‘carona.tipoDeCarona.volta’: ‘Back trip’,
     ‘carona.endereco’: ‘Address’,
-    ‘carona.rotas’: ‘Routes’,
+    ‘carona.rotas’: 'Routes',
     ‘carona.salvar’: ‘Save’,
     ‘carona.cancelar’: ‘Cancel’,
 
+    'horario.bemvindo': "Welcome",
+    'horario.saudacao': "Here you will find informations and can ask a ride or create a ride",
+    'horario.oferecer': "Offer a ride",
+    'horario.buscar': "Search a ride",
+    'horario.motorista': "Driver",
+    'horario.passageiro': "Passenger",    
 
-    ‘label.title’: ‘Vote in Movie?’,   
+
+    ‘label.title’: ‘Vote in Movie?’,   */
   });
 
   $translateProvider.translations(‘pt’, {
   	//Cadastro
-    ‘cadastro.title’: ‘Cadastro!’,
+    /*‘cadastro.title’: ‘Cadastro!’,
     'cadastro.nome': "Nome",
     'cadastro.email': "Email",
     'cadastro.email.check': "Preencha com um email válido. Exemplo caroname@caroname.com",
@@ -93,7 +100,16 @@ $app.config([‘$translateProvider’, function ($translateProvider) {
     ‘carona.cancelar’: ‘Cancelar’,
 
 
-    ‘label.title’: ‘Vote no Filme’   
+    'horario.bemvindo': "Bem vindo",
+    'horario.saudacao': "Aqui você encontra informações, bem como pode pedir ou criar uma carona",
+    'horario.oferecer': "Oferecer Carona",
+    'horario.buscar': "Buscar carona",
+    'horario.motorista': "Motorista",
+    'horario.passageiro': "Passageiro",
+    
+
+
+    ‘label.title’: ‘Vote no Filme’   */
   });
 
   $translateProvider.preferredLanguage(‘pt’); //linguagem padrao

@@ -2,19 +2,19 @@
 <div class="row" >
   <div class="col-md-12">
     <div id="bemVindo">
-      <h3>Bem-vindo à página de Solicitações!</h3>
+      <h3>{{ 'bemvindoSolicitacoes' | translate }}</h3>
       <br>
-      <h4>Aqui você encontra os pedidos recebidos de caronas que estão pendentes.</h4>
+      <h4>{{ 'saudacaoSolicitacoes' | translate }}</h4>
     </div>
   </div>
 
   <div class="col-md-12 text-center">
     <ul class="pagination">
       <li>
-        <a ng-click="buscarSolicitacoes('anterior')">Pagina Anterior</a>
+        <a ng-click="buscarSolicitacoes('anterior')">{{ 'antPag' | translate }}</a>
       </li>
       <li>
-        <a ng-click="quantidadeElementosPagina < 3 || buscarSolicitacoes('proxima')">Prox Página</a>
+        <a ng-click="quantidadeElementosPagina < 3 || buscarSolicitacoes('proxima')">{{ 'proxPag' | translate }}</a>
       </li>
     </ul>
   </div>
@@ -37,12 +37,12 @@
             </a>
             <p></p>
             <p id="fonteNotification">
-              <b>Nome</b>: {{solicitacao.passageiro.nome}} &nbsp &nbsp<br>
-              <b>Aul. Prop.</b>: {{solicitacao.carona.horario.dia}}: {{solicitacao.carona.horario.aula}} <br>
-              <b>Tipo</b>: {{solicitacao.carona.tipo}}<br>
-              <b>Bairro</b>: {{solicitacao.carona.endereco.bairro}}<br>
-              <b>Rua</b>: {{solicitacao.carona.endereco.rua}}<br>
-              <b>Vagas</b>: {{solicitacao.carona.vagas}}<br>
+              <b>{{ 'nome' | translate }}</b>: {{solicitacao.passageiro.nome}} &nbsp &nbsp<br>
+              <b>{{ 'dia.aula' | translate }}</b>: {{solicitacao.carona.horario.dia}}: {{solicitacao.carona.horario.aula}} <br>
+              <b>{{ 'tipoDeCarona' | translate }}</b>: {{solicitacao.carona.tipo}}<br>
+              <b>{{ 'bairro' | translate }}</b>: {{solicitacao.carona.endereco.bairro}}<br>
+              <b>{{ 'rua' | translate }}</b>: {{solicitacao.carona.endereco.rua}}<br>
+              <b>{{ 'vagas' | translate }}</b>: {{solicitacao.carona.vagas}}<br>
               <b>Status</b>: Pendente<br>
 
             </p>
@@ -50,10 +50,10 @@
             <div id = "alignText">
 
               <button type="button" ng-click="aceitarSolicitacao(solicitacao)" data-toggle="modal" data-target="#myModal" id = "aceitarCarona" class="btn btn-default">
-                Aceitar
+                {{ 'aceitar' | translate }}
               </button>
               <button type="button" id = "rejeitarCarona" ng-click="rejeitarPedido(solicitacao)" class="btn btn-default">
-                Rejeitar
+                {{ 'rejeitar' | translate }}
               </button>
             </div>
           </div>
@@ -65,7 +65,7 @@
     <table class="table table-striped tabelaHorario">
       <thead>
       <tr class = "colorHorario">
-        <th>Notificacoes</th>
+        <th>{{ 'notificacoes' | translate }}</th>
       </tr>
       </thead>
       <tbody>
@@ -83,10 +83,10 @@
       <div class="modal-content notificationPop">
         <div class="modal-header notificationPopText">
           <button type="button" class="close notificationPopText" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Você aceitou a carona!</h4>
+          <h4 class="modal-title">{{ 'pedidoAceito' | translate }}</h4>
         </div>
         <div class="modal-body notificationPopText">
-          <p id="alignText">O telefone do passageiro é :<br> (083) {{telefone}}</p>
+          <p id="alignText">{{ 'numeroPassageiro' | translate }}<br>(083) {{telefone}}</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>

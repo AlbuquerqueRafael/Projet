@@ -24,11 +24,11 @@ public class SistemaUsuarios{
 
 	private SistemaUsuarios (){
 		usuarios = new ArrayList<Usuario>();
-		testeExemplos();
+		//testeExemplos();
 	}
 
 	private void testeExemplos() {
-		Endereco endereco = new Endereco("Rua da Flores", "Centro");
+		/*Endereco endereco = new Endereco("Rua da Flores", "Centro");
 		Endereco endereco2 = new Endereco("Rua Floriano Peixoto", "Centro");
 		Endereco endereco3 = new Endereco("Rua Emiliano Rosendo da Silva", "Novo Bondocongó");
 		Endereco endereco4 = new Endereco("Rua Paulo de Frontin", "Catolé");
@@ -93,7 +93,7 @@ public class SistemaUsuarios{
 		us.add(usuario2);
 		us.add(usuario3);
 		carona.setListaPassageiros(us);
-		*/
+		
 		SistemaCaronas.getInstance().adicionarCarona(carona);
 		SistemaCaronas.getInstance().adicionarCarona(carona2);
 		SistemaCaronas.getInstance().adicionarCarona(carona3);
@@ -116,6 +116,7 @@ public class SistemaUsuarios{
 		SistemaSolicitacao.getInstance().adicionarSolicitacao(solicitacao3);
 		SistemaSolicitacao.getInstance().adicionarSolicitacao(solicitacao4);
 		SistemaSolicitacao.getInstance().adicionarSolicitacao(solicitacao5);
+		*/
 	}
 
 	public static SistemaUsuarios getInstance(){
