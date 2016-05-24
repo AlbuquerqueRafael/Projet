@@ -11,6 +11,7 @@ angular.module("clienteApp").controller("horarioCtrl", function($scope, horarioS
 
     $scope.horariosMotoristas = function() {
       horarioService.getHorariosMotorista().success(function (caronas) {
+        console.log(caronas);
         $scope.tab = 1;
         $scope.caronas = caronas;
       }).error(function (error) {

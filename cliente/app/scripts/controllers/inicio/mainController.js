@@ -6,20 +6,13 @@ angular.module('clienteApp')
 
     $scope.bairros = caronaService.getBairrosArray();
     $scope.error= false;
-    $scope.users = function(){
-      $http.get("/app/getUsers ").success(function(info){
-        console.log("Sucesso!");
-      }).error(function(error){
-        console.log(error);
 
-      });
-    }
 
-    $scope.minhasOpcoes = "motorista";
 
     $scope.logar = function(usuario) {
       mainService.logar(usuario).success(function(info){
-        mainService.autenticar(info);
+        console.log(info);
+        mainService.autenticar(info.authToken);
         menuService.setMenu("Usuario");
         $location.path("/horario");
 
@@ -28,7 +21,7 @@ angular.module('clienteApp')
         $scope.errorMessage = error;
 
       });
-    }
+    };
 
     $scope.cadastrar = function(usuario) {
       console.log(usuario);
@@ -38,6 +31,7 @@ angular.module('clienteApp')
       mainService.cadastrar(usuario).success(function (info) {
         $location.path("/");
       }).error(function (error) {
+
         $scope.error = true;
         $scope.errorMessage = error;
 

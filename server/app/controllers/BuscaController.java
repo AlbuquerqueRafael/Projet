@@ -15,6 +15,7 @@ import static play.data.Form.form;
 
 
 
+@Security.Authenticated(Secured.class)
 public class BuscaController extends Controller {
 
     public static final int NUM_ITENS_PAGINA = 6;
@@ -25,7 +26,7 @@ public class BuscaController extends Controller {
     public Result buscarCarona(Long id){
         JsonNode json = request().body().asJson();
         Carona carona = Json.fromJson(json, Carona.class);
-        carona.setMotorista(UsuarioController.usuarioAutenticado());
+        carona.setMotorista(AutenticacaoController.usuarioAutenticado());
         List<Carona> caronasUsuario = new ArrayList<Carona>();
         List<Carona> caronasFiltradas = new ArrayList<Carona>();
 
@@ -87,12 +88,12 @@ public class BuscaController extends Controller {
         boolean UserAutPertenceCarona= false;
         boolean solicitacaoJaFeita = false;
         for(Carona carona : caronasGerais){
-            if(UsuarioController.usuarioAutenticado().equals(carona.getMotorista())){
+            if(AutenticacaoController.usuarioAutenticado().equals(carona.getMotorista())){
                 caronasUsuario.add(carona);
                 UserAutPertenceCarona = true;
             }else{
                 for(Usuario passageiro :carona.getListaPassageiros()){
-                    if(UsuarioController.usuarioAutenticado().equals(passageiro)){
+                    if(AutenticacaoController.usuarioAutenticado().equals(passageiro)){
                         caronasUsuario.add(carona);
                         UserAutPertenceCarona = true;
                     }
@@ -127,7 +128,7 @@ public class BuscaController extends Controller {
 
     private boolean isRequestAlreadyMade(Carona carona){
         List<Solicitacao> solicitacoes = SistemaSolicitacao.getInstance().getSolicitacao();
-        Solicitacao solicitacao = new Solicitacao(carona, UsuarioController.usuarioAutenticado());
+        Solicitacao solicitacao = new Solicitacao(carona, AutenticacaoController.usuarioAutenticado());
 
         for(Solicitacao s : solicitacoes){
             if(s.getCarona().equals(carona) && s.equals(solicitacao)){

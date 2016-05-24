@@ -1,6 +1,8 @@
 package controllers;
 
 
+import com.fasterxml.jackson.databind.JsonNode;
+import exception.DadosInvalidosException;
 import exception.FotoInvalidaException;
 import models.*;
 import play.libs.Json;
@@ -18,36 +20,16 @@ import static play.libs.Json.*;
 import static play.data.Form.form;
 
 
-
+@Security.Authenticated(Secured.class)
 public class UsuarioController extends Controller {
 
     private SistemaUsuarios sistemaUsuarios = SistemaUsuarios.getInstance();
     private SistemaCaronas sistemaCaronas = SistemaCaronas.getInstance();
 
-    public Result getAllCadastro(){
-        List<Usuario> usuarios = Usuario.find.findList();
-        return ok(toJson(usuarios));
-    }
-
-    public Result logout() {
-        Usuario usuarioAtual = usuarioAutenticado();
-        session().clear();
-        ServiceLog.novaMensagemLog(usuarioAtual.getEmail() + " saiu do sistema");
-        return ok("Logged out successfully");
-    }
-
-    public static Usuario usuarioAutenticado() {
-        if(session().get("logado") == null) {
-            return null;
-        } else {
-            Long idUsuario = Long.parseLong(session().get("logado"));
-            return Usuario.find.byId(idUsuario);
-        }
-    }
 
     public Result getCaronasComoPassageiro(){
         List<Carona> caronasComoPassageiro = new ArrayList<Carona>();
-        Usuario usuarioAtual = UsuarioController.usuarioAutenticado();
+        Usuario usuarioAtual = AutenticacaoController.usuarioAutenticado();
         List<Carona> allCaronas = SistemaCaronas.getInstance().getCaronas();
 
 
@@ -67,10 +49,10 @@ public class UsuarioController extends Controller {
     public Result getCaronasComoMotoristas(){
         List<Carona> caronasComoMotorista = new ArrayList<Carona>();
         List<Carona> allCaronas = SistemaCaronas.getInstance().getCaronas();
-
+        System.out.println(AutenticacaoController.usuarioAutenticado());
 
         for (Carona carona : allCaronas) { 
-            if (UsuarioController.usuarioAutenticado().equals(carona.getMotorista())) {
+            if (AutenticacaoController.usuarioAutenticado().equals(carona.getMotorista())) {
                 caronasComoMotorista.add(carona);
             }
         }
@@ -78,6 +60,25 @@ public class UsuarioController extends Controller {
         return ok(Json.toJson(caronasComoMotorista));
     }
 
+
+    public Result postCadastro() {
+        JsonNode json = request().body().asJson();
+        System.out.println(json);
+        Usuario usuario = Json.fromJson(json, Usuario.class);
+        //      usuario.setNovasNotificacoes(new ArrayList<Notificacao>());
+
+
+        try{
+            sistemaUsuarios.adicionarUsuario(usuario);
+        } catch (DadosInvalidosException exception){
+            return badRequest(exception.getMessage());
+        }
+
+
+        ServiceLog.novaMensagemLog(usuario.getEmail() + " acabou de se cadastrar no sistema");
+
+        return ok(Json.toJson(usuario));
+    }
 
 
 

@@ -5,14 +5,16 @@
 GET     /                          controllers.Application.main(any = "none")
 
 POST    /app/logar                 controllers.AutenticacaoController.postLogin()
-POST    /app/cadastrar             controllers.AutenticacaoController.postCadastro()
+POST    /app/logout                controllers.AutenticacaoController.logout()
+
+
+POST    /app/cadastrar             controllers.UsuarioController.postCadastro()
 
 POST    /app/buscarCaronas/:id     controllers.BuscaController.buscarCarona(id : Long)
 
-GET     /app/getUsers              controllers.UsuarioController.getAllCadastro()
+
 GET    /app/caronasMotorista       controllers.UsuarioController.getCaronasComoMotoristas()
 GET    /app/caronasPassageiro      controllers.UsuarioController.getCaronasComoPassageiro()
-POST    /app/logout                controllers.UsuarioController.logout()
 
 #GET     /app/caronasRejeitadas       controllers.CaronaController.caronasRejeitadas()
 POST    /app/rejeitarCarona/:id           controllers.CaronaController.rejeitarCarona(id : Long)
@@ -26,7 +28,7 @@ POST    /app/aceitarCarona/:id              controllers.SolicitacaoController.ac
 POST    /app/salvarCarona          controllers.CaronaController.postCaronas()
 
 #NotificacoesController
-GET  /app/notificacoes/    controllers.NotificacaoController.getNotificacoes()
+GET     /app/notificacoes/                controllers.NotificacaoController.getNotificacoes()
 DELETE  /app/removenotificacoes/:index    controllers.NotificacaoController.removeNotificacoes(index : Long)
 
 

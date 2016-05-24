@@ -25,7 +25,7 @@ angular.module("clienteApp").controller("solicitacaoCtrl", function($scope, soli
       };
       console.log("caracas");
     }).error(function(erro){
-      $scope.notificacoes.splice(0, 1);
+      $scope.solicitacoes .splice(0, 1);
       console.log(erro);
     });
   }

@@ -13,6 +13,8 @@ import services.*;
 /**
  * Created by rafael on 21/04/16.
  */
+
+@Security.Authenticated(Secured.class)
 public class SolicitacaoController extends Controller{
 
     public static final int NUM_ITENS_PAGINA = 3;
@@ -20,13 +22,12 @@ public class SolicitacaoController extends Controller{
     public Result solicitarCarona(Long id){
         Carona caronaSolicitada = SistemaCaronas.getInstance().getCaronaById(id);
 
-        Solicitacao solicitacao = new Solicitacao(caronaSolicitada, UsuarioController.usuarioAutenticado());
+        Solicitacao solicitacao = new Solicitacao(caronaSolicitada, AutenticacaoController.usuarioAutenticado());
         SistemaSolicitacao.getInstance().adicionarSolicitacao(solicitacao);
 
         ServiceLog.novaMensagemLog(solicitacao.getPassageiro().getEmail() + " solicitou uma carona a " + solicitacao.getCarona().getMotorista().getEmail());
         ServiceNotificacao.notificaMotoristaPedido(solicitacao);
         SistemaUsuarios.getInstance().atualizarUsuario(solicitacao.getCarona().getMotorista());
-
         return ok(Json.toJson("Solicitação concluida!"));
 
     }
@@ -36,7 +37,7 @@ public class SolicitacaoController extends Controller{
         String telefone = null;
         try {
             Solicitacao sol = SistemaSolicitacao.getInstance().getSolitacaoById(id);
-            sol.getCarona().setMotorista(UsuarioController.usuarioAutenticado());
+            sol.getCarona().setMotorista(AutenticacaoController.usuarioAutenticado());
 
 
             Carona carona = sol.getCarona();
@@ -60,8 +61,6 @@ public class SolicitacaoController extends Controller{
         }
 
 
-
-
         return ok(Json.toJson(telefone));
 
     }
@@ -71,8 +70,11 @@ public class SolicitacaoController extends Controller{
     */
     public Result getSolicitacoesCaronas(Long id){
         List<Solicitacao> solicitacoes = new ArrayList<Solicitacao>();
+        System.out.println(AutenticacaoController.usuarioAutenticado());
+        System.out.println("Entrou");
+        System.out.println(AutenticacaoController.usuarioAutenticado());
         for(Solicitacao pedido : SistemaSolicitacao.getInstance().getSolicitacao()){
-            if(UsuarioController.usuarioAutenticado().equals(pedido.getCarona().getMotorista())){
+            if(AutenticacaoController.usuarioAutenticado().equals(pedido.getCarona().getMotorista())){
                 solicitacoes.add(pedido);
             }
         }

@@ -14,17 +14,18 @@ import java.util.List;
 /**
  * Created by rafael on 20/05/16.
  */
+@Security.Authenticated(Secured.class)
 public class NotificacaoController  extends Controller {
 
         public Result getNotificacoes(){
-            Usuario usuario = UsuarioController.usuarioAutenticado();
+            Usuario usuario = AutenticacaoController.usuarioAutenticado();
 
             return ok(Json.toJson(usuario.getNovasNotificacoes()));
         }
 
 
         public Result removeNotificacoes(Long index){
-            Usuario usuario = UsuarioController.usuarioAutenticado();
+            Usuario usuario = AutenticacaoController.usuarioAutenticado();
             int idx =  Math.toIntExact(index);
             try{
                 List<Notificacao> notificacoes = usuario.getNovasNotificacoes();

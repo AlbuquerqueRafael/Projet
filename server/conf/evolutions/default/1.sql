@@ -3,6 +3,14 @@
 
 # --- !Ups
 
+create table autenticador (
+  id                            bigserial not null,
+  id_usuario                    bigint,
+  inicio                        timestamp,
+  auth_token                    varchar(255),
+  constraint pk_autenticador primary key (id)
+);
+
 create table carona (
   id                            bigserial not null,
   horario_id                    bigint,
@@ -129,6 +137,8 @@ drop index if exists ix_solicitacao_carona_id;
 
 alter table if exists usuario drop constraint if exists fk_usuario_endereco_id;
 drop index if exists ix_usuario_endereco_id;
+
+drop table if exists autenticador cascade;
 
 drop table if exists carona cascade;
 

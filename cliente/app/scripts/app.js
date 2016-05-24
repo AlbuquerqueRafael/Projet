@@ -143,7 +143,7 @@ angular.module('clienteApp').controller('Ctrl', ['$translate', '$scope', functio
 }]);
 
 
-angular.module("clienteApp").run(function($rootScope, $location, menuService, mainService){
+angular.module("clienteApp").run(function($rootScope, $location, menuService, mainService, $http){
   $rootScope.$on('$routeChangeStart', function(event, next, current) {
 
     //Logout -> Deve haver soluções melhores
@@ -159,6 +159,10 @@ angular.module("clienteApp").run(function($rootScope, $location, menuService, ma
           $location.path("/inicio");
     }
 
+    $http.defaults.headers.common['X-AUTH-TOKEN'] = mainService.getUserAtual();
+
+
+    //$http.interceptors.push('ApiInterceptorService');
 
   });
 });
