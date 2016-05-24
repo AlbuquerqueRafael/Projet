@@ -159,7 +159,7 @@ angular.module("clienteApp").run(function($rootScope, $location, menuService, ma
           $location.path("/inicio");
     }
 
-    $http.defaults.headers.common['X-AUTH-TOKEN'] = mainService.getUserAtual();
+    $http.defaults.headers.common['X-AUTH-TOKEN'] = mainService.getUserAtual().authToken;
 
 
     //$http.interceptors.push('ApiInterceptorService');

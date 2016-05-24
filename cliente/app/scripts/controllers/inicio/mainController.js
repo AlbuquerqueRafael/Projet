@@ -12,7 +12,7 @@ angular.module('clienteApp')
     $scope.logar = function(usuario) {
       mainService.logar(usuario).success(function(info){
         console.log(info);
-        mainService.autenticar(info.authToken);
+        mainService.autenticar(info);
         menuService.setMenu("Usuario");
         $location.path("/horario");
 

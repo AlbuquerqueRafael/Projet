@@ -4,6 +4,7 @@ package controllers;
 
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import models.*;
 import database.*;
@@ -46,7 +47,7 @@ public class AutenticacaoController extends Controller{
                     autentica.save();
                 }
 
-                return ok(autenticar(authToken));
+                return ok(autenticar(authToken, usuario));
             }
         }
 
@@ -75,10 +76,14 @@ public class AutenticacaoController extends Controller{
     }
 
 
-    private JsonNode autenticar(String authToken){
+    private JsonNode autenticar(String authToken, Usuario usuario){
+
         ObjectNode authTokenJson = Json.newObject();
+        ObjectNode child = Json.newObject();
         authTokenJson.put(AUTH_TOKEN, authToken);
         response().setCookie(Http.Cookie.builder(AUTH_TOKEN, authToken).withSecure(ctx().request().secure()).build());
+        Usuario newUsuario = new Usuario(usuario.getNome(), usuario.getEndereco(), usuario.getEmail());
+        authTokenJson.put("usuario", Json.toJson(newUsuario));
         return authTokenJson;
     }
 

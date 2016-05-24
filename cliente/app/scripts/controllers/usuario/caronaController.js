@@ -17,7 +17,7 @@ angular.module("clienteApp")
         $scope.vagas = $scope.NumVagas[2];
         $scope.rota = $scope.bairros[0];
         $scope.opcaoCarona = "0";
-        $scope.usuario = mainService.getUserAtual();
+        $scope.usuario = mainService.getUserAtual().usuario;
         $scope.bairro = $scope.usuario.endereco.bairro;
         $scope.rua = $scope.usuario.endereco.rua;
 

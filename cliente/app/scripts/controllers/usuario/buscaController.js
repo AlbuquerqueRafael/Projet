@@ -10,7 +10,7 @@ angular.module("clienteApp").controller("buscaCtrl", function($scope, caronaServ
   $scope.diaSemanas = caronaService.getDiaSemanasArray();
   $scope.bairros = caronaService.getBairrosArray();
 
-  $scope.usuario = mainService.getUserAtual();
+  $scope.usuario = mainService.getUserAtual().usuario;
   console.log( $scope.usuario);
   $scope.tabs = true;
   $scope.infoCaronas = [];
