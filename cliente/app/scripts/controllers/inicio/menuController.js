@@ -1,7 +1,7 @@
 /**
  * Created by rafael on 05/04/16.
  */
-angular.module("clienteApp").controller("menuController", function($scope, $location, menuService){
+angular.module("clienteApp").controller("menuController", function($scope, $location, menuService, $translate){
 
   $scope.menus = menuService.getMenuAtual();
   $scope.open = false;
@@ -9,6 +9,11 @@ angular.module("clienteApp").controller("menuController", function($scope, $loca
   $scope.$on('$routeChangeStart', function() {
     $scope.menus = menuService.getMenuAtual();
   });
+
+
+  $scope.changeLanguage = function (langKey) {
+    $translate.use(langKey);
+  };
 
   $scope.rotaAtiva = function () {
     return $location.path();

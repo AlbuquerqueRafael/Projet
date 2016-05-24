@@ -181,7 +181,7 @@ angular.module("clienteApp").config(function($translateProvider) {
       'diaDaSemana': "Dia da Semana",
       'diaDaSemanaComplete': "Dia da Semana",
       'aula': "Aula",
-      'tipoDeCarona': "Tipo",      
+      'tipoDeCarona': "Tipo",
       'vagas': "Vagas",
       'bairro': "bairro",
       'rua': "Rua",
@@ -219,13 +219,13 @@ angular.module("clienteApp").config(function($translateProvider) {
   $translateProvider.preferredLanguage('en'); //temos que dizer qual é a default.
 });
 
-angular.module('clienteApp').controller('Ctrl', ['$translate', '$scope', function ($translate, $scope) {
+/*angular.module('clienteApp').controller('Ctrl', ['$translate', '$scope', function ($translate, $scope) {
 
   $scope.changeLanguage = function (langKey) {
     $translate.use(langKey);
   };
 
-}]);
+}]);*/
 
 
 angular.module("clienteApp").run(function($rootScope, $location, menuService, mainService, $http){
