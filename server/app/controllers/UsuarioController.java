@@ -20,13 +20,13 @@ import static play.libs.Json.*;
 import static play.data.Form.form;
 
 
-@Security.Authenticated(Secured.class)
+
 public class UsuarioController extends Controller {
 
     private SistemaUsuarios sistemaUsuarios = SistemaUsuarios.getInstance();
     private SistemaCaronas sistemaCaronas = SistemaCaronas.getInstance();
 
-
+    @Security.Authenticated(Secured.class)
     public Result getCaronasComoPassageiro(){
         List<Carona> caronasComoPassageiro = new ArrayList<Carona>();
         Usuario usuarioAtual = AutenticacaoController.usuarioAutenticado();
@@ -46,6 +46,7 @@ public class UsuarioController extends Controller {
         return ok(Json.toJson(caronasComoPassageiro));
     }
 
+    @Security.Authenticated(Secured.class)
     public Result getCaronasComoMotoristas(){
         List<Carona> caronasComoMotorista = new ArrayList<Carona>();
         List<Carona> allCaronas = SistemaCaronas.getInstance().getCaronas();
