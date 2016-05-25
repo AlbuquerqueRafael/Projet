@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="../bower_components/bootstrap-social/bootstrap-social.css">
     <link rel="stylesheet" href="styles/lib/font-awesome-4.6.1/css/font-awesome.css">
     <link rel="stylesheet" href="styles/usuario/horario.css">
-
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/inicio/main.css">
     <link rel="stylesheet" href="styles/inicio/menu.css">
@@ -73,7 +73,6 @@
   ''<script src="scripts/controllers/usuario/homeController.js"></script>
     <script src="scripts/controllers/inicio/about.js"></script>
    <script src="scripts/config/interceptorConfig.js"></script>
-
     <!-- endbuild -->
 </head>
 <body ng-app="clienteApp">
@@ -82,9 +81,25 @@
        <!-- Brand and toggle get grouped for better mobile display -->
        <div class="navbar-header page-scroll">
          <a class="navbar-brand page-scroll">Carona-me!</a>
+
+         <div class="navbar-header page-scroll" >
+          <div data-click="icon" class="nav" style="position: relative;top: 10px;">
+
+            <a ng-click="changeLanguage('pt')">
+              <img
+                src="http://icons.iconarchive.com/icons/custom-icon-design/flag-3/32/Brazil-Flag-icon.png"
+                style="width:32px;height:32px;">
+            </a>
+
+            <a ng-click="changeLanguage('en')">
+              <img
+                src="http://icons.iconarchive.com/icons/custom-icon-design/flag-3/32/United-States-Flag-icon.png"
+                style="width:32px;height:32px;">
+            </a>
+          </div>
+         </div>
+
        </div>
-       <button ng-click="changeLanguage('pt')">pt</button>
-       <button ng-click="changeLanguage('en')">EN</button>
     <!--Gileade   <H2 translate='label.title'></H2> -->
        <!-- Collect the nav links, forms, and other content for toggling -->
        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
