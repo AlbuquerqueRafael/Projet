@@ -64,7 +64,6 @@ public class Secured extends Security.Authenticator {
         Calendar inicioToken = Calendar.getInstance();
         inicioToken.setTime(auth.getInicio());
         Long tempo = (cal.getTimeInMillis() - inicioToken.getTimeInMillis())/1000;
-        System.out.println(tempo);
         if(tempo > tempoLimite){
             Usuario usuarioAtual = Usuario.find.byId(auth.getId_Usuario());
             ServiceLog.novaMensagemLog(usuarioAtual.getEmail() + " foi deslogado pois seu token expirou");
