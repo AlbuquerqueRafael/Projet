@@ -30,11 +30,8 @@ public class AutenticacaoController extends Controller{
     public  Result postLogin() {
         JsonNode json = request().body().asJson();
         Usuario user = Json.fromJson(json, Usuario.class);
-      //  Usuario usuario = Usuario.find.where().eq("email", user.getEmail()).findUnique();
-        System.out.println(Json.toJson(user));
         String authToken = "";
         for(Usuario usuario : SistemaUsuarios.getInstance().getUsuarios()) {
-            System.out.println(Json.toJson(usuario));
             if(usuario.getEmail().equals(user.getEmail()) && usuario.getSenha().equals(user.getSenha())){
                 ServiceLog.novaMensagemLog(usuario.getEmail() + " acabou de logar");
                 Autenticador auth = Autenticador.find.where().eq("id_Usuario", usuario.getId()).findUnique();

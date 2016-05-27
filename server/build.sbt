@@ -1,4 +1,4 @@
-name := """form-test"""
+name := """caroname"""
 
 version := "1.0-SNAPSHOT"
 

@@ -30,7 +30,6 @@ public class NotificacaoController  extends Controller {
             try{
                 List<Notificacao> notificacoes = usuario.getNovasNotificacoes();
                 notificacoes.get(idx).delete();
-                System.out.println(idx);
             }catch(IndiceInvalidoException exception){
                 return ok("Indice Inválido");
             }

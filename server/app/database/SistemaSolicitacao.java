@@ -9,11 +9,10 @@ import java.util.List;
  * Created by rafael on 19/04/16.
  */
 public class SistemaSolicitacao {
-    private List<Solicitacao> solicitacoes;
+
     private static SistemaSolicitacao sistemaSolicitacao;
 
     private SistemaSolicitacao (){
-        solicitacoes = new ArrayList<Solicitacao>();
 
     }
 

@@ -41,7 +41,6 @@ public class SolicitacaoController extends Controller{
 
 
             Carona carona = sol.getCarona();
-            System.out.println(Json.toJson(carona));
 
             int vagas = sol.getCarona().getVagas();
 
@@ -70,9 +69,6 @@ public class SolicitacaoController extends Controller{
     */
     public Result getSolicitacoesCaronas(Long id){
         List<Solicitacao> solicitacoes = new ArrayList<Solicitacao>();
-        System.out.println(AutenticacaoController.usuarioAutenticado());
-        System.out.println("Entrou");
-        System.out.println(AutenticacaoController.usuarioAutenticado());
         for(Solicitacao pedido : SistemaSolicitacao.getInstance().getSolicitacao()){
             if(AutenticacaoController.usuarioAutenticado().equals(pedido.getCarona().getMotorista())){
                 solicitacoes.add(pedido);

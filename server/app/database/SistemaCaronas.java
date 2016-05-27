@@ -12,11 +12,9 @@ import java.util.List;
 
 public class SistemaCaronas{
 
-	private List<Carona> caronas;
 	private static SistemaCaronas sistemaCaronas;
 
 	private SistemaCaronas (){
-		caronas = new ArrayList<Carona>();
 
 	}
 
@@ -30,10 +28,6 @@ public class SistemaCaronas{
 
 	public List<Carona> getCaronas(){
 		return Carona.find.findList();
-	}
-
-	public List<Carona> getListaCaronas(){
-		return caronas;
 	}
 
 	public void adicionarCarona(Carona carona){

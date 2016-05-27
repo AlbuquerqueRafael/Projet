@@ -34,7 +34,6 @@ public class UsuarioController extends Controller {
 
 
         for(Carona carona : allCaronas){
-            System.out.println(carona.getListaPassageiros());
             for(Usuario passageiro: carona.getListaPassageiros()){
                 if(usuarioAtual.equals(passageiro)){
                     Usuario newMotorista = new Usuario(carona.getMotorista().getEmail(), carona.getMotorista().getTelefone());
@@ -50,7 +49,6 @@ public class UsuarioController extends Controller {
     public Result getCaronasComoMotoristas(){
         List<Carona> caronasComoMotorista = new ArrayList<Carona>();
         List<Carona> allCaronas = SistemaCaronas.getInstance().getCaronas();
-        System.out.println(AutenticacaoController.usuarioAutenticado());
 
         for (Carona carona : allCaronas) { 
             if (AutenticacaoController.usuarioAutenticado().equals(carona.getMotorista())) {
@@ -64,9 +62,7 @@ public class UsuarioController extends Controller {
 
     public Result postCadastro() {
         JsonNode json = request().body().asJson();
-        System.out.println(json);
         Usuario usuario = Json.fromJson(json, Usuario.class);
-        //      usuario.setNovasNotificacoes(new ArrayList<Notificacao>());
 
 
         try{

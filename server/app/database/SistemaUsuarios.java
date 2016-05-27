@@ -19,16 +19,14 @@ import com.avaje.ebean.Model;
 
 public class SistemaUsuarios{
 
-	private List<Usuario> usuarios;
 	private static SistemaUsuarios sistemaUsuarios;
 
 	private SistemaUsuarios (){
-		usuarios = new ArrayList<Usuario>();
-		//testeExemplos();
+		testeExemplos();
 	}
 
 	private void testeExemplos() {
-		/*Endereco endereco = new Endereco("Rua da Flores", "Centro");
+		Endereco endereco = new Endereco("Rua da Flores", "Centro");
 		Endereco endereco2 = new Endereco("Rua Floriano Peixoto", "Centro");
 		Endereco endereco3 = new Endereco("Rua Emiliano Rosendo da Silva", "Novo Bondocongó");
 		Endereco endereco4 = new Endereco("Rua Paulo de Frontin", "Catolé");
@@ -82,13 +80,13 @@ public class SistemaUsuarios{
 		Carona carona3 = new Carona(usuario3, horario2, 3, rota2, endereco2, TipoCarona.IDA);
 		Carona carona4 = new Carona(usuario4, horario2, 1, rota0, endereco2, TipoCarona.IDA);
 		Carona carona5 = new Carona(usuario5, horario2, 2, rota1, endereco2, TipoCarona.IDA);
-		Carona carona6 = new Carona(usuario, horario, 4, rota0, endereco2, TipoCarona.VOLTA);
-		Carona carona7 = new Carona(usuario6, horario2, 3, rota0, endereco2, TipoCarona.IDA);
-		Carona carona8 = new Carona(usuario, horario, 3, rota0, endereco2, TipoCarona.IDA);
+		Carona carona6 = new Carona(usuario, horario9, 4, rota0, endereco2, TipoCarona.VOLTA);
+		Carona carona7 = new Carona(usuario6, horario, 3, rota0, endereco2, TipoCarona.IDA);
+		Carona carona8 = new Carona(usuario, horario9, 3, rota0, endereco2, TipoCarona.IDA);
 		Carona carona9 = new Carona(usuario7, horario2, 3, rota0, endereco2, TipoCarona.IDA);
 		Carona carona10 = new Carona(usuario10, horario2, 3, rota0, endereco2, TipoCarona.IDA);
 
-		/*
+		
 		List<Usuario> us = new ArrayList<>();
 		us.add(usuario2);
 		us.add(usuario3);
@@ -116,7 +114,7 @@ public class SistemaUsuarios{
 		SistemaSolicitacao.getInstance().adicionarSolicitacao(solicitacao3);
 		SistemaSolicitacao.getInstance().adicionarSolicitacao(solicitacao4);
 		SistemaSolicitacao.getInstance().adicionarSolicitacao(solicitacao5);
-		*/
+		
 	}
 
 	public static SistemaUsuarios getInstance(){
@@ -128,10 +126,6 @@ public class SistemaUsuarios{
 
 	public List<Usuario> getUsuarios(){
 		return Usuario.find.findList();
-	}
-
-	public List<Usuario> getListaUsuarios(){
-		return usuarios;
 	}
 
 	public void adicionarUsuario(Usuario usr) throws DadosInvalidosException{
