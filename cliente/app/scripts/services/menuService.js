@@ -53,7 +53,7 @@ angular.module("clienteApp").factory("menuService", function($location, $cookieS
       {path : "/horario", href : "#/horario", nome: "Schedule", class:"time"},
       {path : "/buscar", href : "#/buscar", nome: "Ask for a Ride", class: "map-marker"},
       {path : "/notificacao", href: "#/notificacao", nome: "Notifications", class : "alert"},
-      {path : "/solicitacao", href: "#/solicitacao", nome: "Solicitations", class : "user"},
+      {path : "/solicitacao", href: "#/solicitacao", nome: "Requests", class : "user"},
       {path : "/sair", href: "#/sair", nome: "Log Of", class: "leaf"}
     ];
 
