@@ -54,7 +54,7 @@ angular.module("clienteApp").factory("menuService", function($location, $cookieS
       {path : "/buscar", href : "#/buscar", nome: "Ask for a Ride", class: "map-marker"},
       {path : "/notificacao", href: "#/notificacao", nome: "Notifications", class : "alert"},
       {path : "/solicitacao", href: "#/solicitacao", nome: "Requests", class : "user"},
-      {path : "/sair", href: "#/sair", nome: "Log Of", class: "leaf"}
+      {path : "/sair", href: "#/sair", nome: "Logoff", class: "leaf"}
     ];
 
     return menus;
