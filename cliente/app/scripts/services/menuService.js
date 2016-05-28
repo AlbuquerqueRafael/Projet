@@ -38,9 +38,35 @@ angular.module("clienteApp").factory("menuService", function($location, $cookieS
     return menus;
   };
 
+  service.getMenuInicialEmIngles = function(){
+    var menus = [{path : "/", href : "#/", nome: "Home", class:"home", slide:1},
+      {path : "/sobre", href : "http://bit.ly/1SCfvMC", nome: "About", class: "star", slide:2},
+      {path : "/team", href : "#/team", nome: "Team", class: "glass", slide:3}
+    ];
+
+    return menus;
+  };
+
+
+  service.getMenuUsuarioEmIngles = function(){
+    var menus = [
+      {path : "/horario", href : "#/horario", nome: "Schedule", class:"time"},
+      {path : "/buscar", href : "#/buscar", nome: "Ask for a Ride", class: "map-marker"},
+      {path : "/notificacao", href: "#/notificacao", nome: "Notifications", class : "alert"},
+      {path : "/solicitacao", href: "#/solicitacao", nome: "Solicitations", class : "user"},
+      {path : "/sair", href: "#/sair", nome: "Log Of", class: "leaf"}
+    ];
+
+    return menus;
+  };
+
   service.getMenuAtual = function(){
     if("Usuario" === $cookieStore.get('menu')){
       return service.getMenuUsuario();
+    }else if("UsuarioEmIngles" === $cookieStore.get('menu')){
+      return service.getMenuUsuarioEmIngles();
+    }else if("MenuInicialEmIngles" === $cookieStore.get('menu')) {
+      return service.getMenuInicialEmIngles();
     }else{
       return service.getMenuInicial();
     }

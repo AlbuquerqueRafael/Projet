@@ -13,7 +13,12 @@ angular.module('clienteApp')
       mainService.logar(usuario).success(function(info){
         console.log(info);
         mainService.autenticar(info);
-        menuService.setMenu("Usuario");
+        if(menuService.getMenu() === "inicio"){
+          menuService.setMenu("Usuario");
+        }else{
+          menuService.setMenu("UsuarioEmIngles");
+        };
+
         $location.path("/horario");
 
       }).error(function(error){

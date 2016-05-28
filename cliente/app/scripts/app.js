@@ -216,7 +216,7 @@ angular.module("clienteApp").config(function($translateProvider) {
       'label.title': "Vote no Filme"
   });
 
-  $translateProvider.preferredLanguage('en'); //temos que dizer qual é a default.
+  $translateProvider.preferredLanguage('pt'); //temos que dizer qual é a default.
 });
 
 /*angular.module('clienteApp').controller('Ctrl', ['$translate', '$scope', function ($translate, $scope) {
@@ -232,20 +232,26 @@ angular.module("clienteApp").run(function($rootScope, $location, menuService, ma
   $rootScope.$on('$routeChangeStart', function(event, next, current) {
 
     //Logout -> Deve haver soluções melhores
-    if($location.path() === "/sair"){
-      menuService.setMenu("inicio");
+    if ($location.path() === "/sair") {
+      if(menuService.getMenu() === "Usuario"){
+        menuService.setMenu("inicio");
+      }else{
+        menuService.setMenu("MenuInicialEmIngles");
+      }
+
       mainService.logout();
       $location.path("/");
     }
 
 
     //Algoritmo para não deixar algum usario entrar sem estar logado
-    if(next.$$route === undefined ||(next.$$route.requireLogin && "Usuario" !== menuService.getMenu())){
-          $location.path("/inicio");
+    if (next.$$route === undefined || (next.$$route.requireLogin && "Usuario" !== menuService.getMenu() && "UsuarioEmIngles" !== menuService.getMenu()) )  {
+       $location.path("/inicio");
     }
 
-    $http.defaults.headers.common['X-AUTH-TOKEN'] = mainService.getUserAtual().authToken;
-
+    if (mainService.getUserAtual() !== undefined) {
+       $http.defaults.headers.common['X-AUTH-TOKEN'] = mainService.getUserAtual().authToken;
+     }
 
     //$http.interceptors.push('ApiInterceptorService');
 
