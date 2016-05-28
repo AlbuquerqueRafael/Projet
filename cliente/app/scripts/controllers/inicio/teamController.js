@@ -5,7 +5,7 @@ angular.module("clienteApp").controller("teamCtrl", function($scope){
 
   $scope.membrosTime = [];
   var mafra = {nome: "João Mafra", foto:"images/team/mafra.jpg", github: "https://github.com/jvmafra",
-                mail: "joao.mafra@ccc.ufcg.edu.br", facebook: "#"};
+                mail: "joao.mafra@ccc.ufcg.edu.br", facebook: "https://www.facebook.com/joaovictor.b.mafra"};
 
   var lucas = {nome: "Lucas", foto:"images/team/lucas.jpg", github: "https://github.com/lucaspk",
     mail: 	"jobson.silva@ccc.ufcg.edu.br", facebook: "https://www.facebook.com/jlucas.dias.1"};
@@ -14,12 +14,9 @@ angular.module("clienteApp").controller("teamCtrl", function($scope){
     mail:"gileade.silva@ccc.ufcg.edu.br", facebook: "https://www.facebook.com/gileadekelvin"};
 
   var rafael = {nome: "Rafael Albuquerque", foto:"images/team/rafa.jpg", github: "https://github.com/AlbuquerqueRafael/",
-    mail: 	"rafael.sousa@ccc.ufcg.edu.br", facebook: "#/team"};
+    mail: 	"rafael.sousa@ccc.ufcg.edu.br", facebook: "#/team"};  
 
-  var leandro = {nome: "Leandro", foto:"images/team/leandro.jpg", github: "https://github.com/jvmafra",
-    mail: 	"joao.mafra@ccc.ufcg.edu.br", facebook: "#"};
-
-  $scope.membrosTime.push(mafra, lucas, kelvin, rafael, leandro);
+  $scope.membrosTime.push(mafra, lucas, kelvin, rafael);
 
 
 });
