@@ -72,12 +72,12 @@ angular
       .when('/notificacao', {
         templateUrl: 'views/usuario/notificacao.html',
         controller: 'notifyCtrl',
-        requireLogin : false
+        requireLogin : true
       })
       .when('/solicitacao', {
         templateUrl: 'views/usuario/solicitacao.html',
         controller: 'solicitacaoCtrl',
-        requireLogin : false
+        requireLogin : true
       })
       .otherwise({
         redirectTo: '/'
