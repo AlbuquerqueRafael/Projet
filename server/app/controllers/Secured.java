@@ -21,7 +21,7 @@ import java.util.Calendar;
 public class Secured extends Security.Authenticator {
 
     public final static String AUTH_TOKEN_HEADER = "X-AUTH-TOKEN";
-    public final static int tempoLimite = 1000;
+    public final static int tempoLimite = 86400;
 
     @Override
     public String getUsername(Context ctx) {
