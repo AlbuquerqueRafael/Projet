@@ -22,7 +22,7 @@ public class SistemaUsuarios{
 	private static SistemaUsuarios sistemaUsuarios;
 
 	private SistemaUsuarios (){
-		testeExemplos();
+		//testeExemplos();
 	}
 
 	private void testeExemplos() {
